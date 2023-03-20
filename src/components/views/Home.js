@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'styles/views/Home.scss';
 import BaseContainer from "components/ui/BaseContainer";
 
