@@ -1,16 +1,16 @@
-import React from 'react'
-
-import { Helmet } from 'react-helmet'
+import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom'
 
 import 'styles/views/login.scss'
 
+
 const Login = (props) => {
+  const history = useHistory();
+  let [username, setUsername] = useState("");
+
+
   return (
     <div className="login-container">
-      <Helmet>
-        <title>SoPra Mockups</title>
-        <meta property="og:title" content="SoPra Mockups" />
-      </Helmet>
       <div className="login-container1">
         <h1 className="login-login-text">Heading</h1>
         <span className="login-text">
@@ -29,10 +29,7 @@ const Login = (props) => {
           />
         </div>
         <button type="submit" className="login-button button">
-          <span>
             <span>Login</span>
-            <br></br>
-          </span>
         </button>
       </div>
     </div>
