@@ -3,7 +3,7 @@ import BigScreenView from 'components/views/big-screen-view'
 import Rules from 'components/views/rules'
 import Lobby from 'components/views/lobby'
 import Loader from 'components/views/loader'
-import Login from 'components/views/login'
+import Login from 'components/views/Login'
 import GameRouter from "./GameRouter";
 import {LobbyGuard} from "components/routing/routeProtectors/LobbyGuard";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
@@ -16,14 +16,14 @@ const AppRouter = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/lobby">
-          {/* <LobbyGuard> */}
+          <LobbyGuard>
             <Lobby/>
-          {/* </LobbyGuard> */}
+          </LobbyGuard>
         </Route>
         <Route exact path="/login">
-          {/* <LoginGuard> */}
+          <LoginGuard>
             <Login/>
-          {/* </LoginGuard> */}
+          </LoginGuard>
         </Route>
         <Route exact path="/">
           <Redirect to="/login" />
