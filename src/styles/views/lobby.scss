@@ -1,5 +1,6 @@
 .lobby-container {
   width: 100vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -13,7 +14,9 @@
   width: 100%;
   height: 250px;
   margin: 0px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  align-items: center;
   opacity: 0.7;
   border-radius: var(--dl-radius-radius-radius8);
   background-color: var(--dl-color-primary-100);
@@ -24,21 +27,11 @@
   align-items: flex-start;
   flex-direction: column;
 }
-.lobby-camel-div {
-  width: 150px;
-  height: 140px;
-  display: flex;
-  margin-top: 25px;
-  align-items: center;
-  margin-left: 50px;
-  border-color: var(--dl-color-primary-700);
-  border-width: 2px;
-  margin-right: 50px;
-  border-radius: var(--dl-radius-radius-round);
-  margin-bottom: 25px;
-  flex-direction: row;
-  justify-content: center;
-  background-color: var(--dl-color-primary-700);
+.lobby-loader {
+  scale: 0.5;
+  left: -100px;
+  position: absolute;
+  top: -225px;
 }
 .lobby-camel {
   width: 192px;
@@ -120,12 +113,14 @@
   }
 }
 @media(max-width: 767px) {
-  .lobby-logout-div {
-    display: none;
+
+.lobby-container1 {
+  grid-template-columns: 30% 30% 30%;
+}
+  .lobby-text1 {
+    width: 30vw;
   }
-  .lobby-btn-group {
-    display: none;
-  }
+
 }
 @media(max-width: 576px) {
   .lobby-header-div {
@@ -160,5 +155,8 @@
   }
   .lobby-join-game {
     font-size: 22px;
+  }
+  .lobby-container1 {
+    grid-template-columns: 50% 50%;
   }
 }
