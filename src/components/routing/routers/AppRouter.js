@@ -4,11 +4,13 @@ import Rules from 'components/views/rules'
 import Lobby from 'components/views/lobby'
 import Loader from 'components/views/loader'
 import Login from 'components/views/Login'
-import GameRouter from "./GameRouter";
+import NotFound from 'components/views/not-found'
+import GameRouter from "./GameRouter"
 import {LobbyGuard} from "components/routing/routeProtectors/LobbyGuard";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import {SessionGuard} from "components/routing/routeProtectors/SessionGuard";
-import Overview from "components/views/overview";
+import Overview from "components/views/overview"
+import ChooseAvatar from "components/views/choose-avatar";
 
 
 const AppRouter = () => {
@@ -16,25 +18,30 @@ const AppRouter = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/lobby">
-          <LobbyGuard>
+          {/* <LobbyGuard> */}
             <Lobby/>
-          </LobbyGuard>
+          {/* </LobbyGuard> */}
         </Route>
         <Route exact path="/login">
-          <LoginGuard>
+          {/* <LoginGuard> */}
             <Login/>
-          </LoginGuard>
+          {/* </LoginGuard> */}
         </Route>
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
         <Route path="/overview/:sessionPin">
           {/* <SessionGuard> */}
-            <Overview/>
-            <Route path="/exit">
-              <Redirect to="/lobby" />
+            <ChooseAvatar/>
+            <Route path={`${path}/base`}>
+              <Overview/>
+              <Route path="/exit">
+                <Redirect to="/lobby" />
+              </Route>
+              <Route path="/start">
+                <GameRouter base="/game" />
+              </Route>
             </Route>
-            <Route path="/race/*" element={<GameRouter />} />
           {/* </SessionGuard> */}
         </Route>
         <Route path="/overview">
@@ -52,8 +59,7 @@ const AppRouter = () => {
         {/* have this in every router? */}
         <Route component={Loader} exact path="/loader" />
 
-        {/* for later :) */}
-        {/* <Route path="*" component={NotFound} /> */}
+        <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

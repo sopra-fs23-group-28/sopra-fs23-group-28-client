@@ -7,12 +7,12 @@
   flex-direction: column;
   background-size: cover;
   justify-content: center;
-  background-image: url('../../../public/playground_assets/background12001-1500h.png');
+  background-image: url('../../../public/playground_assets/background12001-1500w.png');
   background-position: left center;
 }
-.login-container1 {
-  width: 390px;
-  height: 709px;
+.login-main-div {
+  width: 370px;
+  height: 620px;
   display: flex;
   opacity: 1;
   align-self: center;
@@ -24,28 +24,39 @@
   justify-content: center;
   background-color: rgba(25, 88, 235, 0.9);
 }
-.login-login-text {
+.login-title {
   color: var(--dl-color-primary-100);
-  padding: 10px;
+  font-size: 3rem;
   text-align: center;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 48px;
+  margin: 0px;
 }
-.login-text {
+.login-instructions {
   padding: 10px;
+  font-style: normal;
   text-align: center;
+  font-weight: 700;
+  padding-bottom: var(--dl-space-space-threeunits);
+  margin: 0px;
 }
-.login-container2 {
+.login-input-container {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
-.login-text3 {
+.login-input-description {
   padding: 10px;
+  margin: 0px;
 }
-.login-input {
+.login-input-field {
   background-color: rgba(255, 210, 69, 0.43);
+  width: 85%;
 }
-.login-button {
+.login-login-button {
   color: var(--dl-color-gray-500);
   width: 250px;
   height: 50px;
@@ -56,10 +67,4 @@
   text-align: center;
   font-weight: 500;
   background-color: var(--dl-color-primary-100);
-}
-@media(max-width: 576px) {
-  .login-container1 {
-    padding: 10px;
-    max-width: 90vw;
-  }
 }

@@ -3,7 +3,7 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {useHistory} from 'react-router-dom';
 
-import 'styles/views/login.scss'
+import 'styles/views/Login.scss'
 
 
 const Login = (props) => {
@@ -41,15 +41,15 @@ const Login = (props) => {
 
   return (
     <div className="login-container">
-      <div className="login-container1">
-        <h1 className="login-login-text">Login</h1>
-        <h2 className="login-login-text">Welcome to the camel race game</h2>
-        <span className="login-text">
-          <span>enter your username <br/> your username consists of at least 4 characters</span>
+      <div className="login-main-div">
+        <h1 className="login-title">Welcome to Camel Race</h1>
+        <p className="login-instructions">
+          Choose a unique username
           <br></br>
-        </span>
-        <div className="login-container2">
-          <span className="login-text3">Name</span>
+          <u>It has to consist of at least 4 characters!</u>
+        </p>
+        <div className="login-input-container">
+          <p className="login-input-description">Name</p>
           <input
             type="text"
             name="Name"
@@ -58,17 +58,15 @@ const Login = (props) => {
             autoComplete="name"
             value= {username}
             onChange={un => setUsername(un.target.value)}
-            className="login-input input"
+            className="login-input-field input"
           />
         </div>
-        <button 
-          type="submit" 
-          className="login-button button"
-          
-          disabled={!username || username.length<3}
-          onClick={() => doLogin()}
-        >
-            <span>Login</span>
+        <button
+          type="submit"
+          className="login-login-button button"
+          disabled={!username || username.length < 3}
+          onClick={() => doLogin()} >
+          <span>Login</span>
         </button>
       </div>
     </div>
