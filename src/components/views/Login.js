@@ -20,10 +20,18 @@ const Login = (props) => {
       console.log("user: ",user);
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
-      localStorage.setItem('id', user.id);
+      localStorage.setItem('user', user);
+      localStorage.setItem('avatar', user.camelColor);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
+      // if CamelColor is Null go to setAvatar
+      console.log(user.camelColor)
+      if (user.camelColor == null) {
+        history.push('/lobby');
+      } else {
+
+      // Login successfully worked --> navigate to the route /lobby in the GameRouter
       history.push(`/lobby`);
+      }
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
