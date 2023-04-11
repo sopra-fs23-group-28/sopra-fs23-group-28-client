@@ -1,51 +1,67 @@
 .rules-container {
-  width: 100%;
+  width: 100vw;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
+  max-height: 100vh;
   align-items: center;
   flex-direction: column;
   background-size: cover;
   justify-content: center;
-  background-image: url('../../../public/playground_assets/background12001-1500h.png');
+  background-image: url("../../../public/playground_assets/background12001-1500h.png");
   background-position: left center;
 }
-.rules-container1 {
-  width: 390px;
-  height: 709px;
+.rules-main-div {
+  width: 90vw;
+  margin: 48px;
   display: flex;
-  opacity: 1;
+  opacity: 0.95;
+  padding: 30px;
   align-self: center;
-  align-items: center;
+  min-height: 85vh;
+  align-items: flex-start;
   border-color: #1958eb;
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius8);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: rgba(25, 88, 235, 0.9);
+  overflow: auto;
 }
-.rules-login-text {
+.rules-titel {
   color: var(--dl-color-primary-100);
-  padding: 25px;
+  margin: 0px;
+  font-size: 7vw;
+  padding-bottom: 32px;
 }
-.rules-text {
-  padding: 10px;
+.rules-rules-text {
+  color: white;
+  margin: 0px;
+  font-size: 3.5vw;
+  padding-left: 0px;
+  list-style-type: decimal;
+  list-style-position: inside;
 }
-.rules-button {
-  color: var(--dl-color-gray-500);
-  width: 250px;
-  height: 50px;
-  margin: 15px;
-  padding: 15px;
-  font-size: 24px;
-  align-self: center;
-  font-style: normal;
-  text-align: center;
-  font-weight: 500;
-  background-color: var(--dl-color-primary-100);
+.rules-question-types-list {
+  color: white;
+  margin: 0px;
+  font-size: 3vw;
+  padding-top: 16px;
+  padding-left: 24px;
+  list-style-type: lower-alpha;
+  list-style-position: inside;
 }
-@media(max-width: 576px) {
-  .rules-container1 {
-    padding: 10px;
+@media(max-width: 992px) {
+  .rules-main-div {
+    margin: 32px;
   }
 }
+@media(max-width: 576px) {
+  .rules-main-div {
+    margin: 20px;
+    padding: 16px;
+  }
+  .rules-question-types-list {
+    padding-left: 16px;
+  }
+}
+
