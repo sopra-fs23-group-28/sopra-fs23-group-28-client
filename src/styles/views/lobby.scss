@@ -1,6 +1,5 @@
 .lobby-container {
   width: 100vw;
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -15,7 +14,7 @@
   height: 250px;
   margin: 0px;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20vw 50vw 20vw;
   align-items: center;
   opacity: 0.7;
   border-radius: var(--dl-radius-radius-radius8);
@@ -43,7 +42,7 @@
   align-self: center;
 }
 .lobby-lobby-title {
-  width: 100vw;
+  width: 60vw;
   margin: 0px;
   font-size: 7vw;
   align-self: center;
@@ -111,20 +110,36 @@
   .lobby-lobby-title {
     font-size: 6.5vw;
   }
+  .lobby-header-div {
+    
+  grid-template-columns: 20vw 40vw 20vw;
+  }
+
+  .lobby-lobby-title {
+    width: 50vw;
+  }
 }
 @media(max-width: 767px) {
 
-.lobby-container1 {
+  .lobby-header-div {
   grid-template-columns: 30% 30% 30%;
 }
-  .lobby-text1 {
+  .lobby-lobby-title {
     width: 30vw;
   }
 
 }
 @media(max-width: 576px) {
+  .lobby-loader {
+    scale: 0.3;
+    left: -215px;
+    position: absolute;
+    top: -160px;
+  }
   .lobby-header-div {
     height: fit-content;
+    flex-direction: row;
+    display: flex;
     flex-direction: column;
   }
   .lobby-camel-preview-div {
@@ -133,25 +148,35 @@
     margin-bottom: 34px;
   }
   .lobby-camel-div {
-    width: 100px;
+    width: 0px;
     height: 90px;
   }
   .lobby-lobby-title {
     margin-bottom: 16px;
+    display: none;
     text-decoration: underline;
   }
   .lobby-logout-div {
     display: flex;
-    margin-top: 32px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 16px;
+    width: 100vw;
+  }
+  .lobby-logout {
+    width: 150px;
+    font-size: 15px;
+    align-self: center;
+    text-align: center;
+    border-width: 0px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
   }
   .lobby-btn-group {
     display: flex;
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
+    z-index: 1;
   }
   .lobby-join-game {
     font-size: 22px;

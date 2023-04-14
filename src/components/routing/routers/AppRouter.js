@@ -33,7 +33,7 @@ const AppRouter = () => {
         <Route path="/overview/:sessionPin">
           {/* <SessionGuard> */}
             <ChooseAvatar/>
-            <Route path={`${path}/base`}>
+            <Route path={`/overview/:sessionPin/base`}>
               <Overview/>
               <Route path="/exit">
                 <Redirect to="/lobby" />

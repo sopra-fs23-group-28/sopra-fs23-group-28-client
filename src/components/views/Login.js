@@ -1,37 +1,31 @@
-import {useState} from 'react'
-import {api, handleError} from 'helpers/api';
+import React, { useState, useRef, useEffect } from "react";
+import { api, handleError } from 'helpers/api';
 import User from 'models/User';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 
 import 'styles/views/Login.scss'
 
 
 const Login = (props) => {
+  
   const history = useHistory();
   const [username, setUsername] = useState("");
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({username});
+      const requestBody = JSON.stringify({ username });
       const response = await api.post('/users', requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
-      console.log("user: ",user);
+      console.log("user: ", user);
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
+      localStorage.setItem('id', user.id);
       localStorage.setItem('user', user);
-      localStorage.setItem('avatar', user.camelColor);
-
-      // if CamelColor is Null go to setAvatar
-      console.log(user.camelColor)
-      if (user.camelColor == null) {
-        history.push('/lobby');
-      } else {
-
-      // Login successfully worked --> navigate to the route /lobby in the GameRouter
-      history.push(`/lobby`);
-      }
+        // Login successfully worked --> navigate to the route /lobby in the GameRouter
+        history.push(`/lobby`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
@@ -56,7 +50,7 @@ const Login = (props) => {
             required
             placeholder="Name"
             autoComplete="name"
-            value= {username}
+            value={username}
             onChange={un => setUsername(un.target.value)}
             className="login-input-field input"
           />
