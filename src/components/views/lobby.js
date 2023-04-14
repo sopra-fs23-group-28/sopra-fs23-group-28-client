@@ -41,6 +41,7 @@ const Lobby = (props) => {
 
     localStorage.removeItem('token');
     localStorage.removeItem('pin');
+    localStorage.removeItem('avatar');
     const response = await api.delete('/users', requestBody);
     console.log(response);
     history.push('/');

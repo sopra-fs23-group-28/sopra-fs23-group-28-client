@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export const SessionGuard = props => {
     // !!! also has to check for a full lobby !!!
     // && (api.) not full
-    if (!localStorage.getItem("pin")) {
+    if (localStorage.getItem("pin")) {
       return props.children;
     }
 

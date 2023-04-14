@@ -18,22 +18,24 @@ const AppRouter = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/lobby">
-          {/* <LobbyGuard> */}
+          <LobbyGuard>
             <Lobby/>
-          {/* </LobbyGuard> */}
+          </LobbyGuard>
         </Route>
         <Route exact path="/login">
-          {/* <LoginGuard> */}
+          <LoginGuard>
             <Login/>
-          {/* </LoginGuard> */}
+          </LoginGuard>
         </Route>
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
-        <Route path="/overview/:sessionPin">
-          {/* <SessionGuard> */}
+        <Route  path="/overview/:sessionPin">
+          <SessionGuard>
+          <Route exact path="/overview/:sessionPin">
             <ChooseAvatar/>
-            <Route path={`/overview/:sessionPin/base`}>
+          </Route>
+            <Route exact path={`/overview/:sessionPin/base`}>
               <Overview/>
               <Route path="/exit">
                 <Redirect to="/lobby" />
@@ -42,7 +44,7 @@ const AppRouter = () => {
                 <GameRouter base="/game" />
               </Route>
             </Route>
-          {/* </SessionGuard> */}
+          </SessionGuard>
         </Route>
         <Route path="/overview">
           <Redirect to="/lobby" />

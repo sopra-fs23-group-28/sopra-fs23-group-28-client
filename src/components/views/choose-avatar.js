@@ -1,6 +1,6 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { api, handleError } from 'helpers/api';
+import { api } from 'helpers/api';
 import { Helmet } from 'react-helmet'
 
 import 'styles/views/choose-avatar.scss'
@@ -120,14 +120,14 @@ const slidesReducer = (state, event) => {
   }
 };
 
-function Slide({ slide, id, offset }) {
+function Slide({ slide, id, offset, avatar , url }) {
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
 
   return (
     <div
 
-      onClick={() => select(slide, id)}
+      onClick={() => select(slide, id, avatar, url)}
       ref={ref}
       className='slide'
       data-active={active}
@@ -155,41 +155,38 @@ function Slide({ slide, id, offset }) {
 
 
   // use react-router-dom's hook to access the history
-  const select = async (props, id) => {
-    const color = props.title
-    const requestBody = props.title;
-console.log(requestBody)
-    const response = await api.put('/users/'+id, props.title,{ headers: {'Content-Type': 'application/raw'} });
-    console.log(response);
-    
-    localStorage.setItem('avatar', response.data.camelColor);
+  const select = async (props, id, avatar, url) => {
+    const camelColor = props.title
+    const requestBody = JSON.stringify({camelColor});
+    console.log(requestBody)
+    await api.put('/users/'+id, requestBody);    
+    localStorage.setItem('avatar', camelColor);
+    avatar(camelColor)
+
+    url();
   }
 
 
 const ChooseAvatar = (props) => {
-  const avatar = localStorage.getItem('id');
-  const [users, setUsers] = useState(null);
+  
   const history = useHistory();
+  const [users, setUsers] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const [state, dispatch] = useReducer(slidesReducer, initialState);
   const id = localStorage.getItem('id');
   const pin = localStorage.getItem('pin');
-  useEffect(async () => {
+  useEffect(() => {
     // Get Users in Lobby for the Color View
     api.get('/users/' + pin).then(data => {
       setUsers(data.data)
-      console.log('api call')
+      setAvatar(localStorage.getItem('avatar'))
     })
-
     
-    // Check if Avatar is choosen
-    if (!localStorage.getItem('avatar')) {
-      history.push("/overview/"+pin+"/base");
-    }
-    
-  }, [])
+  }, [avatar])
 
 
 
+  console.log( localStorage.getItem('avatar'))
   // Filter the Colors for choose Avater
   if (users) {
     const user = users
@@ -203,6 +200,11 @@ const ChooseAvatar = (props) => {
     });
 
   }
+
+const url = () => {
+  if (history.location.pathname.search("base") === -1 && avatar)
+    history.push(`${history.location.pathname}/base`);
+}
 
   return (
 
@@ -218,7 +220,7 @@ const ChooseAvatar = (props) => {
 
         {[...slides, ...slides, ...slides].map((slide, i) => {
           let offset = slides.length + (state.slideIndex - i);
-          return <Slide slide={slide} id={id} offset={offset} key={i} />;
+          return <Slide slide={slide} id={id} offset={offset} key={i} avatar={(e) => setAvatar(e)} url={url()} />;
         })}
         <button onClick={() => dispatch({ type: 'NEXT' })}>‹</button>
       </div>
