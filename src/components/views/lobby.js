@@ -7,26 +7,6 @@ import Pin from 'components/ui/enter-pin';
 
 import 'styles/views/lobby.scss'
 
-// import * as io from "socket.io-client";
-// const socket = useRef();
-  
-// socket.current = io('ws://localhost:9092?room=' + pin, {
-//   query: { token }
-// }); ///123&token='+'cedis-token
-
-
-// socket.current.on("connect_error", () => {
-//   // revert to classic upgrade
-//   console.log("err")
-//   socket.current.io.opts.transports = ["polling", "websocket"];
-// });
-
-// socket.current.emit("send_message", { "room": "123", "type": "CLIENT", "message": "sup" })//{ room: "123", type:'CLIENT', msg:'sup'})
-
-// socket.current.on("get_message", (s) => {
-//   console.log('connect')
-// });
-
 
 const Lobby = (props) => {
   

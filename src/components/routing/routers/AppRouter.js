@@ -1,6 +1,6 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import BigScreenView from 'components/views/big-screen-view'
-import Rules from 'components/views/rules'
+import Rules from 'components/ui/rules'
 import Lobby from 'components/views/lobby'
 import Loader from 'components/views/loader'
 import Login from 'components/views/Login'

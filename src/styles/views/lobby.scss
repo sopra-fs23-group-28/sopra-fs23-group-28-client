@@ -16,9 +16,8 @@
   display: grid;
   grid-template-columns: 20vw 50vw 20vw;
   align-items: center;
-  opacity: 0.7;
   border-radius: var(--dl-radius-radius-radius8);
-  background-color: var(--dl-color-primary-100);
+  background-color: var(--dl-color-primary-100-trans);
 }
 .lobby-camel-preview-div {
   width: 250px;
@@ -30,7 +29,7 @@
   scale: 0.5;
   left: -100px;
   position: absolute;
-  top: -225px;
+  top: -100px;
 }
 .lobby-camel {
   width: 192px;
