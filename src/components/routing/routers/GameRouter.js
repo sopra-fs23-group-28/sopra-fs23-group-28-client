@@ -1,4 +1,4 @@
-import {Redirect, Route, Switch} from "react-router-dom";
+import {Redirect, Route, Routes} from "react-router-dom";
 import PropTypes from 'prop-types';
 import Category from 'components/views/category'
 import QuestionTrueFalse from 'components/views/question-true-false'
@@ -12,37 +12,36 @@ import RandomEvent from 'components/views/random-event'
 import QuestionVoting from 'components/views/question-voting'
 import Loader from 'components/views/loader'
 import Rules from 'components/views/rules'
+import NotFound from 'components/views/not-found'
 
 
-const GameRouter = props => {
+const GameRouter = () => {
   return (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
-      <Route exact path={`${props.base}`}>
-        <Redirect to={`${props.base}/race`}/>
-      </Route>
+    <>
+      <Routes>
+        <Route path='/' element={<Race/>} />
 
-      <Route exact path={`${props.base}/race`}>
-        <Race/>
-      </Route>
+        <Route component={Loader} path="/loader" />
+        <Route component={Rules} path="/rules" />
 
-      <Route component={Loader} exact path="/loader" />
-      <Route component={Rules} exact path="/rules" />
+        <Route component={Category} path="/category" />
+        <Route component={Difficulty} path="/difficulty" />
 
-      <Route component={Category} exact path="/category" />
-      <Route component={Difficulty} exact path="/difficulty" />
+        <Route component={Question4Options} path="/question4-options" />
+        <Route component={QuestionVoting} path="/question-voting" />
+        <Route component={QuestionTrueFalse} path="/question-true-false" />
+        <Route component={RandomEvent} path="/random-event" />
 
-      <Route component={Question4Options} exact path="/question4-options" />
-      <Route component={QuestionVoting} exact path="/question-voting" />
-      <Route component={QuestionTrueFalse} exact path="/question-true-false" />
-      <Route component={RandomEvent} exact path="/random-event" />
+        <Route component={PunishmentSliderPlayerSelect} path="/punishment-slider-player-select" />
 
-      <Route component={PunishmentSliderPlayerSelect} exact path="/punishment-slider-player-select" />
+        <Route component={Winner} path="/winner" />
 
-      <Route component={Winner} exact path="/winner" />
+        <Route path="*" element={<NotFound/>} />
 
-      {/* theorethical question type for now */}
-      {/* <Route component={QuestionFillBlank} exact path="/question-fill-blank" /> */}
-    </div>
+        {/* theorethical question type for now */}
+        {/* <Route component={QuestionFillBlank} exact path="/question-fill-blank" /> */}
+      </Routes>
+    </>
   );
 };
 

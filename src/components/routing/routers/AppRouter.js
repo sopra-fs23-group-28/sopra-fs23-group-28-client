@@ -1,4 +1,4 @@
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import BigScreenView from 'components/views/big-screen-view'
 import Rules from 'components/views/rules'
 import Lobby from 'components/views/lobby'
@@ -16,51 +16,44 @@ import ChooseAvatar from "components/views/choose-avatar";
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/lobby">
+      <Routes>
+        <Route path="/lobby">
           {/* <LobbyGuard> */}
             <Lobby/>
           {/* </LobbyGuard> */}
         </Route>
-        <Route exact path="/login">
+        <Route path="/login">
           {/* <LoginGuard> */}
             <Login/>
           {/* </LoginGuard> */}
         </Route>
-        <Route exact path="/">
-          <Redirect to="/login" />
+        <Route path="/">
+          <Navigate to="/login" />
         </Route>
-        <Route path="/overview/:sessionPin">
+        <Route path="/lobby/:sessionPin">
           {/* <SessionGuard> */}
             <ChooseAvatar/>
-            <Route path={`${path}/base`}>
-              <Overview/>
+            <Route path="/game" element={<Overview/>} />
               <Route path="/exit">
-                <Redirect to="/lobby" />
+                <Navigate to="../../../lobby" />
               </Route>
-              <Route path="/start">
-                <GameRouter base="/game" />
-              </Route>
-            </Route>
+              <Route path="/*" element={<GameRouter/>} />
           {/* </SessionGuard> */}
         </Route>
-        <Route path="/overview">
-          <Redirect to="/lobby" />
-        </Route>
-        {/* needs some work! */}
-        <Route exact path="/big-screen-view:sessionPin">
-          <SessionGuard>
+
+        <Route path="/big-screen-view/:sessionPin">
+          <SessionGuard viewer={true} >
             <BigScreenView/>
           </SessionGuard>
         </Route>
-        {/* don't know yet if this holds for a pop-up type window */}
-        <Route component={Rules} exact path="/rules" />
+
+        <Route path="/rules" element={<Rules/>} />
 
         {/* have this in every router? */}
-        <Route component={Loader} exact path="/loader" />
+        <Route path="/loader" element={<Loader/>} />
 
-        <Route path="*" component={NotFound} />
-      </Switch>
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
     </BrowserRouter>
   );
 };
