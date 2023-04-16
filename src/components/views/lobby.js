@@ -12,8 +12,8 @@ const Lobby = (props) => {
   const [visible, setVisible] = useState(false);
   const token = localStorage.getItem('token');
   console.log(token);
-  // use react-router-dom's hook to access the history
-  const history = useNavigate();
+  // use react-router-dom's hook to access the navigate
+  const navigate = useNavigate();
 
   const logout = async () => {
     const requestBody = {data: { token }};
@@ -23,7 +23,7 @@ const Lobby = (props) => {
     localStorage.removeItem('avatar');
     const response = await api.delete('/users', requestBody);
     console.log(response);
-    history('/');
+    navigate('/');
   }
 
   const newGame = async () => {
@@ -47,7 +47,7 @@ const Lobby = (props) => {
   }
 
   const changeLobby = (pin) => {
-  history('/game/' + pin);
+  navigate(`/game/${pin}`);
   }
 
   const showPin = () => {

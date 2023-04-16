@@ -15,19 +15,16 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/lobby" element={<Lobby />} />
-          {/* <LobbyGuard/> */}
         <Route path="/login" element={<Login />} />
-          {/* <LoginGuard/> */}
         <Route path="/" element={<Navigate to="/login" />} />
+
         <Route path="/game/:sessionPin">
-          {/* <SessionGuard/> */}
           <Route index element={<Overview />} />
           <Route path="choosing" element={<ChooseAvatar />} />
           <Route path="exit" element={<Navigate to="../../../lobby" />} />
           <Route path="race/*" element={<GameRouter />} />
         </Route>
 
-        {/* implement logic for PIN check -> useParam() */}
         <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} />
 
         <Route path="/rules" element={<Rules />} />
