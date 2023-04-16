@@ -1,7 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import 'styles/views/not-found.scss'
 
 const NotFound = (props) => {
+  const navigate = useNavigate()
+
   return (
     <div className="not-found-container">
       <div className="not-found-main-div">
@@ -12,7 +15,7 @@ const NotFound = (props) => {
           <br></br>
           <span>Oh noo, you are lost in the desert!</span>
         </h1>
-        <button className="not-found-home button">
+        <button onClick={() => {navigate("/")}} className="not-found-home button">
           Get back to the Home Page
         </button>
       </div>

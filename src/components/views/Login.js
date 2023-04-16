@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { api, handleError } from 'helpers/api';
 import User from 'models/User';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import 'styles/views/Login.scss'
 
 
 const Login = (props) => {
   
-  const history = useHistory();
+  const history = useNavigate();
   const [username, setUsername] = useState("");
   const doLogin = async () => {
     try {
@@ -24,7 +24,7 @@ const Login = (props) => {
       localStorage.setItem('id', user.id);
       localStorage.setItem('user', user);
         // Login successfully worked --> navigate to the route /lobby in the GameRouter
-        history.push(`/lobby`);
+        history("/lobby");
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }

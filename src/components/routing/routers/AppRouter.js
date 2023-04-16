@@ -6,9 +6,6 @@ import Loader from 'components/views/loader'
 import Login from 'components/views/Login'
 import NotFound from 'components/views/not-found'
 import GameRouter from "./GameRouter"
-import {LobbyGuard} from "components/routing/routeProtectors/LobbyGuard";
-import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
-import {SessionGuard} from "components/routing/routeProtectors/SessionGuard";
 import Overview from "components/views/overview"
 import ChooseAvatar from "components/views/choose-avatar";
 
@@ -16,49 +13,27 @@ import ChooseAvatar from "components/views/choose-avatar";
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/lobby">
-          <LobbyGuard>
-            <Lobby/>
-          </LobbyGuard>
-        </Route>
-        <Route exact path="/login">
-          <LoginGuard>
-            <Login/>
-          </LoginGuard>
-        </Route>
-        <Route path="/">
-          <Navigate to="/login" />
-        </Route>
-        <Route  path="/overview/:sessionPin">
-          <SessionGuard>
-          <Route exact path="/overview/:sessionPin">
-            <ChooseAvatar/>
-          </Route>
-            <Route exact path={`/overview/:sessionPin/base`}>
-              <Overview/>
-              <Route path="/exit">
-                <Navigate to="../../../lobby" />
-              </Route>
-              <Route path="/start">
-                <GameRouter base="/game" />
-              </Route>
-            </Route>
-          </SessionGuard>
+      <Routes>
+        <Route path="/lobby" element={<Lobby />} />
+          {/* <LobbyGuard/> */}
+        <Route path="/login" element={<Login />} />
+          {/* <LoginGuard/> */}
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/game/:sessionPin">
+          {/* <SessionGuard/> */}
+          <Route index element={<Overview />} />
+          <Route path="choosing" element={<ChooseAvatar />} />
+          <Route path="exit" element={<Navigate to="../../../lobby" />} />
+          <Route path="race/*" element={<GameRouter />} />
         </Route>
 
-        <Route path="/big-screen-view/:sessionPin">
-          <SessionGuard viewer={true} >
-            <BigScreenView/>
-          </SessionGuard>
-        </Route>
+        {/* implement logic for PIN check -> useParam() */}
+        <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} />
 
-        <Route path="/rules" element={<Rules/>} />
+        <Route path="/rules" element={<Rules />} />
+        <Route path="/loader" element={<Loader />} />
 
-        {/* have this in every router? */}
-        <Route path="/loader" element={<Loader/>} />
-
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

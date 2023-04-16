@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { api } from 'helpers/api';
 import { Helmet } from 'react-helmet'
 
@@ -154,7 +154,7 @@ function Slide({ slide, id, offset, avatar , url }) {
 }
 
 
-  // use react-router-dom's hook to access the history
+  // use react-router-dom's hook to access the navigate
   const select = async (props, id, avatar, url) => {
     const camelColor = props.title
     const requestBody = JSON.stringify({camelColor});
@@ -169,7 +169,8 @@ function Slide({ slide, id, offset, avatar , url }) {
 
 const ChooseAvatar = (props) => {
   
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [users, setUsers] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [state, dispatch] = useReducer(slidesReducer, initialState);
@@ -181,9 +182,7 @@ const ChooseAvatar = (props) => {
       setUsers(data.data)
       setAvatar(localStorage.getItem('avatar'))
     })
-    
   }, [avatar])
-
 
 
   console.log( localStorage.getItem('avatar'))
@@ -198,16 +197,14 @@ const ChooseAvatar = (props) => {
         }
       })
     });
-
   }
 
-const url = () => {
-  if (history.location.pathname.search("base") === -1 && avatar)
-    history.push(`${history.location.pathname}/base`);
-}
+  const url = () => {
+    if (location.pathname.search("game") === -1 && avatar)
+      navigate("/game");
+  }
 
   return (
-
     <div className='choose-avatar-container'>
 
       <h1 className='choose-avatar-login-text'>ChooseAvatar</h1>

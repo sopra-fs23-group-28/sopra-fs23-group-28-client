@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
-import { api, handleError } from 'helpers/api';
-import { Helmet } from 'react-helmet'
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { api } from 'helpers/api';
+import { useNavigate } from 'react-router-dom';
 import Loader from 'components/ui/loader';
 import Pin from 'components/ui/enter-pin';
 
@@ -14,7 +13,7 @@ const Lobby = (props) => {
   const token = localStorage.getItem('token');
   console.log(token);
   // use react-router-dom's hook to access the history
-  const history = useHistory();
+  const history = useNavigate();
 
   const logout = async () => {
     const requestBody = {data: { token }};
@@ -24,9 +23,8 @@ const Lobby = (props) => {
     localStorage.removeItem('avatar');
     const response = await api.delete('/users', requestBody);
     console.log(response);
-    history.push('/');
+    history('/');
   }
-
 
   const newGame = async () => {
     console.log(JSON.stringify({ token }));
@@ -37,34 +35,31 @@ const Lobby = (props) => {
     localStorage.setItem('pin', response.data.id);
     changeLobby(response.data.id);
   }
+
   const joinGame = async (pin) => {
     console.log(JSON.stringify({ token }));
     console.log(JSON.stringify({ pin }));
     const requestBody = JSON.stringify({ token });
-    const response = await api.put('/lobbies/' + pin+'/users', requestBody);
+    const response = await api.put('/lobbies/' + pin +'/users', requestBody);
     console.log(response);
     localStorage.setItem('pin', response.data.id);
     changeLobby(response.data.id);
   }
 
   const changeLobby = (pin) => {
-  history.push('/overview/' + pin);
+  history('/game/' + pin);
   }
-
-
 
   const showPin = () => {
     console.log("click")
     setVisible(true)
   }
 
-
   const hidePin = () => {
     if (visible) {
       setVisible(false) 
       console.log(visible)
     }
-      
   }
 
 

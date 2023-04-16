@@ -2,7 +2,7 @@ import { Waitingroom } from 'components/ui/Waitingroom';
 import { useRef, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import 'styles/views/overview.scss'
 import Race from 'components/ui/race';
@@ -12,7 +12,7 @@ import QuestionFillBlank from 'components/ui/question-fill-blank';
 import QuestionTrueFalse from 'components/ui/question-true-false';
 import QuestionVoting from 'components/ui/question-voting';
 import PunishmentSliderPlayerSelect from 'components/ui/punishment-slider-player-select';
-import * as io from "socket.io-client";
+// import * as io from 'socket.io-client';
 // socket.current.on("connect_error", () => {
 //   // revert to classic upgrade
 //   console.log("err")
@@ -29,13 +29,15 @@ const Overview = (props) => {
   // controlls the gamestate and which component is rendered
   const [gameState, setGameState] = useState('wr');
   // use react-router-dom's hook to access the history
-  const history = useHistory();
+  const history = useNavigate();
   const socket = useRef();
   const token = localStorage.getItem('token')
   const pin = localStorage.getItem('pin')
-  socket.current = io('ws://localhost:9092?room=' + pin, {
-    query: { token }
-  }); ///123&token='+'cedis-token
+
+  // 123&token='+'cedis-token
+  // socket.current = io('ws://localhost:9092?room=' + pin, {
+  //   query: { token }
+  // });
   
   
 

@@ -1,4 +1,4 @@
-import {Redirect} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import PropTypes from "prop-types";
 
 
@@ -8,7 +8,7 @@ export const LoginGuard = props => {
   }
 
   // if user is already logged in, redirects to the lobby
-  return <Redirect to="/lobby"/>;
+  return <Navigate to="/lobby" replace />;
 };
 
 LoginGuard.propTypes = {
