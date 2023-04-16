@@ -4,13 +4,8 @@ import PropTypes from "prop-types";
 export const SessionGuard = props => {
     // !!! also has to check for a full lobby !!!
     // && (api.) not full
-
-    if (!localStorage.getItem("pin")) {
-      if (viewer) {
-        return props.children;
-      } else if (true) {
-        return props.children;
-      }
+    if (localStorage.getItem("pin")) {
+      return props.children;
     }
 
     // if user entered a faulty PIN that has not been generated as part of a lobby

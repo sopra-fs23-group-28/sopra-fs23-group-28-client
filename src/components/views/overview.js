@@ -1,67 +1,61 @@
-import React from 'react'
+import { Waitingroom } from 'components/ui/Waitingroom';
+import { useRef, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
+import { useHistory } from 'react-router-dom';
 
 import 'styles/views/overview.scss'
+import Race from 'components/ui/race';
+import RandomEvent from 'components/ui/random-event';
+import Question4Options from 'components/ui/question4-options';
+import QuestionFillBlank from 'components/ui/question-fill-blank';
+import QuestionTrueFalse from 'components/ui/question-true-false';
+import QuestionVoting from 'components/ui/question-voting';
+import PunishmentSliderPlayerSelect from 'components/ui/punishment-slider-player-select';
+import * as io from "socket.io-client";
+// socket.current.on("connect_error", () => {
+//   // revert to classic upgrade
+//   console.log("err")
+//   socket.current.io.opts.transports = ["polling", "websocket"];
+// });
+
+// socket.current.emit("send_message", { "room": "123", "type": "CLIENT", "message": "sup" })//{ room: "123", type:'CLIENT', msg:'sup'})
+
+// socket.current.on("get_message", (s) => {
+//   console.log('connect')
+// });
 
 const Overview = (props) => {
+  // controlls the gamestate and which component is rendered
+  const [gameState, setGameState] = useState('wr');
+  // use react-router-dom's hook to access the history
+  const history = useHistory();
+  const socket = useRef();
+  const token = localStorage.getItem('token')
+  const pin = localStorage.getItem('pin')
+  socket.current = io('ws://localhost:9092?room=' + pin, {
+    query: { token }
+  }); ///123&token='+'cedis-token
+  
+  
+
+
   return (
+    
     <div className="overview-container">
       <Helmet>
         <title>Overview - SoPra Mockups</title>
         <meta property="og:title" content="Overview - SoPra Mockups" />
       </Helmet>
-      <div className="overview-container01">
-        <div className="overview-container02">
-          <div className="overview-container03">
-            <img
-              alt="image1"
-              src="/playground_assets/bluecamel-200h.gif"
-              className="overview-image"
-            />
-          </div>
-          <h1 className="overview-text">Heading</h1>
-        </div>
-        <div className="overview-container04">
-          <div className="overview-container05">
-            <img
-              alt="image2"
-              src="/playground_assets/bluecamel-200h.gif"
-              className="overview-image1"
-            />
-          </div>
-          <h1 className="overview-text1">Heading</h1>
-        </div>
-      </div>
-      <div className="overview-container06">
-        <h1>Heading</h1>
-        <div className="overview-btn-group">
-          <button className="overview-start-game button">StartGame</button>
-          <button className="overview-exit-game button">ExitGame</button>
-        </div>
-      </div>
-      <div className="overview-container07">
-        <div className="overview-container08">
-          <div className="overview-container09">
-            <img
-              alt="image3"
-              src="/playground_assets/bluecamel-200h.gif"
-              className="overview-image2"
-            />
-          </div>
-          <h1 className="overview-text3">Heading</h1>
-        </div>
-        <div className="overview-container10">
-          <div className="overview-container11">
-            <img
-              alt="image4"
-              src="/playground_assets/bluecamel-200h.gif"
-              className="overview-image3"
-            />
-          </div>
-          <h1 className="overview-text4">Heading</h1>
-        </div>
-      </div>
+      {gameState === 'wr' && <Waitingroom />}
+      {gameState === 'rc' && <Race />}
+      {gameState === 're' && <RandomEvent />}
+      {gameState === 'q4' && <Question4Options />}
+      {gameState === 'qf' && <QuestionFillBlank />}
+      {gameState === 'qt' && <QuestionTrueFalse />}
+      {gameState === 'qv' && <QuestionVoting />}
+      {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
+
     </div>
   )
 }

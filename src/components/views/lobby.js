@@ -1,76 +1,97 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { api, handleError } from 'helpers/api';
 import { Helmet } from 'react-helmet'
 import { useHistory } from 'react-router-dom';
-import Loader from 'components/ui/loader'
+import Loader from 'components/ui/loader';
+import Pin from 'components/ui/enter-pin';
 
 import 'styles/views/lobby.scss'
+
+
 const Lobby = (props) => {
-
-
+  
+  const [visible, setVisible] = useState(false);
+  const token = localStorage.getItem('token');
+  console.log(token);
   // use react-router-dom's hook to access the history
   const history = useHistory();
 
   const logout = async () => {
-    const id = parseInt(localStorage.getItem('token'));
-    console.log(JSON.stringify({ id }));
-    const requestBody = JSON.stringify({ id });
+    const requestBody = {data: { token }};
 
     localStorage.removeItem('token');
-    const response = await api.post('/logout', requestBody);
+    localStorage.removeItem('pin');
+    localStorage.removeItem('avatar');
+    const response = await api.delete('/users', requestBody);
     console.log(response);
-    history.push('/login');
+    history.push('/');
   }
 
 
   const newGame = async () => {
-    const token = localStorage.getItem('token');
     console.log(JSON.stringify({ token }));
     const requestBody = JSON.stringify({ token });
     const response = await api.post('/lobbies', requestBody);
     console.log(response);
-    
+
     localStorage.setItem('pin', response.data.id);
-    history.push('/overview/'+response.data.id);
+    changeLobby(response.data.id);
   }
-  const joinGame = async () => {
-    const id = parseInt(localStorage.getItem('token'));
-    console.log(JSON.stringify({ id }));
-    const requestBody = JSON.stringify({ id });
-    const response = await api.put('/lobbies', requestBody);
+  const joinGame = async (pin) => {
+    console.log(JSON.stringify({ token }));
+    console.log(JSON.stringify({ pin }));
+    const requestBody = JSON.stringify({ token });
+    const response = await api.put('/lobbies/' + pin+'/users', requestBody);
     console.log(response);
-    history.push('/overview');
+    localStorage.setItem('pin', response.data.id);
+    changeLobby(response.data.id);
+  }
+
+  const changeLobby = (pin) => {
+  history.push('/overview/' + pin);
   }
 
 
 
+  const showPin = () => {
+    console.log("click")
+    setVisible(true)
+  }
 
 
+  const hidePin = () => {
+    if (visible) {
+      setVisible(false) 
+      console.log(visible)
+    }
+      
+  }
 
 
   return (
-    <div className="lobby-container">
-      <Helmet>
-        <title>Lobby - SoPra Mockups</title>
-        <meta property="og:title" content="Lobby - SoPra Mockups" />
-      </Helmet>
-      <div className="lobby-container1">
-        <div className="lobby-container2">
-          <div className='lobby-loader'>
-            <Loader />
+    <div className="lobby-container" >
+      <div className="lobby-header-div" onClick={()=>hidePin()}>
+        <div className="lobby-camel-preview-div">
+          <div className="lobby-camel-div">
+            <div className='lobby-loader'>
+              <Loader />
+            </div>
           </div>
         </div>
-        <h1 className="lobby-text1">Lobby</h1>
-        <div className="lobby-btn-group">
+
+        <h1 className="lobby-lobby-title">Lobby</h1>
+        <div className="lobby-logout-div">
           <button className="lobby-logout button" onClick={() => logout()}>Logout</button>
         </div>
       </div>
-      <div className="lobby-container4">
-        <div className="lobby-btn-group1">
+      <div className="lobby-hero-div" onClick={()=>hidePin()}>
+        <div className="lobby-btn-group">
           <button className="lobby-new-game button" onClick={() => newGame()}>New Game</button>
-          <button className="lobby-join-game button" onClick={() => joinGame()}>Join Game</button>
+          <button class="lobby-join-game button"
+            onClick={() => showPin()}>Join Game</button>
         </div>
       </div>
+      {visible && <Pin joinGame={joinGame}/>}
     </div>
   )
 }

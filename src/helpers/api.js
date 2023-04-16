@@ -2,6 +2,7 @@ import axios from 'axios';
 import { getDomain } from 'helpers/getDomain';
 
 export const api = axios.create({
+  // baseURL: "https://3b0069c2-168f-4c72-a31f-4a5bb101897e.mock.pstmn.io",
   baseURL: getDomain(),
   headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
 });

@@ -1,24 +1,18 @@
-.enter-pin-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    overflow: auto;
-    align-items: center;
-    flex-direction: column;
-    background-size: cover;
-    background-image: url("/playground_assets/background12001-1500h.png");
-    background-position: left center;
-  }
+
   .enter-pin-main-div {
     width: 350px;
-    height: 200px;
+    height: 300px;
     margin: auto;
-    display: flex;
+    display:flex;
+    position: fixed;
     padding: 24px;
     border-color: #1958eb;
     border-radius: var(--dl-radius-radius-radius8);
     flex-direction: column;
     background-color: rgba(25, 88, 235, 0.9);
+    top: 45%;
+    
+    z-index: 2;
   }
   .enter-pin-title {
     color: var(--dl-color-primary-100);

@@ -1,6 +1,6 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import BigScreenView from 'components/views/big-screen-view'
-import Rules from 'components/views/rules'
+import Rules from 'components/ui/rules'
 import Lobby from 'components/views/lobby'
 import Loader from 'components/views/loader'
 import Login from 'components/views/Login'
@@ -16,29 +16,35 @@ import ChooseAvatar from "components/views/choose-avatar";
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/lobby">
-          {/* <LobbyGuard> */}
+      <Switch>
+        <Route exact path="/lobby">
+          <LobbyGuard>
             <Lobby/>
-          {/* </LobbyGuard> */}
+          </LobbyGuard>
         </Route>
-        <Route path="/login">
-          {/* <LoginGuard> */}
+        <Route exact path="/login">
+          <LoginGuard>
             <Login/>
-          {/* </LoginGuard> */}
+          </LoginGuard>
         </Route>
         <Route path="/">
           <Navigate to="/login" />
         </Route>
-        <Route path="/lobby/:sessionPin">
-          {/* <SessionGuard> */}
+        <Route  path="/overview/:sessionPin">
+          <SessionGuard>
+          <Route exact path="/overview/:sessionPin">
             <ChooseAvatar/>
-            <Route path="/game" element={<Overview/>} />
+          </Route>
+            <Route exact path={`/overview/:sessionPin/base`}>
+              <Overview/>
               <Route path="/exit">
                 <Navigate to="../../../lobby" />
               </Route>
-              <Route path="/*" element={<GameRouter/>} />
-          {/* </SessionGuard> */}
+              <Route path="/start">
+                <GameRouter base="/game" />
+              </Route>
+            </Route>
+          </SessionGuard>
         </Route>
 
         <Route path="/big-screen-view/:sessionPin">
