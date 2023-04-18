@@ -21,7 +21,6 @@ const AppRouter = () => {
         <Route path="/game/:sessionPin">
           <Route index element={<Overview />} />
           <Route path="choosing" element={<ChooseAvatar />} />
-          <Route path="exit" element={<Navigate to="../../../lobby" />} />
           <Route path="race/*" element={<GameRouter />} />
         </Route>
 

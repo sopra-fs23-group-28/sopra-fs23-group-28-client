@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { api, handleError } from 'helpers/api';
 
 import { Helmet } from 'react-helmet'
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 import 'styles/views/overview.scss'
 import Race from 'components/ui/race';
@@ -43,25 +43,36 @@ const Overview = (props) => {
   // });
   
   function checkPin(){
+    let pass = true
     try{
       
     } catch (error){
       alert(`Something went wrong during the check: \n${handleError(error)}`);
     }
+    if (!pass){
+      alert("There is currently no lobby associated with this PIN");
+      throw redirect("/lobby", {replace: true});
+    }
+    return pass
   }
 
-  const checkAvatar = async() => {
+  function checkAvatar() {
+    let pass = true
     try{
       
     } catch (error){
       alert(`Something went wrong during the check: \n${handleError(error)}`);
     }
+    if (!pass){
+      throw redirect(`/game/${pin}/choosing`);
+    }
+    return pass
   }
 
 
-  if (checkPin){
-    if (checkAvatar){
-      return (
+  return (
+    <>
+      {checkPin() && checkAvatar() ? (
         <div className="overview-container">
           <Helmet>
             <title>Overview - SoPra Mockups</title>
@@ -74,14 +85,10 @@ const Overview = (props) => {
           {gameState === 'qt' && <QuestionTrueFalse />}
           {gameState === 'qv' && <QuestionVoting />}
           {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
-
         </div>
-      )
-    } else{navigate(`/game/${pin}/choosing`);}
-  } else{
-    alert("There is currently no lobby associated with this PIN");
-    navigate("/lobby", {replace: true});
-  }
+      ) : (null)}
+    </>
+  )
 }
 
 export default Overview

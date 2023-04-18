@@ -20,7 +20,7 @@ const Race = (props) => {
               className="race-image"
             />
           </div>
-          <h1 className="race-text">Heading</h1>
+          <h1 className="race-text">Player 1</h1>
         </div>
         <div className="race-container04">
           <div className="race-container05">
@@ -30,7 +30,7 @@ const Race = (props) => {
               className="race-image1"
             />
           </div>
-          <h1 className="race-text1">Heading</h1>
+          <h1 className="race-text1">Player 2</h1>
         </div>
       </div>
       <div className="race-container06">
@@ -70,8 +70,8 @@ const Race = (props) => {
           />
         </div>
         <div className="race-container12">
-          <h1>Heading</h1>
-          <h1>Heading</h1>
+          <h1>Start</h1>
+          <h1>Finish</h1>
         </div>
       </div>
       <div className="race-container13">
@@ -83,7 +83,7 @@ const Race = (props) => {
               className="race-image7"
             />
           </div>
-          <h1 className="race-text4">Heading</h1>
+          <h1 className="race-text4">Player 3</h1>
         </div>
         <div className="race-container16">
           <div className="race-container17">
@@ -93,7 +93,7 @@ const Race = (props) => {
               className="race-image8"
             />
           </div>
-          <h1 className="race-text5">Heading</h1>
+          <h1 className="race-text5">Player 4</h1>
         </div>
       </div>
     </div>

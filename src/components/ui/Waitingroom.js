@@ -1,6 +1,6 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { Helmet } from 'react-helmet'
 import "styles/ui/Waitingroom.scss";
 
 
@@ -16,7 +16,7 @@ const profil = (user) => {
 }
 
 export const Waitingroom = props => {
-
+  const navigate = useNavigate()
 
   return (
       <><div className="overview-container01">
@@ -27,7 +27,7 @@ export const Waitingroom = props => {
             src="/playground_assets/bluecamel-200h.gif"
             className="overview-image" />
         </div>
-        <h1 className="overview-text">Heading</h1>
+        <h1 className="overview-text">Player 1</h1>
       </div>
       <div className="overview-container04">
         <div className="overview-container05">
@@ -36,13 +36,12 @@ export const Waitingroom = props => {
             src="/playground_assets/bluecamel-200h.gif"
             className="overview-image1" />
         </div>
-        <h1 className="overview-text1">Heading</h1>
+        <h1 className="overview-text1">Player 2</h1>
       </div>
     </div><div className="overview-container06">
-        <h1>Heading</h1>
         <div className="overview-btn-group">
-          <button className="overview-start-game button">StartGame</button>
-          <button className="overview-exit-game button">ExitGame</button>
+          <button className="overview-start-game button">Start Game</button>
+          <button className="overview-exit-game button" onClick={() => {navigate("/lobby")}}>Exit Game</button>
         </div>
       </div><div className="overview-container07">
         <div className="overview-container08">
@@ -52,7 +51,7 @@ export const Waitingroom = props => {
               src="/playground_assets/bluecamel-200h.gif"
               className="overview-image2" />
           </div>
-          <h1 className="overview-text3">Heading</h1>
+          <h1 className="overview-text3">Player 3</h1>
         </div>
         <div className="overview-container10">
           <div className="overview-container11">
@@ -61,7 +60,7 @@ export const Waitingroom = props => {
               src="/playground_assets/bluecamel-200h.gif"
               className="overview-image3" />
           </div>
-          <h1 className="overview-text4">Heading</h1>
+          <h1 className="overview-text4">Player 4</h1>
         </div>
       </div></>
 
