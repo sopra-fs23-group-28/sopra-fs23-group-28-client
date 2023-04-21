@@ -1,20 +1,37 @@
 import React from 'react'
 
-import { Helmet } from 'react-helmet'
-
 import 'styles/views/question-voting.scss'
 
 const QuestionVoting = (props) => {
+
+  function handleClick(i) {
+    document.getElementsByClassName("question-voting-option1 button").disabled=true;
+    document.getElementsByClassName("question-voting-option2 button").disabled=true;
+
+    document.getElementsByClassName(`question-voting-option${i} button`);
+  }
+
   return (
     <div className="question-voting-container">
-      <Helmet>
-        <title>QuestionVoting - SoPra Mockups</title>
-        <meta property="og:title" content="QuestionVoting - SoPra Mockups" />
-      </Helmet>
-      <div className="question-voting-container1">
-        <h1 className="question-voting-text">Topic(MajorityWins)</h1>
+      <div className="question-voting-question-div">
+        <h1 className="question-voting-question">
+          Topic
+          <br></br>
+          (Majority wins)
+        </h1>
       </div>
-      <div className="question-voting-container2"></div>
+      <div className="question-voting-options-div">
+        <button className="question-voting-option1 button"
+          onClick={handleClick("1")}
+          disabled={false}>
+          <p className="question-voting-option-text">Option 1</p>
+        </button>
+        <button className="question-voting-option2 button"
+          onClick={handleClick("2")}
+          disabled={false}>
+          <p className="question-voting-option-text">Option 2</p>
+        </button>
+      </div>
     </div>
   )
 }

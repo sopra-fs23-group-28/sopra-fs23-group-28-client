@@ -1,22 +1,40 @@
 import React from 'react'
 
-import { Helmet } from 'react-helmet'
-
 import 'styles/views/category.scss'
 
 const Category = (props) => {
+
+  function handleClick(i) {
+    document.getElementsByClassName("category-category1 button").disabled=true;
+    document.getElementsByClassName("category-category2 button").disabled=true;
+    document.getElementsByClassName("category-category3 button").disabled=true;
+
+    document.getElementsByClassName(`category-category${i} button`);
+  }
+
   return (
     <div className="category-container">
-      <Helmet>
-        <title>Category - SoPra Mockups</title>
-        <meta property="og:title" content="Category - SoPra Mockups" />
-      </Helmet>
-      <div className="category-container1">
-        <h1>
-          <span>Pick Your Poison</span>
-          <br></br>
+      <div className="category-titel-div">
+        <h1 className="category-titel">
+          Pick your poison
         </h1>
-        <div className="category-container2"></div>
+      </div>
+      <div className="category-category-div">
+        <button className="category-category1 button"
+          onClick={handleClick("1")}
+          disabled={false}>
+          <p className="category-category-text">Category 1</p>
+        </button>
+        <button className="category-category2 button"
+          onClick={handleClick("2")}
+          disabled={false}>
+          <p className="category-category-text">Category 2</p>
+        </button>
+        <button className="category-category3 button"
+          onClick={handleClick("3")}
+          disabled={false}>
+          <p className="category-category-text">Category 3</p>
+        </button>
       </div>
     </div>
   )
