@@ -4,12 +4,14 @@ import 'styles/views/category.scss'
 
 const Category = (props) => {
 
-  function handleClick(i) {
-    document.getElementsByClassName("category-category1 button").disabled=true;
-    document.getElementsByClassName("category-category2 button").disabled=true;
-    document.getElementsByClassName("category-category3 button").disabled=true;
+  const handleClick = (i) => {
+    document.getElementsByClassName("category-category1 button")[0].disabled=true;
+    document.getElementsByClassName("category-category2 button")[0].disabled=true;
+    document.getElementsByClassName("category-category3 button")[0].disabled=true;
 
-    document.getElementsByClassName(`category-category${i} button`);
+    document.getElementsByClassName(`category-category${i} button`)[0].name="selected";
+
+    //TODO: call to api or socket here
   }
 
   return (
@@ -21,18 +23,15 @@ const Category = (props) => {
       </div>
       <div className="category-category-div">
         <button className="category-category1 button"
-          onClick={handleClick("1")}
-          disabled={false}>
+          onClick={() => handleClick("1")}>
           <p className="category-category-text">Category 1</p>
         </button>
         <button className="category-category2 button"
-          onClick={handleClick("2")}
-          disabled={false}>
+          onClick={() => handleClick("2")}>
           <p className="category-category-text">Category 2</p>
         </button>
         <button className="category-category3 button"
-          onClick={handleClick("3")}
-          disabled={false}>
+          onClick={() => handleClick("3")}>
           <p className="category-category-text">Category 3</p>
         </button>
       </div>

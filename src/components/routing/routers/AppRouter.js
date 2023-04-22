@@ -9,6 +9,11 @@ import GameRouter from "./GameRouter"
 import Overview from "components/views/overview"
 import ChooseAvatar from "components/views/choose-avatar";
 
+import Question4Options from 'components/ui/question4-options';
+import QuestionTrueFalse from 'components/ui/question-true-false';
+import QuestionVoting from 'components/ui/question-voting';
+import Category from "components/ui/category";
+
 
 const AppRouter = () => {
   return (
@@ -28,6 +33,11 @@ const AppRouter = () => {
 
         <Route path="/rules" element={<Rules />} />
         <Route path="/loader" element={<Loader />} />
+
+        {/* <Route path="/0" element={<Category />} />
+        <Route path="/1" element={<Question4Options />} />
+        <Route path="/2" element={<QuestionTrueFalse />} />
+        <Route path="/3" element={<QuestionVoting />} /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

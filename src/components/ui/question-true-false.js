@@ -4,11 +4,13 @@ import 'styles/views/question-true-false.scss'
 
 const QuestionTrueFalse = (props) => {
 
-  function handleClick(i) {
-    document.getElementsByClassName("question-true-false-answer-true button").disabled=true;
-    document.getElementsByClassName("question-true-false-answer-false button").disabled=true;
+  const handleClick = (i) => {
+    document.getElementsByClassName("question-true-false-answer-true button")[0].disabled=true;
+    document.getElementsByClassName("question-true-false-answer-false button")[0].disabled=true;
 
-    document.getElementsByClassName(`question-true-false-answer-${i} button`);
+    document.getElementsByClassName(`question-true-false-answer-${i} button`)[0].name="selected";
+    
+    // api call
   }
 
   return (
@@ -23,12 +25,11 @@ const QuestionTrueFalse = (props) => {
       </div>
       <div className="question-true-false-answers-div">
         <button className="question-true-false-answer-true button"
-          onClick={handleClick("true")}
-          disabled={false}>
+          onClick={() => handleClick("true")}>
           <p className="question-true-false-answer-text">True</p>
         </button>
         <button className="question-true-false-answer-false button"
-          onClick={handleClick("false")}
+          onClick={() => handleClick("false")}
           disabled={false}>
           <p className="question-true-false-answer-text">False</p>
         </button>

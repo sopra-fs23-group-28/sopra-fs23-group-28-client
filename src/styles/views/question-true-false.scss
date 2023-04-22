@@ -39,6 +39,14 @@
   border-radius: var(--dl-radius-radius-radius8);
   background-color: var(--dl-color-success-700);
 }
+.question-true-false-answer-true[name="selected"] {
+  display: flex;
+  opacity: 0.95;
+  padding: 12px;
+  border-radius: var(--dl-radius-radius-radius8);
+  background-color: darkgreen;
+  border: 4px solid white;
+}
 .question-true-false-answer-text {
   color: black;
   margin: auto;
@@ -50,6 +58,14 @@
   padding: 12px;
   border-radius: var(--dl-radius-radius-radius8);
   background-color: var(--dl-color-danger-300);
+}
+.question-true-false-answer-false[name="selected"] {
+  display: flex;
+  opacity: 0.95;
+  padding: 12px;
+  border-radius: var(--dl-radius-radius-radius8);
+  background-color: darkred;
+  border: 4px solid white;
 }
 .question-true-false-answer-text {
   color: black;
@@ -95,5 +111,8 @@
   /* when hover is supported */
   button:hover {
     cursor: pointer;
+  }
+  button:disabled:hover {
+    cursor: default;
   }
 }

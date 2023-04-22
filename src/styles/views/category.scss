@@ -38,6 +38,13 @@
   border-radius: 8px;
   background-color: var(--dl-color-primary-700);
 }
+.category-category1[name="selected"] {
+  display: flex;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: darkblue;
+  border: 4px solid white;
+}
 .category-category-text {
   color: white;
   margin: auto;
@@ -50,6 +57,13 @@
   border-radius: 8px;
   background-color: var(--dl-color-primary-700);
 }
+.category-category2[name="selected"] {
+  display: flex;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: darkblue;
+  border: 4px solid white;
+}
 .category-category-text {
   color: white;
   margin: auto;
@@ -60,6 +74,13 @@
   padding: 12px;
   border-radius: 8px;
   background-color: var(--dl-color-primary-700);
+}
+.category-category3[name="selected"] {
+  display: flex;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: darkblue;
+  border: 4px solid white;
 }
 .category-category-text {
   color: white;
@@ -83,5 +104,8 @@
   /* when hover is supported */
   button:hover {
     cursor: pointer;
+  }
+  button:disabled:hover {
+    cursor: default;
   }
 }

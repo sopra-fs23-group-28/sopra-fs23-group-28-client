@@ -4,11 +4,13 @@ import 'styles/views/question-voting.scss'
 
 const QuestionVoting = (props) => {
 
-  function handleClick(i) {
-    document.getElementsByClassName("question-voting-option1 button").disabled=true;
-    document.getElementsByClassName("question-voting-option2 button").disabled=true;
+  const handleClick = (i) => {
+    document.getElementsByClassName("question-voting-option1 button")[0].disabled=true;
+    document.getElementsByClassName("question-voting-option2 button")[0].disabled=true;
 
-    document.getElementsByClassName(`question-voting-option${i} button`);
+    document.getElementsByClassName(`question-voting-option${i} button`)[0].name="selected";
+
+    // api call
   }
 
   return (
@@ -22,13 +24,11 @@ const QuestionVoting = (props) => {
       </div>
       <div className="question-voting-options-div">
         <button className="question-voting-option1 button"
-          onClick={handleClick("1")}
-          disabled={false}>
+          onClick={() => handleClick("1")}>
           <p className="question-voting-option-text">Option 1</p>
         </button>
         <button className="question-voting-option2 button"
-          onClick={handleClick("2")}
-          disabled={false}>
+          onClick={() => handleClick("2")}>
           <p className="question-voting-option-text">Option 2</p>
         </button>
       </div>
