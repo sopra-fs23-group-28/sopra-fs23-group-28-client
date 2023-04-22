@@ -4,13 +4,17 @@ import 'styles/views/question-true-false.scss'
 
 const QuestionTrueFalse = (props) => {
 
+  // here handle true/false with a consisten placement
+  let answerChoice = NaN
+  let timer = 0.00
+
   const handleClick = (i) => {
     document.getElementsByClassName("question-true-false-answer-true button")[0].disabled=true;
     document.getElementsByClassName("question-true-false-answer-false button")[0].disabled=true;
 
     document.getElementsByClassName(`question-true-false-answer-${i} button`)[0].name="selected";
     
-    // api call
+    i === "true" ? answerChoice = 1 : answerChoice = 2;
   }
 
   return (

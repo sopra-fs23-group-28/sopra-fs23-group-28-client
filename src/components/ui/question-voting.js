@@ -4,13 +4,16 @@ import 'styles/views/question-voting.scss'
 
 const QuestionVoting = (props) => {
 
+  let answerChoice = NaN
+  let timer = 0.00
+
   const handleClick = (i) => {
     document.getElementsByClassName("question-voting-option1 button")[0].disabled=true;
     document.getElementsByClassName("question-voting-option2 button")[0].disabled=true;
 
     document.getElementsByClassName(`question-voting-option${i} button`)[0].name="selected";
 
-    // api call
+    answerChoice = i
   }
 
   return (
@@ -24,11 +27,11 @@ const QuestionVoting = (props) => {
       </div>
       <div className="question-voting-options-div">
         <button className="question-voting-option1 button"
-          onClick={() => handleClick("1")}>
+          onClick={() => handleClick(1)}>
           <p className="question-voting-option-text">Option 1</p>
         </button>
         <button className="question-voting-option2 button"
-          onClick={() => handleClick("2")}>
+          onClick={() => handleClick(2)}>
           <p className="question-voting-option-text">Option 2</p>
         </button>
       </div>

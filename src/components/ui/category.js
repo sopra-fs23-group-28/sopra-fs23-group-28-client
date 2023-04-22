@@ -4,6 +4,9 @@ import 'styles/views/category.scss'
 
 const Category = (props) => {
 
+  let categoryChoice = NaN
+  let timer = 0.00  //needed?
+
   const handleClick = (i) => {
     document.getElementsByClassName("category-category1 button")[0].disabled=true;
     document.getElementsByClassName("category-category2 button")[0].disabled=true;
@@ -11,7 +14,7 @@ const Category = (props) => {
 
     document.getElementsByClassName(`category-category${i} button`)[0].name="selected";
 
-    //TODO: call to api or socket here
+    categoryChoice = i
   }
 
   return (
@@ -23,15 +26,15 @@ const Category = (props) => {
       </div>
       <div className="category-category-div">
         <button className="category-category1 button"
-          onClick={() => handleClick("1")}>
+          onClick={() => handleClick(1)}>
           <p className="category-category-text">Category 1</p>
         </button>
         <button className="category-category2 button"
-          onClick={() => handleClick("2")}>
+          onClick={() => handleClick(2)}>
           <p className="category-category-text">Category 2</p>
         </button>
         <button className="category-category3 button"
-          onClick={() => handleClick("3")}>
+          onClick={() => handleClick(3)}>
           <p className="category-category-text">Category 3</p>
         </button>
       </div>

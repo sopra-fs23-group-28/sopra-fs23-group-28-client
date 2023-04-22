@@ -4,6 +4,10 @@ import 'styles/views/question4-options.scss'
 
 const Question4Options = (props) => {
 
+  let answerChoice = NaN
+  let timer = 0.00
+
+
   const handleCLick = (i) => {
     // disable all buttons
     document.getElementsByClassName("question4-options-answer1 button")[0].disabled=true;
@@ -11,9 +15,11 @@ const Question4Options = (props) => {
     document.getElementsByClassName("question4-options-answer3 button")[0].disabled=true;
     document.getElementsByClassName("question4-options-answer4 button")[0].disabled=true;
 
+    // for highlighting the selected button
     document.getElementsByClassName(`question4-options-answer${i} button`)[0].name="selected";
 
-    // api call
+    // save answer
+    answerChoice = i
   }
 
   return (
@@ -28,25 +34,25 @@ const Question4Options = (props) => {
       </div>
       <div className="question4-options-answers-div">
         <button className="question4-options-answer1 button"
-          onClick={() => handleCLick("1")}>
+          onClick={() => handleCLick(1)}>
           <p className="question4-options-answer-text">
             Option 1
           </p>
         </button>
         <button className="question4-options-answer2 button"
-          onClick={() => handleCLick("2")}>
+          onClick={() => handleCLick(2)}>
           <p className="question4-options-answer-text">
             Option2
           </p>
         </button>
         <button className="question4-options-answer3 button"
-          onClick={() => handleCLick("3")}>
+          onClick={() => handleCLick(3)}>
           <p className="question4-options-answer-text">
             Option3
           </p>
         </button>
         <button className="question4-options-answer4 button"
-          onClick={() => handleCLick("4")}>
+          onClick={() => handleCLick(4)}>
           <p className="question4-options-answer-text">
             Option4
           </p>
