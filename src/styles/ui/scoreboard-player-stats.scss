@@ -1,0 +1,81 @@
+.scoreboard-player-stats-feature-card {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  padding: 16px;
+  align-self: center;
+  transition: 0.3s;
+  flex-direction: column;
+}
+.scoreboard-player-stats-feature-card:hover {
+  transform: scale(1.02);
+}
+.scoreboard-player-stats-ranking-div {
+  display: flex;
+  margin-bottom: 16px;
+  flex-direction: row;
+}
+.scoreboard-player-stats-rank {
+  color: var(--dl-color-gray-white);
+  font-size: 2vw;
+}
+.scoreboard-player-stats-player-name {
+  color: white;
+  font-size: 2vw;
+  margin-left: 16px;
+}
+.scoreboard-player-stats-stats-div {
+  width: fit-content;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.scoreboard-player-stats-stats-titel {
+  color: white;
+  font-size: 2vw;
+}
+.scoreboard-player-stats-stats {
+  margin: 0px;
+  font-size: larger;
+  padding-top: var(--dl-space-space-unit);
+  padding-left: 0px;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+
+@media(max-width: 992px) {
+  .scoreboard-player-stats-rank {
+    font-size: 3vw;
+  }
+  .scoreboard-player-stats-player-name {
+    font-size: 3vw;
+  }
+  .scoreboard-player-stats-stats-titel {
+    font-size: 3vw;
+  }
+}
+@media(max-width: 576px) {
+  .scoreboard-player-stats-feature-card {
+    display: flex;
+    padding: var(--dl-space-space-halfunit);
+    flex-wrap: wrap;
+  }
+  .scoreboard-player-stats-ranking-div {
+    width: 100%;
+  }
+  .scoreboard-player-stats-rank {
+    font-size: 6vw;
+    align-self: center;
+  }
+  .scoreboard-player-stats-player-name {
+    font-size: 6vw;
+    align-self: center;
+  }
+  .scoreboard-player-stats-stats-div {
+    padding-top: 16px;
+  }
+  .scoreboard-player-stats-stats-titel {
+    font-size: 6vw;
+  }
+}

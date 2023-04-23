@@ -57,7 +57,7 @@ const Login = (props) => {
           <button
             type="submit"
             className="login-login-button button"
-            disabled={!username || username.length < 3}
+            disabled={!username || username.length < 3 || username.length > 10}
             onClick={() => doLogin()} >
             <span>Login</span>
           </button>

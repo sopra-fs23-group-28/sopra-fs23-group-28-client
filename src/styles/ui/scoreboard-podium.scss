@@ -1,0 +1,148 @@
+.scoreboard-podium-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  .scoreboard-podium-main-div {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 32px;
+  }
+  .scoreboard-podium-second-div {
+    width: 200px;
+    height: 130px;
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    background-color: silver;
+  }
+  .scoreboard-podium-second-avatar-div {
+    top: -160px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .scoreboard-podium-second-avatar {
+    width: 200px;
+    display: flex;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+  .scoreboard-podium-second-rank {
+    top: 20px;
+    margin: 0px;
+    position: relative;
+    align-self: center;
+  }
+  .scoreboard-podium-first-div {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    background-color: gold;
+  }
+  .scoreboard-podium-first-avatar-div {
+    top: -160px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .scoreboard-podium-first-avatar {
+    width: 200px;
+    display: flex;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+  .scoreboard-podium-first-rank {
+    top: 55px;
+    margin: 0px;
+    position: relative;
+    align-self: center;
+  }
+  .scoreboard-podium-third-div {
+    width: 200px;
+    height: 80px;
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    background-color: brown;
+  }
+  .scoreboard-podium-third-avatar-div {
+    top: -160px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .scoreboard-podium-third-avatar {
+    width: 200px;
+    display: flex;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+  .scoreboard-podium-third-rank {
+    margin: 0px;
+    position: relative;
+    align-self: center;
+  }
+  @media(max-width: 992px) {
+    .scoreboard-podium-second-div {
+      width: 100px;
+    }
+    .scoreboard-podium-second-avatar-div {
+      top: -75px;
+      height: 100px;
+    }
+    .scoreboard-podium-second-avatar {
+      width: 100px;
+    }
+    .scoreboard-podium-second-rank {
+      top: 35px;
+    }
+    .scoreboard-podium-first-div {
+      width: 100px;
+    }
+    .scoreboard-podium-first-avatar-div {
+      top: -75px;
+      height: 100px;
+    }
+    .scoreboard-podium-first-avatar {
+      width: 100px;
+    }
+    .scoreboard-podium-third-div {
+      width: 100px;
+    }
+    .scoreboard-podium-third-avatar-div {
+      top: -75px;
+      height: 100px;
+    }
+    .scoreboard-podium-third-avatar {
+      width: 100px;
+    }
+    .scoreboard-podium-third-rank {
+      top: 12px;
+    }
+  }
+  @media(max-width: 576px) {
+    .scoreboard-podium-main-div {
+      margin-bottom: 24px;
+    }
+  }
+  
