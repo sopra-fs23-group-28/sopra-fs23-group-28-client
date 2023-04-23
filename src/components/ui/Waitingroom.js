@@ -19,7 +19,8 @@ export const Waitingroom = props => {
   const navigate = useNavigate()
 
   return (
-      <><div className="overview-container01">
+    <>
+      <div className="overview-container01">
       <div className="overview-container02">
         <div className="overview-container03">
           <img
@@ -38,7 +39,7 @@ export const Waitingroom = props => {
         </div>
         <h1 className="overview-text1">Player 2</h1>
       </div>
-    </div><div className="overview-container06">
+      </div><div className="overview-container06">
         <div className="overview-btn-group">
           <button className="overview-start-game button">Start Game</button>
           <button className="overview-exit-game button" onClick={() => {navigate("/lobby")}}>Exit Game</button>
@@ -62,7 +63,7 @@ export const Waitingroom = props => {
           </div>
           <h1 className="overview-text4">Player 4</h1>
         </div>
-      </div></>
-
+      </div>
+    </>
   );
 };

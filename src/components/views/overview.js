@@ -2,7 +2,6 @@ import { Waitingroom } from 'components/ui/Waitingroom';
 import { useRef, useState } from 'react'
 import { api, handleError } from 'helpers/api';
 
-import { Helmet } from 'react-helmet'
 import { redirect, useNavigate } from 'react-router-dom';
 
 import 'styles/views/overview.scss'
@@ -73,11 +72,9 @@ const Overview = (props) => {
   return (
     <>
       {checkPin() && checkAvatar() ? (
-        <div className="overview-container">
-          <Helmet>
-            <title>Overview - SoPra Mockups</title>
-            <meta property="og:title" content="Overview - SoPra Mockups" />
-          </Helmet>
+        //TODO: can it actually render these with the approporiate styles?
+        // currently it uses overview.scss instead of waitingroom for default!!
+        <div className='overview-container'>
           {gameState === 'wr' && <Waitingroom />}
           {gameState === 'rc' && <Race />}
           {gameState === 're' && <RandomEvent />}

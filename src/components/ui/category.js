@@ -20,9 +20,7 @@ const Category = (props) => {
   return (
     <div className="category-container">
       <div className="category-titel-div">
-        <h1 className="category-titel">
-          Pick your poison
-        </h1>
+        <h1 className="category-titel">Pick your poison</h1>
       </div>
       <div className="category-category-div">
         <button className="category-category1 button"

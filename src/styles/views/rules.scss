@@ -50,6 +50,12 @@
   list-style-type: lower-alpha;
   list-style-position: inside;
 }
+.list-item {
+  color: white;
+  display: list-item;
+  font-size: inherit;
+  padding-bottom: 16px;
+}
 @media(max-width: 992px) {
   .rules-main-div {
     margin: 32px;

@@ -2,7 +2,7 @@
   width: fit-content;
   margin: auto;
   display: flex;
-  padding: 16px;
+  padding: 8px;
   align-self: center;
   transition: 0.3s;
   flex-direction: column;
@@ -12,16 +12,18 @@
 }
 .scoreboard-player-stats-ranking-div {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   flex-direction: row;
 }
 .scoreboard-player-stats-rank {
-  color: var(--dl-color-gray-white);
+  color: white;
   font-size: 2vw;
+  margin: 0px;
 }
 .scoreboard-player-stats-player-name {
   color: white;
   font-size: 2vw;
+  margin: 0px;
   margin-left: 16px;
 }
 .scoreboard-player-stats-stats-div {
@@ -33,14 +35,19 @@
 .scoreboard-player-stats-stats-titel {
   color: white;
   font-size: 2vw;
+  margin: 0px;
 }
 .scoreboard-player-stats-stats {
   margin: 0px;
   font-size: larger;
-  padding-top: var(--dl-space-space-unit);
+  padding-top: 16px;
   padding-left: 0px;
   list-style-type: disc;
   list-style-position: inside;
+}
+.list-item {
+  color: white;
+  padding-bottom: 8px;
 }
 
 

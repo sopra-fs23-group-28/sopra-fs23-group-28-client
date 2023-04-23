@@ -34,7 +34,7 @@
   border-width: 2px;
   margin-right: 50px;
   border-radius: var(--dl-radius-radius-round);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   flex-direction: row;
   justify-content: center;
   background-color: var(--dl-color-primary-700);
@@ -46,6 +46,8 @@
 }
 .overview-text {
   align-self: center;
+  margin: 0px;
+  margin-bottom: 5px;
 }
 .overview-container04 {
   flex: 0 0 auto;
@@ -65,7 +67,7 @@
   border-width: 2px;
   margin-right: 50px;
   border-radius: var(--dl-radius-radius-round);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   flex-direction: row;
   justify-content: center;
   background-color: var(--dl-color-primary-700);
@@ -77,6 +79,8 @@
 }
 .overview-text1 {
   align-self: center;
+  margin: 0px;
+  margin-bottom: 5px;
 }
 .overview-container06 {
   flex: 1;
@@ -89,13 +93,13 @@
   justify-content: center;
 }
 .overview-btn-group {
+  display: flex;
   width: auto;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
 }
 .overview-start-game {
-  flex: 1;
   width: 250px;
   height: 100px;
   margin: 20px;
@@ -107,7 +111,6 @@
   border-radius: var(--dl-radius-radius-radius8);
 }
 .overview-exit-game {
-  flex: 1;
   width: 250px;
   height: 100px;
   margin: 20px;
@@ -144,7 +147,7 @@
   border-width: 2px;
   margin-right: 50px;
   border-radius: var(--dl-radius-radius-round);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   flex-direction: row;
   justify-content: center;
   background-color: var(--dl-color-primary-700);
@@ -156,6 +159,8 @@
 }
 .overview-text3 {
   align-self: center;
+  margin: 0px;
+  margin-bottom: 10px;
 }
 .overview-container10 {
   flex: 0 0 auto;
@@ -175,7 +180,7 @@
   border-width: 2px;
   margin-right: 50px;
   border-radius: var(--dl-radius-radius-round);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   flex-direction: row;
   justify-content: center;
   background-color: var(--dl-color-primary-700);
@@ -187,6 +192,8 @@
 }
 .overview-text4 {
   align-self: center;
+  margin: 0px;
+  margin-bottom: 10px;
 }
 @media(max-width: 992px) {
   .overview-container01 {
@@ -199,11 +206,6 @@
   .overview-exit-game {
     font-size: 22px;
     padding-bottom: 32px;
-  }
-}
-@media(max-width: 767px) {
-  .overview-btn-group {
-    display: none;
   }
 }
 @media(max-width: 576px) {

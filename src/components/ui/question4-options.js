@@ -28,8 +28,8 @@ const Question4Options = (props) => {
         <h1 className="question4-options-question">
           Question?
           <br></br>
-          How long can you make this without breaking the box? Or does it
-          readjust the size automatically?
+          How long can you make this without breaking the box?
+          Or does it readjust the size automatically?
         </h1>
       </div>
       <div className="question4-options-answers-div">

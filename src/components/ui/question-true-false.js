@@ -21,10 +21,9 @@ const QuestionTrueFalse = (props) => {
     <div className="question-true-false-container">
       <div className="question-true-false-question-div">
         <h1 className="question-true-false-question">
-          Question?
-          <br></br>
-          How long can you make this without breaking the box?Or does it
-          readjust the size automatically?
+          Question? <br></br>
+          How long can you make this without breaking the box? 
+          Or does it readjust the size automatically?
         </h1>
       </div>
       <div className="question-true-false-answers-div">

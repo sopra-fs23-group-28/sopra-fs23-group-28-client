@@ -16,13 +16,13 @@ const ScoreboardPlayerStats = (props) => {
         <h1 className="scoreboard-player-stats-stats-titel">{props.heading}</h1>
         <ul className="scoreboard-player-stats-stats list">
           <li className="list-item">
-            <label className="">Distance</label>
+            <label>Distance - </label>
           </li>
           <li className="list-item">
-            <label className="">Boosts</label>
+            <label>Boosts - </label>
           </li>
           <li className="list-item">
-            <label className="">Longest streak</label>
+            <label>Longest streak - </label>
           </li>
         </ul>
       </div>
@@ -34,7 +34,7 @@ ScoreboardPlayerStats.defaultProps = {
   username: 'playerName',
   rootClassName: '',
   rank: 'Rank #',
-  heading: 'Stats',
+  heading: 'Stats:',
 }
 
 ScoreboardPlayerStats.propTypes = {

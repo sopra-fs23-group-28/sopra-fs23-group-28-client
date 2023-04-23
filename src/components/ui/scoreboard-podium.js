@@ -12,7 +12,7 @@ const ScoreboardPodium = (props) => {
           <div className="scoreboard-podium-second-avatar-div">
             <img
               alt={props.image_alt}
-              require src={props.secondAvatar}
+              src={props.secondAvatar}
               className="scoreboard-podium-second-avatar"
             />
             <h1 className="scoreboard-podium-second-rank">{props.rank2}</h1>
@@ -47,11 +47,11 @@ ScoreboardPodium.defaultProps = {
   rank2: '#2',
   rank1: '#1',
   rank3: '#3',
-  secondAvatar: '/playground_assets/bluecamel-victory.png',
+  secondAvatar: 'playground_assets/bluecamel-victory.png',
   image_alt: 'Avatar2',
-  firstAvatar: '../../../public/playground_assets/neoncamel-victory.png',
+  firstAvatar: '/playground_assets/neoncamel-victory.png',
   image_alt1: 'Avatar1',
-  thirdAvatar: '../../public/playground_assets/blackcamel-victory.png',
+  thirdAvatar: './playground_assets/blackcamel-victory.png',
   image_alt2: 'Avatar3',
 }
 

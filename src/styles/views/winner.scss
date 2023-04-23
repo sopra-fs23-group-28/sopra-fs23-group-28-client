@@ -33,7 +33,8 @@
 }
 .winner-stats-div {
   width: 25%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   opacity: 0.9;
   border-radius: 12px;
   background-color: var(--dl-color-primary-700);
@@ -57,20 +58,6 @@
   }
   .winner-podium-div {
     width: 65%;
-  }
-}
-@media(max-width: 991px) {
-  .winner-titel {
-    align-self: center;
-  }
-  .winner-stats-div {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media(max-width: 767px) {
-  .winner-main-div {
-    padding-left: var(--dl-space-space-twounits);
-    padding-right: var(--dl-space-space-twounits);
   }
 }
 @media(max-width: 576px) {
@@ -98,16 +85,5 @@
   .winner-podium-div {
     width: 100%;
     margin-top: 160px;
-  }
-}
-@media(max-width: 479px) {
-  .winner-main-div {
-    padding-top: var(--dl-space-space-twounits);
-    padding-left: var(--dl-space-space-unit);
-    padding-right: var(--dl-space-space-unit);
-    padding-bottom: var(--dl-space-space-twounits);
-  }
-  .winner-stats-div {
-    grid-gap: var(--dl-space-space-halfunit);
   }
 }

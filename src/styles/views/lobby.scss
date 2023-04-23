@@ -118,22 +118,12 @@
     width: 50vw;
   }
 }
-@media(max-width: 767px) {
-
-  .lobby-header-div {
-  grid-template-columns: 30% 30% 30%;
-}
-  .lobby-lobby-title {
-    width: 30vw;
-  }
-
-}
 @media(max-width: 576px) {
   .lobby-loader {
     scale: 0.3;
-    left: -215px;
+    left: -160px;
     position: absolute;
-    top: -160px;
+    top: -130px;
   }
   .lobby-header-div {
     height: fit-content;
@@ -151,9 +141,11 @@
     height: 90px;
   }
   .lobby-lobby-title {
-    margin-bottom: 16px;
-    display: none;
-    text-decoration: underline;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: -85px;
+    font-size: 10vw;
   }
   .lobby-logout-div {
     display: flex;
