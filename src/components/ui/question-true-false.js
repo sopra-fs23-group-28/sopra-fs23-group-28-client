@@ -8,6 +8,7 @@ const QuestionTrueFalse = (props) => {
   let answerChoice = NaN
   let timer = 0.00
 
+  console.log(answerChoice, timer)
   const handleClick = (i) => {
     document.getElementsByClassName("question-true-false-answer-true button")[0].disabled=true;
     document.getElementsByClassName("question-true-false-answer-false button")[0].disabled=true;

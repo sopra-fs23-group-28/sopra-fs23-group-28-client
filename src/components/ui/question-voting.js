@@ -7,6 +7,7 @@ const QuestionVoting = (props) => {
   let answerChoice = NaN
   let timer = 0.00
 
+  console.log(answerChoice, timer)
   const handleClick = (i) => {
     document.getElementsByClassName("question-voting-option1 button")[0].disabled=true;
     document.getElementsByClassName("question-voting-option2 button")[0].disabled=true;

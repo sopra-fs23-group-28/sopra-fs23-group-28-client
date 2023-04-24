@@ -6,7 +6,7 @@ const Question4Options = (props) => {
 
   let answerChoice = NaN
   let timer = 0.00
-
+console.log(answerChoice, timer)
 
   const handleCLick = (i) => {
     // disable all buttons
