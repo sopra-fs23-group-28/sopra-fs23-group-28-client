@@ -1,37 +1,47 @@
-import React from 'react'
+import { api } from 'helpers/api';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import "styles/ui/Waitingroom.scss";
 
 
 const profil = (user) => {
-  <div className="overview-container02">
-        <div className="overview-container03">
-          <img
-            src="/playground_assets/bluecamel-200h.gif"
-            className="overview-image" />
-        </div>
-        <h1 className="overview-text">{user.userName}</h1>
-      </div>
+  return(
+    <div className="overview-container02">
+    <div className="overview-container03">
+      <img
+        alt={'profile'+user.id}
+        src="/playground_assets/bluecamel-200h.gif"
+        className="overview-image" />
+    </div>
+    <h1 className="overview-text">{user.userName}</h1>
+  </div>
+  )
+
 }
 
 export const Waitingroom = props => {
   const navigate = useNavigate()
+  const [users, setUsers] = useState(null);
   const {socket} = props;
   socket.on("NEWUSER", (s) => {
     console.log('connect ',s)
   });
+
+  useEffect(() => {
+    async function getData() {
+      const getU = await api.get('/users/'+props.pin)
+      setUsers(getU)
+    }
+
+      getData()
+  }, [props.pin, users]);
+
   return (
-    <>
+      <>
       <div className="overview-container01">
       <div className="overview-container02">
-        <div className="overview-container03">
-          <img
-            alt="image1"
-            src="/playground_assets/bluecamel-200h.gif"
-            className="overview-image" />
-        </div>
-        <h1 className="overview-text">Player 1</h1>
+        {users && users[0] && profil(users[0])}
       </div>
       <div className="overview-container04">
         <div className="overview-container05">
@@ -67,6 +77,6 @@ export const Waitingroom = props => {
           <h1 className="overview-text4">Player 4</h1>
         </div>
       </div>
-    </>
+      </>
   );
 };

@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { api } from 'helpers/api';
 import { Helmet } from 'react-helmet'
 
@@ -167,10 +167,7 @@ function Slide({ slide, id, offset, avatar , url }) {
   }
 
 
-const ChooseAvatar = (props) => {
-  
-  const navigate = useNavigate();
-  const location = useLocation();
+const ChooseAvatar = () => {
   const [users, setUsers] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [state, dispatch] = useReducer(slidesReducer, initialState);
@@ -191,6 +188,7 @@ const ChooseAvatar = (props) => {
     const user = users
     let color = user.map(x => x.camelColor).filter(x => (x !== undefined) && (x !== null))
     color.forEach(e => {
+      // eslint-disable-next-line array-callback-return
       slides = slides.filter(x => {
         if (x.title !== e) {
           return x
@@ -200,8 +198,8 @@ const ChooseAvatar = (props) => {
   }
 
   const url = () => {
-    if (location.pathname.search("game") === -1 && avatar)
-      navigate("/game");
+      redirect();
+      return true
   }
 
   return (

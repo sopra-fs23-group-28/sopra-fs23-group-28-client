@@ -5,7 +5,7 @@ import 'styles/views/category.scss'
 const Category = (props) => {
   const {socket} = props;
   let categoryChoice = NaN
-  let timer = 0.00  //needed?
+  // let timer = 0.00  //needed?
   socket.on("CATEGORY", (s) => {
     console.log('category ',s)
   });
@@ -19,7 +19,8 @@ const Category = (props) => {
 
     categoryChoice = i
   }
-
+  
+console.log(categoryChoice)
   return (
     <div className="category-container">
       <div className="category-titel-div">

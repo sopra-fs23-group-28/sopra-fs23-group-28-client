@@ -5,15 +5,8 @@ import Lobby from 'components/views/lobby'
 import Loader from 'components/views/loader'
 import Login from 'components/views/Login'
 import NotFound from 'components/views/not-found'
-import GameRouter from "./GameRouter"
 import Overview from "components/views/overview"
-import ChooseAvatar from "components/ui/choose-avatar";
 
-import Question4Options from 'components/ui/question4-options';
-import QuestionTrueFalse from 'components/ui/question-true-false';
-import QuestionVoting from 'components/ui/question-voting';
-import Category from "components/ui/category";
-import Winner from "components/views/winner";
 
 
 const AppRouter = () => {
