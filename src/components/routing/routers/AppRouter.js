@@ -7,7 +7,7 @@ import Login from 'components/views/Login'
 import NotFound from 'components/views/not-found'
 import GameRouter from "./GameRouter"
 import Overview from "components/views/overview"
-import ChooseAvatar from "components/views/choose-avatar";
+import ChooseAvatar from "components/ui/choose-avatar";
 
 import Question4Options from 'components/ui/question4-options';
 import QuestionTrueFalse from 'components/ui/question-true-false';
@@ -26,8 +26,6 @@ const AppRouter = () => {
 
         <Route path="/game/:sessionPin">
           <Route index element={<Overview />} />
-          <Route path="choosing" element={<ChooseAvatar />} />
-          <Route path="race/*" element={<GameRouter />} />
         </Route>
 
         <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} />

@@ -3,10 +3,13 @@ import React from 'react'
 import 'styles/views/category.scss'
 
 const Category = (props) => {
-
+  const {socket} = props;
   let categoryChoice = NaN
   let timer = 0.00  //needed?
-
+  socket.on("CATEGORY", (s) => {
+    console.log('category ',s)
+  });
+  
   const handleClick = (i) => {
     document.getElementsByClassName("category-category1 button")[0].disabled=true;
     document.getElementsByClassName("category-category2 button")[0].disabled=true;

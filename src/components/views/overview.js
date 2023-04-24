@@ -11,20 +11,14 @@ import Question4Options from 'components/ui/question4-options';
 import QuestionTrueFalse from 'components/ui/question-true-false';
 import QuestionVoting from 'components/ui/question-voting';
 import PunishmentSliderPlayerSelect from 'components/ui/punishment-slider-player-select';
+import * as io from 'socket.io-client';
+import ChooseAvatar from 'components/ui/choose-avatar';
+import Category from 'components/ui/category';
 
 
-// import * as io from 'socket.io-client';
-// socket.current.on("connect_error", () => {
-//   // revert to classic upgrade
-//   console.log("err")
-//   socket.current.io.opts.transports = ["polling", "websocket"];
-// });
 
 // socket.current.emit("send_message", { "room": "123", "type": "CLIENT", "message": "sup" })//{ room: "123", type:'CLIENT', msg:'sup'})
 
-// socket.current.on("get_message", (s) => {
-//   console.log('connect')
-// });
 
 
 const Overview = (props) => {
@@ -35,55 +29,68 @@ const Overview = (props) => {
   const socket = useRef();
   const token = localStorage.getItem('token')
   const pin = localStorage.getItem('pin')
+//init socket.io
+  socket.current = io('ws://localhost:9092?room=' + pin + '&token=' + token, {
 
-  // 123&token='+'cedis-token
-  // socket.current = io('ws://localhost:9092?room=' + pin, {
-  //   query: { token }
-  // });
-  
-  function checkPin(){
+  });
+  socket.current.on("connect_error", () => {
+    // revert to classic upgrade
+    console.log("err")
+  });
+
+  function checkPin() {
     let pass = true
-    try{
-      
-    } catch (error){
+    try {
+
+    } catch (error) {
       alert(`Something went wrong during the check: \n${handleError(error)}`);
     }
-    if (!pass){
+    if (!pass) {
       alert("There is currently no lobby associated with this PIN");
-      throw redirect("/lobby", {replace: true});
+      throw redirect("/lobby", { replace: true });
     }
     return pass
   }
 
   function checkAvatar() {
     let pass = true
-    try{
-      
-    } catch (error){
+    try {
+      const avatar = localStorage.getItem('avatar')
+      pass= avatar
+    } catch (error) {
       alert(`Something went wrong during the check: \n${handleError(error)}`);
     }
-    if (!pass){
-      throw redirect(`/game/${pin}/choosing`);
+    if (!pass) {
+      // console.log('redirect')
+      // redirect(`/game/${pin}/choosing`);
     }
     return pass
+  }
+  const getLobby  = async () => {
+    try {
+      await api.get('/lobbies/{lobbyId}')
+    } catch (error) {
+      alert(`Something went wrong during the check: \n${handleError(error)}`);
+    }
   }
 
 
   return (
     <>
-      {checkPin() && checkAvatar() ? (
+      {checkAvatar() ? (
         //TODO: can it actually render these with the approporiate styles?
         // currently it uses overview.scss instead of waitingroom for default!!
         <div className='overview-container'>
-          {gameState === 'wr' && <Waitingroom />}
-          {gameState === 'rc' && <Race />}
-          {gameState === 're' && <RandomEvent />}
-          {gameState === 'q4' && <Question4Options />}
+          {gameState === 'wr' && <Waitingroom socket={socket.current} getLobby={getLobby}/>}
+          {gameState === 'rc' && <Race socket={socket.current}/>}
+          {gameState === 'ct' && <Category socket={socket.current}/>}
+          {gameState === 're' && <RandomEvent socket={socket.current}/>}
+          {gameState === 'q4' && <Question4Options socket={socket.current}/>}
           {gameState === 'qt' && <QuestionTrueFalse />}
           {gameState === 'qv' && <QuestionVoting />}
           {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
         </div>
-      ) : (null)}
+      ) : (<ChooseAvatar />)}
     </>
   )
 }

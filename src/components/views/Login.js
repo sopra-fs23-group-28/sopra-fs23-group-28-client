@@ -7,7 +7,6 @@ import 'styles/views/Login.scss'
 
 
 const Login = (props) => {
-  
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const doLogin = async () => {
@@ -31,7 +30,7 @@ const Login = (props) => {
   };
 
 
-  if (!localStorage.getItem("token")) {
+  
     return (
       <div className="login-container">
         <div className="login-main-div">
@@ -64,7 +63,6 @@ const Login = (props) => {
         </div>
       </div>
     )
-  } else{navigate("/lobby", {replace: true});}
 }
 
 export default Login

@@ -17,7 +17,10 @@ const profil = (user) => {
 
 export const Waitingroom = props => {
   const navigate = useNavigate()
-
+  const {socket} = props;
+  socket.on("NEWUSER", (s) => {
+    console.log('connect ',s)
+  });
   return (
     <>
       <div className="overview-container01">

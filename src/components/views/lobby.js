@@ -8,10 +8,8 @@ import 'styles/views/lobby.scss'
 
 
 const Lobby = (props) => {
-  
   const [visible, setVisible] = useState(false);
   const token = localStorage.getItem('token');
-  console.log(token);
   // use react-router-dom's hook to access the navigate
   const navigate = useNavigate();
 
@@ -42,8 +40,8 @@ const Lobby = (props) => {
     const requestBody = JSON.stringify({ token });
     const response = await api.put('/lobbies/' + pin +'/users', requestBody);
     console.log(response);
-    localStorage.setItem('pin', response.data.id);
-    changeLobby(response.data.id);
+    localStorage.setItem('pin', pin);
+    changeLobby(pin);
   }
 
   const changeLobby = (pin) => {
@@ -82,7 +80,7 @@ const Lobby = (props) => {
       <div className="lobby-hero-div" onClick={()=>hidePin()}>
         <div className="lobby-btn-group">
           <button className="lobby-new-game button" onClick={() => newGame()}>New Game</button>
-          <button class="lobby-join-game button"
+          <button className="lobby-join-game button"
             onClick={() => showPin()}>Join Game</button>
         </div>
       </div>

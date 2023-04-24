@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet'
 import 'styles/views/choose-avatar.scss'
 
 
-var slides = [
+let slides = [
   {
     title: 'DARKGREEN',
     subtitle: 'HOPE',
@@ -133,7 +133,7 @@ function Slide({ slide, id, offset, avatar , url }) {
       data-active={active}
       style={{
         '--offset': offset,
-        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1
+        '--dir': offset === 0 ? 0 : (offset > 0 ? 1 : -1)
       }}
     >
       <div
@@ -182,7 +182,7 @@ const ChooseAvatar = (props) => {
       setUsers(data.data)
       setAvatar(localStorage.getItem('avatar'))
     })
-  }, [avatar])
+  }, [avatar, pin])
 
 
   console.log( localStorage.getItem('avatar'))
