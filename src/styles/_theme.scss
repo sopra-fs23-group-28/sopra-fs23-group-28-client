@@ -81,8 +81,14 @@ $dropShadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   border-radius: 4px;
-  background-color: var(--dl-color-gray-white);
+  background-color: var(--dl-color-gray-white);  
+  &:disabled {
+    background-color: #a1a1a1c5;
+  }
 }
+
+
+
 .input {
   color: var(--dl-color-gray-black);
   cursor: auto;

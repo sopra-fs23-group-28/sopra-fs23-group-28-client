@@ -1,9 +1,9 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
-import { redirect } from 'react-router-dom';
 import { api } from 'helpers/api';
 import { Helmet } from 'react-helmet'
 
 import 'styles/views/choose-avatar.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 let slides = [
@@ -158,31 +158,40 @@ function Slide({ slide, id, offset, avatar , url }) {
   const select = async (props, id, avatar, url) => {
     const camelColor = props.title
     const requestBody = JSON.stringify({camelColor});
-    console.log(requestBody)
+    // console.log(requestBody)
     await api.put('/users/'+id, requestBody);    
     localStorage.setItem('avatar', camelColor);
     avatar(camelColor)
-
     url();
   }
 
 
-const ChooseAvatar = () => {
+const ChooseAvatar = (props) => {
   const [users, setUsers] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [state, dispatch] = useReducer(slidesReducer, initialState);
   const id = localStorage.getItem('id');
   const pin = localStorage.getItem('pin');
-  useEffect(() => {
-    // Get Users in Lobby for the Color View
-    api.get('/users/' + pin).then(data => {
-      setUsers(data.data)
-      setAvatar(localStorage.getItem('avatar'))
-    })
+  
+  const navigate = useNavigate()
+  useEffect( () => {
+    
+    // is Mounted to check if unmounted Objects exists.
+    let isMounted = true;
+        // Get Users in Lobby for the Color View
+        api.get('/users/' + pin).then(data => {
+          if (isMounted) {
+            setUsers(data.data)
+            setAvatar(localStorage.getItem('avatar'))
+            }
+          }
+        )
+        // Clean-up:    
+        return () => {        isMounted = false;    }
   }, [avatar, pin])
 
 
-  console.log( localStorage.getItem('avatar'))
+  // console.log( localStorage.getItem('avatar'))
   // Filter the Colors for choose Avater
   if (users) {
     const user = users
@@ -197,10 +206,9 @@ const ChooseAvatar = () => {
     });
   }
 
-  const url = () => {
-      redirect();
-      return true
-  }
+const url = () => {
+navigate('/game/'+pin)
+}
 
   return (
     <div className='choose-avatar-container'>
@@ -215,7 +223,7 @@ const ChooseAvatar = () => {
 
         {[...slides, ...slides, ...slides].map((slide, i) => {
           let offset = slides.length + (state.slideIndex - i);
-          return <Slide slide={slide} id={id} offset={offset} key={i} avatar={(e) => setAvatar(e)} url={url()} />;
+          return <Slide slide={slide} id={id} offset={offset} key={i} avatar={(e) => setAvatar(e)} url={url} />;
         })}
         <button onClick={() => dispatch({ type: 'NEXT' })}>‹</button>
       </div>

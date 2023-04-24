@@ -13,3 +13,12 @@ export const getDomain = () => {
 
   return isProduction() ? prodUrl : devUrl
 }
+
+export const getSocketAdr = () => {
+  const prodUrl = 'https://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
+  // const devUrl = 'http://192.168.32.155:8080'
+  const devUrl = 'ws://localhost:9092'
+
+  return isProduction() ? prodUrl : devUrl
+}
+

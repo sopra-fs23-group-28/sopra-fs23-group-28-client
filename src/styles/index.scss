@@ -20,6 +20,10 @@ button {
   line-height: inherit;
   font-size: inherit;
   outline: none;
+  
+  &:disabled {
+    background-color: #a1a1a1c5;
+  }
 }
 
 *:focus {

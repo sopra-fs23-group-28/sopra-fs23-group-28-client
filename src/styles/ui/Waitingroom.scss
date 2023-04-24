@@ -109,6 +109,10 @@
   text-align: center;
   border-width: 0px;
   border-radius: var(--dl-radius-radius-radius8);
+    
+  &:disabled {
+    background-color: #a1a1a1c5;
+  }
 }
 .overview-exit-game {
   width: 250px;

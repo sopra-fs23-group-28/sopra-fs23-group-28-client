@@ -19,33 +19,34 @@ const Lobby = (props) => {
     localStorage.removeItem('token');
     localStorage.removeItem('pin');
     localStorage.removeItem('avatar');
+    localStorage.removeItem('id');
     const response = await api.delete('/users', requestBody);
-    console.log(response);
+    // console.log(response);
     navigate('/');
   }
 
   const newGame = async () => {
-    console.log(JSON.stringify({ token }));
+    // console.log(JSON.stringify({ token }));
     const requestBody = JSON.stringify({ token });
     const response = await api.post('/lobbies', requestBody);
-    console.log(response);
+    // console.log(response);
 
     localStorage.setItem('pin', response.data.id);
     changeLobby(response.data.id);
   }
 
   const joinGame = async (pin) => {
-    console.log(JSON.stringify({ token }));
-    console.log(JSON.stringify({ pin }));
+    // console.log(JSON.stringify({ token }));
+    // console.log(JSON.stringify({ pin }));
     const requestBody = JSON.stringify({ token });
     const response = await api.put('/lobbies/' + pin +'/users', requestBody);
-    console.log(response);
+    // console.log(response);
     localStorage.setItem('pin', pin);
     changeLobby(pin);
   }
 
   const changeLobby = (pin) => {
-  navigate(`/game/${pin}`);
+  navigate(`/game/${pin}/avatar`);
   }
 
   const showPin = () => {
