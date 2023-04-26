@@ -4,8 +4,8 @@ import 'styles/views/rules.scss'
 
 const Rules = (props) => {
   return (
-    <div className="rules-container">
-      <div className="rules-main-div">
+    <><div className="rules-container">
+      <div className="rules-main-div" onClick={() => props.setRules(false)}>
         <h1 className="rules-titel">The Rules</h1>
         <ol className="rules-rules-text list">
           <li className="list-item">
@@ -42,18 +42,11 @@ const Rules = (props) => {
               </li>
             </ol>
           </li>
-          <li className="list-item">
-            Text
-          </li>
-          <li className="list-item">
-            Text
-          </li>
-          <li className="list-item">
-            Text
-          </li>
         </ol>
       </div>
     </div>
+    {/* <div className="rules-container" onClick={() => props.setRules(false)}></div> */}
+      </>
   )
 }
 
