@@ -213,7 +213,7 @@ navigate('/game/'+pin)
   return (
     <div className='choose-avatar-container'>
 
-      <h1 className='choose-avatar-login-text'>ChooseAvatar</h1>
+      <h1 className='choose-avatar-login-text'>Choose your Avatar</h1>
       <Helmet>
         <title>ChooseAvatar - SoPra Mockups</title>
         <meta property='og:title' content='ChooseAvatar - SoPra Mockups' />

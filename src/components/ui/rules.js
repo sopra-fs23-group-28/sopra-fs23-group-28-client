@@ -9,10 +9,6 @@ const Rules = (props) => {
         <h1 className="rules-titel">The Rules</h1>
         <ol className="rules-rules-text list">
           <li className="list-item">
-            This is the first rule and contains some shite pertaining to not
-            kissing the camels or whatever.
-          </li>
-          <li className="list-item">
             The game can be played with 2-4 players. The host can start the
             game as soon as at least 2 players are in the lobby.
           </li>

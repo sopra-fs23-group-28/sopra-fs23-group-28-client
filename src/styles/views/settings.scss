@@ -1,0 +1,50 @@
+.settings-container {
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  justify-content: center;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.settings-main-div {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  opacity: 0.95;
+  padding: 30px;
+  align-self: center;
+  align-items: flex-start;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgba(25, 88, 235, 0.9);
+  overflow: auto;
+}
+.settings-titel {
+  color: var(--dl-color-primary-100);
+  margin: 0px;
+  font-size: 74px;
+  padding-bottom: 16px;
+  align-self: center;
+}
+.settings-content-div {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.settings-slider-description{
+  color: white;
+}
+.settings-submit {
+  margin-top: 24px;
+}
+@media(max-width: 576px) {
+  .settings-titel{
+    font-size: 60px;
+  }
+}

@@ -1,14 +1,12 @@
+import { api } from 'helpers/api';
 import React from 'react'
 
 import 'styles/views/category.scss'
 
 const Category = (props) => {
-  const {socket} = props;
-  let categoryChoice = NaN
-  // let timer = 0.00  //needed?
-  socket.on("CATEGORY", (s) => {
-    console.log('category ',s)
-  });
+
+  const token = localStorage.getItem("token")
+  const lobbyId = localStorage.getItem("pin")
   
   const handleClick = (i) => {
     document.getElementsByClassName("category-category1 button")[0].disabled=true;
@@ -17,10 +15,16 @@ const Category = (props) => {
 
     document.getElementsByClassName(`category-category${i} button`)[0].name="selected";
 
-    categoryChoice = i
+    const submitResults = async (i) => {
+      await api.put(`/lobbies/${lobbyId}/categories/${i}`, token)
+    }
+
+    try{submitResults(i)}
+    catch (e){console.log(e);
+    }
+    console.log(i)
   }
   
-console.log(categoryChoice)
   return (
     <div className="category-container">
       <div className="category-titel-div">
