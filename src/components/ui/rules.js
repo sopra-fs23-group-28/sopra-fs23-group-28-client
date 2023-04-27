@@ -9,17 +9,23 @@ const Rules = (props) => {
         <h1 className="rules-titel">The Rules</h1>
         <ol className="rules-rules-text list">
           <li className="list-item">
-            This is the first rule and contains some shite pertaining to not
-            kissing the camels or whatever.
+            The game can be played with 4 players. The host can start the
+            game as soon as all players are in the lobby.
           </li>
           <li className="list-item">
-            The game can be played with 2-4 players. The host can start the
-            game as soon as at least 2 players are in the lobby.
+            The host decides on the length of the game by setting the number of
+            total steps that the game will be played for.
           </li>
+          {/* The difficulty of those questions will be randomly
+          chosen for every round (including an event explained later). */}
           <li className="list-item">
             The players vote on a topic category for a set amount of
-            questions. The difficulty of those questions will be randomly
-            chosen for every round (including an event explained later).
+            questions.
+          </li>
+          <li className="list-item">
+            The first player to answer correctly gets 3 points (steps), 2nd 2 points,
+            3rd 1 point and the 4th -1 point; all under the assumption that everyone answered
+            correctly. A wrong answer will always yield -1 point (can not go under 0).
           </li>
           <li className="list-item">
             Question types:
@@ -27,7 +33,7 @@ const Rules = (props) => {
               <li className="list-item">
                 4 Options: one of them is correct.
               </li>
-              <li className="list-item">
+              {/* <li className="list-item">
                 True/False: should be self-explanatory, the clue is in the
                 name.
               </li>
@@ -39,7 +45,7 @@ const Rules = (props) => {
                 Event: This takes place instead of the question and only
                 happens rarely. It redistributes the players according to
                 their placement to even out the playingfield.
-              </li>
+              </li> */}
             </ol>
           </li>
         </ol>

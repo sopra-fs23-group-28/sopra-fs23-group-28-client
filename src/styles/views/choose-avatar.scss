@@ -14,11 +14,13 @@
 
 
 .choose-avatar-login-text {
-  color: var(--dl-color-primary-100);
+  color: black;
   padding: 25px;
   text-align: center;
   position: absolute;
   top: 10vh;
+  background-color: var(--dl-color-primary-100);
+  border-radius: 12px;
 }
 
 .slides {

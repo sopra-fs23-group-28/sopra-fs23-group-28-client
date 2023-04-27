@@ -10,7 +10,6 @@
   position: absolute;
   top:0;
   left:0;
-
 }
 .rules-main-div {
   width: 90vw;
@@ -19,7 +18,7 @@
   opacity: 0.95;
   padding: 30px;
   align-self: center;
-  min-height: 85vh;
+  height: min-content;
   align-items: flex-start;
   border-color: #1958eb;
   border-width: 1px;
@@ -33,7 +32,7 @@
   color: var(--dl-color-primary-100);
   margin: 0px;
   font-size: 7vw;
-  padding-bottom: 32px;
+  padding-bottom: 24px;
 }
 .rules-rules-text {
   color: white;
@@ -68,8 +67,15 @@
     margin: 20px;
     padding: 16px;
   }
+  .rules-titel {
+    padding-bottom: 16px;
+  }
   .rules-question-types-list {
     padding-left: 16px;
+  }
+  .rules-rules-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 }
 
