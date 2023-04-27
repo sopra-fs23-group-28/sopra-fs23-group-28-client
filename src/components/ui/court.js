@@ -1,4 +1,11 @@
 import styled from "styled-components";
+import greencamel from "../../playground_assets/greencamel-200h.gif"
+import redcamel from "../../playground_assets/redcamel-200h.gif"
+import bluecamel from "../../playground_assets/bluecamel-200h.gif"
+import blackcamel from "../../playground_assets/blackcamel-200h.gif"
+import purplecamel from "../../playground_assets/purplecamel-200h.gif"
+import greycamel from "../../playground_assets/greycamel-200h.gif"
+import neoncamel from "../../playground_assets/neoncamel-200h.gif"
 
 // Get Avatar from CamelColor of the User
 const getAvatar = (user) => {
@@ -7,25 +14,25 @@ const getAvatar = (user) => {
   if (user) {
   switch (user.camelColor) {
     case 'DARKGREEN':
-      url = "/playground_assets/greencamel-200h.gif"
+      url = greencamel
       break;
     case 'RED':
-      url = "/playground_assets/redcamel-200h.gif"
+      url = redcamel
       break;
     case 'BLUE':
-      url = "/playground_assets/bluecamel-200h.gif"
+      url = bluecamel
       break;
     case 'BLACK':
-      url = "/playground_assets/blackcamel-200h.gif"
+      url = blackcamel
       break;
     case 'PURPLE':
-      url = "/playground_assets/purplecamel-200h.gif"
+      url = purplecamel
       break;
     case 'GREY':
-      url = "/playground_assets/greycamel-200h.gif"
+      url = greycamel
       break;
     case 'NEONGREEN':
-      url = "/playground_assets/neoncamel-200h.gif"
+      url = neoncamel
       break;
 
     default:
