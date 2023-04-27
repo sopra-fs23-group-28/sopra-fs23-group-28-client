@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // Timer can help us, that each player has the same amount of time.
 const Timer = (props) => {

@@ -29,7 +29,6 @@ const Race = (props) => {
   // Create State Objects
   const [state, setState] = useState({ startB: false, users: null, lobby: null });
   const [users, setUsers] = useState(null);
-  const [ready, setready] = useState(true);
   const [lobby, setLobby] = useState(null);
   const [maxSteps, setMaxSteps] = useState(['1 ', '2 ', '3 ', '4 ', '5 ']);
   // setup Socket from overview
@@ -42,7 +41,6 @@ const Race = (props) => {
     let isMounted = true;
 
     socket.on("READY", (s) => {
-      console.log(s.message)
       if (s.message === 'GETCATEGORY') {
         props.setGameState('gc')
       }
@@ -95,13 +93,6 @@ const Race = (props) => {
     socket.emit("READY", { room },);
 
   }
-
-
-  const startGame = async (maxSteps, token) => {
-    const requestBody = JSON.stringify({ maxSteps, token });
-    await api.put('/lobbies/' + state.lobby.id, requestBody);
-  }
-
 
   // temporär für Winnerscreen
   const handleKeyDown = (event) => {

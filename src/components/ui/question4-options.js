@@ -23,7 +23,6 @@ const Question4Options = (props) => {
     ],
     "currentQuestion": ""
   });
-  const [answer, setAnswer] = useState(null);
   const [time, setTime] = useState(0);
   const room = localStorage.getItem('pin')
   
