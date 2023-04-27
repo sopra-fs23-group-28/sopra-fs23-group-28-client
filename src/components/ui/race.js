@@ -29,6 +29,7 @@ const Race = (props) => {
   // Create State Objects
   const [state, setState] = useState({ startB: false, users: null, lobby: null });
   const [users, setUsers] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [lobby, setLobby] = useState(null);
   const [maxSteps, setMaxSteps] = useState(['1 ', '2 ', '3 ', '4 ', '5 ']);
   // setup Socket from overview
@@ -46,6 +47,15 @@ const Race = (props) => {
       }
       if (s.message === 'GETQUESTION') {
         props.setGameState('gc')
+      }
+
+    });
+
+    
+    socket.on("FINISH", (s) => {
+      console.log(s)
+      if (s.message === 'FINISH') {
+        props.setGameState('wi')
       }
 
     });
@@ -85,6 +95,7 @@ const Race = (props) => {
       isMounted = false;
 
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
 
@@ -115,7 +126,7 @@ const Race = (props) => {
       </div>
     </div><div className="race-container06">
 
-        <button className="overview-exit-game button" onClick={() => setReady()}>Ready</button>
+        <button className="overview-button button" onClick={() => setReady()}>Ready</button>
         {users && <Court users={users} maxSteps={maxSteps.length} />}
         <div className="race-container12">
           <h1>Start</h1>

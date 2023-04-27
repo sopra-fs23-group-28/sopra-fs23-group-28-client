@@ -38,6 +38,15 @@ const Question4Options = (props) => {
       //
 
     });
+
+    
+    socket.on("FINISH", (s) => {
+      
+      console.log(s)
+      if (s.message === 'FINISH') {
+        props.setGameState('wi')
+      }
+    })
     if (reload){
       socket.emit("TIMERSTOPQUESTION", {room},);
     }
@@ -63,6 +72,7 @@ const Question4Options = (props) => {
       isMounted = false;
 
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
   // Handle the put answer to the backend
