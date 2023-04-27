@@ -22,9 +22,7 @@ const AppRouter = () => {
           <Route index element={<Overview />} />
         </Route>
 
-        <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} />
-
-        <Route path="/4" element={<Winner />} />
+        {/* <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

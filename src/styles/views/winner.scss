@@ -1,41 +1,55 @@
 .winner-container {
-  width: 100%;
-  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
   background-size: cover;
   background-image: url('../../../public/playground_assets/background12001-1500h.png');
   background-position: left center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.winner-header-div {
+  display: flex;
+  justify-content: flex-end;
 }
 .winner-main-div {
   width: 100%;
   height: 100%;
   display: flex;
-  padding-top: 32px;
   padding-left: 32px;
   flex-direction: column;
   padding-bottom: 32px;
+  align-self: flex-end;
 }
 .winner-titel {
   width: min-content;
+  margin: 0px;
   opacity: 0.85;
   padding: 16px;
   font-size: 4vw;
-  align-self: flex-start;
-  margin-top: 48px;
+  margin-bottom: 48px;
   border-radius: 12px;
   background-color: var(--dl-color-primary-100);
 }
+.winner-goHome {
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  margin-right: 32px;
+  margin-top: 48px;
+}
 .winner-hero-div {
   width: 100%;
-  height: 100%;
   display: flex;
   overflow: hidden;
-  margin-top: 48px;
 }
 .winner-stats-div {
   width: 25%;
   display: flex;
   flex-direction: column;
   opacity: 0.9;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border-radius: 12px;
   background-color: var(--dl-color-primary-700);
 }
@@ -71,19 +85,23 @@
   .winner-titel {
     font-size: 8vw;
     align-self: center;
-    margin-top: 32px;
+    margin-top: 16px;
   }
   .winner-hero-div {
     height: max-content;
-    margin-top: 32px;
     flex-direction: column;
+    margin-top: 8px;
   }
   .winner-stats-div {
-    width: 80%;
+    width: 90%;
     align-self: center;
   }
   .winner-podium-div {
     width: 100%;
     margin-top: 160px;
+  }
+  .winner-goHome {
+    width: max-content;
+    font-size: 3vw;
   }
 }
