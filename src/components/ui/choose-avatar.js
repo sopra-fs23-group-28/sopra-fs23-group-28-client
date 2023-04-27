@@ -1,6 +1,13 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
 import { api } from 'helpers/api';
 import { Helmet } from 'react-helmet'
+import greencamel from "../../playground_assets/greencamel-200h.gif"
+import redcamel from "../../playground_assets/redcamel-200h.gif"
+import bluecamel from "../../playground_assets/bluecamel-200h.gif"
+import blackcamel from "../../playground_assets/blackcamel-200h.gif"
+import purplecamel from "../../playground_assets/purplecamel-200h.gif"
+import greycamel from "../../playground_assets/greycamel-200h.gif"
+import neoncamel from "../../playground_assets/neoncamel-200h.gif"
 
 import 'styles/views/choose-avatar.scss'
 import { useNavigate } from 'react-router-dom';
@@ -12,49 +19,49 @@ let slides = [
     subtitle: 'HOPE',
     description: 'Belive in you',
     image:
-      '/playground_assets/greencamel-200h.gif'
+    greencamel
   },
   {
     title: 'RED',
     subtitle: 'PASSION',
     description: 'Let your dreams come true',
     image:
-      '/playground_assets/redcamel-200h.gif'
+     redcamel
   },
   {
     title: 'BLUE',
     subtitle: 'CLARITY',
     description: 'Use the focus',
     image:
-      '/playground_assets/bluecamel-200h.gif'
+      bluecamel
   },
   {
     title: 'BLACK',
     subtitle: 'ELEGANCE',
     description: 'A piece of heaven',
     image:
-      '/playground_assets/blackcamel-200h.gif'
+      blackcamel
   },
   {
     title: 'PURPLE',
     subtitle: 'MYSTIC',
     description: 'Adventure is never far away',
     image:
-      '/playground_assets/purplecamel-200h.gif'
+      purplecamel
   },
   {
     title: 'GREY',
     subtitle: 'BALANCED',
     description: 'Keep calm',
     image:
-      '/playground_assets/greycamel-200h.gif'
+      greycamel
   },
   {
     title: 'NEONGREEN',
     subtitle: 'BRIGHTNESS',
     description: 'Feel the Energy',
     image:
-      '/playground_assets/neoncamel-200h.gif'
+      neoncamel
   }
 ];
 
