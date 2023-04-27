@@ -5,54 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import "styles/ui/Waitingroom.scss";
 import Rules from './rules';
 import Settings from './settings';
+import Profil from './helpers/profil';
 
-const getAvatar = (avatar) => {
-  let url = ''
-  switch (avatar) {
-    case 'DARKGREEN':
-      url = "/playground_assets/greencamel-200h.gif"
-      break;
-    case 'RED':
-      url = "/playground_assets/redcamel-200h.gif"
-      break;
-    case 'BLUE':
-      url = "/playground_assets/bluecamel-200h.gif"
-      break;
-    case 'BLACK':
-      url = "/playground_assets/blackcamel-200h.gif"
-      break;
-    case 'PURPLE':
-      url = "/playground_assets/purplecamel-200h.gif"
-      break;
-    case 'GREY':
-      url = "/playground_assets/greycamel-200h.gif"
-      break;
-    case 'NEONGREEN':
-      url = "/playground_assets/neoncamel-200h.gif"
-      break;
-
-    default:
-      url = ""
-      break;
-  }
-  return url
-}
-
-const profil = (user) => {
-  // console.log(user)
-  return (
-    <div className="overview-container02">
-      <div className="overview-container03">
-        <img
-          alt={'profile' + user.id}
-          src={getAvatar(user.camelColor)}
-          className="overview-image" />
-      </div>
-      <h1 className="overview-text">{(user.username.toUpperCase())}</h1>
-    </div>
-  )
-
-}
 
 export const Waitingroom = (props) => {
 
@@ -81,21 +35,22 @@ export const Waitingroom = (props) => {
       fetchData()
       console.log(s)
     });
-    
+
 
     socket.on("GAMEMASTER", (s) => {
       console.log(s)
     });
-    
+
     socket.on("GAMESTART", (s) => {
       // if Gamestart and lobby ready --> Gamestart else NOSTART 
       // change gamestate to race
-      console.log(s)
-      if (s ==='GAMESTART'){
-        props.setGameState('RC')
+      console.log(s.message)
+      if (s.message === 'GAMESTART') {
+        console.log('logstart: ', s)
+        props.setGameState('rc')
       }
     });
-    
+
     const fetchData = () => {
 
       api.get('/users/' + localStorage.getItem('pin')).then(getU => {
@@ -152,30 +107,30 @@ export const Waitingroom = (props) => {
     <>
       <div className="overview-container01">
         <div className="overview-container02">
-          {users && users[0] && profil(users[0])}
+          {users && users[0] && <Profil user={users[0]} />}
         </div>
         <div className="overview-container04">
-
-          {users && users[1] && profil(users[1])}
+          {users && users[1] && <Profil user={users[1]} />}
         </div>
-      </div><div className="overview-container06">
+      </div>
+      <div className="overview-container06">
         <div className="overview-btn-group">
-          {master && <button className="overview-start-game button" disabled={((state && state.users && state.users.length === 4) ? false : true)} onClick={() =>startGame(value, localStorage.getItem('token'))} >Start Game</button>}
-          {master && <button className="overview-start-game button"  onClick={() => setSettings(!settings)}>Settings</button>}
+          {master && <button className="overview-start-game button" disabled={((state && state.users && state.users.length === 4) ? false : true)} onClick={() => startGame(value, localStorage.getItem('token'))} >Start Game</button>}
+          {master && <button className="overview-start-game button" onClick={() => setSettings(!settings)}>Settings</button>}
           <button className="overview-exit-game button" onClick={() => exitLobby()}>Exit Game</button>
           <button className="overview-exit-game button" onClick={() => setRules(!rules)}>Rules</button>
         </div>
-      </div><div className="overview-container07">
+      </div>
+      <div className="overview-container07">
         <div className="overview-container08">
-
-          {users && users[2] && profil(users[2])}
+          {users && users[2] && <Profil user={users[2]} />}
         </div>
         <div className="overview-container10">
-          {users && users[3] && profil(users[3])}
+          {users && users[3] && <Profil user={users[3]} />}
         </div>
       </div>
-      {rules && <Rules setRules={setRules}/>}
-      {settings && <Settings value={value} setValue={setValue} setSettings={setSettings}/>}
+      {rules && <Rules setRules={setRules} />}
+      {settings && <Settings value={value} setValue={setValue} setSettings={setSettings} />}
     </>
   );
 };

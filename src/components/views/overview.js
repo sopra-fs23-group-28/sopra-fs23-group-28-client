@@ -11,6 +11,7 @@ import PunishmentSliderPlayerSelect from 'components/ui/punishment-slider-player
 import * as io from 'socket.io-client';
 import Category from 'components/ui/category';
 import { getSocketAdr } from 'helpers/getDomain';
+import Winner from './winner';
 
 
 
@@ -44,9 +45,6 @@ const Overview = (props) => {
     }
     if (isMounted) {
       //Set GameState by reload the site
-      if (localStorage.getItem('avatar')) {
-        setGameState('wr')
-      }
     }
 
     // Clean-up:    
@@ -71,19 +69,20 @@ const Overview = (props) => {
   // }
 
 
-
+console.log(gameState)
 
   return (
     <>
       <div className='overview-container'>
         {gameState === 'wr' && <Waitingroom socket={socket.current} setGameState={setGameState} />}
         {gameState === 'rc' && <Race socket={socket.current} setGameState={setGameState} />}
-        {gameState === 'ct' && <Category socket={socket.current} setGameState={setGameState} />}
+        {gameState === 'gc' && <Category socket={socket.current} setGameState={setGameState} />}
         {gameState === 're' && <RandomEvent socket={socket.current} setGameState={setGameState} />}
         {gameState === 'q4' && <Question4Options socket={socket.current} setGameState={setGameState} />}
         {gameState === 'qt' && <QuestionTrueFalse />}
         {gameState === 'qv' && <QuestionVoting />}
         {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
+        {gameState === 'wi' && <Winner />}
       </div>
     </>
   )
