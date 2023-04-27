@@ -1,11 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import BigScreenView from 'components/views/big-screen-view'
 import Lobby from 'components/views/lobby'
 import Login from 'components/views/Login'
 import NotFound from 'components/views/not-found'
 import Overview from "components/views/overview"
 import ChooseAvatar from "components/ui/choose-avatar";
-import Winner from "components/views/winner";
 
 
 

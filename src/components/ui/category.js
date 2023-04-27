@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { api } from 'helpers/api';
 import React, { useEffect, useState } from 'react'
 import 'styles/views/category.scss'
