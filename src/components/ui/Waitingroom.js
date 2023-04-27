@@ -78,7 +78,7 @@ export const Waitingroom = (props) => {
           setState(temp)
           setLobby(temp)
           setPin(state.lobby.id)
-          console.log(state.lobby.id)
+          console.log(lobby)
 
         }
       })
