@@ -80,8 +80,6 @@ const Category = (props) => {
 
 
   }
-  
-console.log(categoryChoice)
   return (
     <><div className="category-container">
       <div className="category-titel-div">
