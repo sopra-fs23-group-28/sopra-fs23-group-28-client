@@ -26,7 +26,11 @@ const Difficulty = (props) => {
     const token = localStorage.getItem('token')
     const difficulty = d
     const requestBody = JSON.stringify({token, difficulty})
-    await api.put('/lobbies/' + localStorage.getItem('pin')+'/difficulty', requestBody)
+    try {
+      await api.put('/lobbies/' + localStorage.getItem('pin')+'/difficulty', requestBody)
+    } catch (e) {
+      alert(`Something went wrong during the transmission: \n${handleError(error)}`)
+    }
   }
 
   const highlightStyles = `

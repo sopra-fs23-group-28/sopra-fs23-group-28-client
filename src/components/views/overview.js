@@ -12,11 +12,10 @@ import * as io from 'socket.io-client';
 import Category from 'components/ui/category';
 import { getSocketAdr } from 'helpers/getDomain';
 import Winner from './winner';
-
+import { Navigate } from 'react-router-dom';
 
 
 // socket.current.emit("se§nd_message", { "room": "123", "type": "CLIENT", "message": "sup" })//{ room: "123", type:'CLIENT', msg:'sup'})
-
 
 
 const Overview = (props) => {
@@ -40,7 +39,6 @@ const Overview = (props) => {
     let isMounted = true;
     // reset rerender
     if (rerender) {
-
       setRerender(false)
     }
     if (isMounted) {
@@ -50,42 +48,38 @@ const Overview = (props) => {
     // Clean-up:    
     return () => {
       isMounted = false;
-
     }
-
   }, [pin, rerender]);
-  // function checkPin() {
-  //   let pass = true
-  //   try {
-
-  //   } catch (error) {
-  //     alert(`Something went wrong during the check: \n${handleError(error)}`);
-  //   }
-  //   if (!pass) {
-  //     alert("There is currently no lobby associated with this PIN");
-  //     throw redirect("/lobby", { replace: true });
-  //   }
-  //   return pass
-  // }
 
 
-console.log(gameState)
+  console.log(gameState)
 
-  return (
-    <>
-      <div className='overview-container'>
-        {gameState === 'wr' && <Waitingroom socket={socket.current} setGameState={setGameState} />}
-        {gameState === 'rc' && <Race socket={socket.current} setGameState={setGameState} />}
-        {gameState === 'gc' && <Category socket={socket.current} setGameState={setGameState} />}
-        {gameState === 're' && <RandomEvent socket={socket.current} setGameState={setGameState} />}
-        {gameState === 'q4' && <Question4Options socket={socket.current} setGameState={setGameState} />}
-        {gameState === 'qt' && <QuestionTrueFalse />}
-        {gameState === 'qv' && <QuestionVoting />}
-        {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
-        {gameState === 'wi' && <Winner />}
-      </div>
-    </>
-  )
+  const checkUser = () => {
+    if (localStorage.token && localStorage.id && localStorage.user && localStorage.avatar){
+      return true
+    }
+    return false
+  }
+
+  if (!checkUser()) {
+    return <Navigate to={"/"} />
+  } else {
+    return (
+      <>
+        <div className='overview-container'>
+          {gameState === 'wr' && <Waitingroom socket={socket.current} setGameState={setGameState} />}
+          {gameState === 'rc' && <Race socket={socket.current} setGameState={setGameState} />}
+          {gameState === 'gc' && <Category socket={socket.current} setGameState={setGameState} />}
+          {gameState === 're' && <RandomEvent socket={socket.current} setGameState={setGameState} />}
+          {gameState === 'q4' && <Question4Options socket={socket.current} setGameState={setGameState} />}
+          {gameState === 'qt' && <QuestionTrueFalse />}
+          {gameState === 'qv' && <QuestionVoting />}
+          {gameState === 'pp' && <PunishmentSliderPlayerSelect />}
+          {gameState === 'wi' && <Winner />}
+        </div>
+      </>
+    )
+  }
 }
 
 export default Overview

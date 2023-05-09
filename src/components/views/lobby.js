@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { api } from 'helpers/api';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Loader from 'components/ui/loader';
 import Pin from 'components/ui/enter-pin';
 
@@ -59,33 +59,43 @@ const Lobby = (props) => {
     }
   }
 
+  const checkUser = () => {
+    if (localStorage.token && localStorage.id && localStorage.user){
+      return true
+    }
+    return false
+  }
 
-  return (
-    <div className="lobby-container" >
-      <div className="lobby-header-div" onClick={()=>hidePin()}>
-        <div className="lobby-camel-preview-div">
-          <div className="lobby-camel-div">
-            <div className='lobby-loader'>
-              <Loader />
+  if (!checkUser()) {
+    return <Navigate to={"/"} />
+  } else {
+    return (
+      <div className="lobby-container" >
+        <div className="lobby-header-div" onClick={()=>hidePin()}>
+          <div className="lobby-camel-preview-div">
+            <div className="lobby-camel-div">
+              <div className='lobby-loader'>
+                <Loader />
+              </div>
             </div>
           </div>
-        </div>
 
-        <h1 className="lobby-lobby-title">Lobby</h1>
-        <div className="lobby-logout-div">
-          <button className="lobby-logout button" onClick={() => logout()}>Logout</button>
+          <h1 className="lobby-lobby-title">Lobby</h1>
+          <div className="lobby-logout-div">
+            <button className="lobby-logout button" onClick={() => logout()}>Logout</button>
+          </div>
         </div>
-      </div>
-      <div className="lobby-hero-div" onClick={()=>hidePin()}>
-        <div className="lobby-btn-group">
-          <button className="lobby-new-game button" onClick={() => newGame()}>New Game</button>
-          <button className="lobby-join-game button"
-            onClick={() => showPin()}>Join Game</button>
+        <div className="lobby-hero-div" onClick={()=>hidePin()}>
+          <div className="lobby-btn-group">
+            <button className="lobby-new-game button" onClick={() => newGame()}>New Game</button>
+            <button className="lobby-join-game button"
+              onClick={() => showPin()}>Join Game</button>
+          </div>
         </div>
+        {visible && <Pin joinGame={joinGame}/>}
       </div>
-      {visible && <Pin joinGame={joinGame}/>}
-    </div>
-  )
+    )
+  }
 }
 
 export default Lobby

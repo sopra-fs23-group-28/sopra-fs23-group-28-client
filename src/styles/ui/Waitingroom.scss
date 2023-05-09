@@ -188,16 +188,14 @@
 }
 
 .overview-pin{
-
   height: auto;
   font-size: 32px;
   background: var(--dl-color-primary-700);
   margin: 50px;
-  padding: 25px 80px;
+  padding: 25px 50px;
   border-radius: 14px;
   font-weight: bold;
-  
-
+  color: white;
 }
 @media(max-width: 992px) {
   .overview-container01 {
