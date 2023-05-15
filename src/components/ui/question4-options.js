@@ -57,6 +57,7 @@ const Question4Options = (props) => {
         if (isMounted) {
           let temp =getU.data 
           temp.categories = temp.categories.map((i,ind) => i.replaceAll('_', ' ').toUpperCase())
+          console.log(getU)
           if (data) {
             document.getElementsByClassName(`question4-options-answer${(data)} button`)[0].name="chosen";
           }

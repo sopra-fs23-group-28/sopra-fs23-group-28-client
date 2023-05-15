@@ -7,20 +7,20 @@ import Profil from './helpers/profil';
 import Court from './court';
 const Steps = styled.div`
 flex: 1;
-width: auto;
+width: 70vw;
 height: auto;
 display: flex;
 flex-direction: column;
-font-size: 35px;
+font-size: 3vw;
 text-align: center;
-word-spacing: ${props => (2 * props.ls) + 'vw'};
+word-spacing: ${props => (4 * props.ls) + 'vw'};
 align-content: center;
 align-items: center;
 white-space: nowrap;
 @media (max-width: 968px) {
-  font-size: 20px;
+  font-size: 4vw;
   text-align: center;
-  word-spacing: ${props => (props.ls) + 'vw'};
+  word-spacing: ${props => (4*props.ls) + 'vw'};
 }
 `;
 
@@ -31,7 +31,8 @@ const Race = (props) => {
   const [users, setUsers] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [lobby, setLobby] = useState(null);
-  const [maxSteps, setMaxSteps] = useState(['1 ', '2 ', '3 ', '4 ', '5 ']);
+  const [maxSteps, setMaxSteps] = useState(['0','1 ', '2 ', '3 ', '4 ', '5 ']);
+  const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,1,0,0,0]]
   // setup Socket from overview
   const { socket } = props;
 
@@ -78,8 +79,11 @@ const Race = (props) => {
           temp.lobby = data.data
           setState(temp)
           let steps = []
-
-          for (var i = 1; i <= temp.lobby.maxSteps - 1; i++) {
+          let a=1
+          if (temp.lobby.maxSteps > 15) {
+            a=2
+          }
+          for (var i = 0; i <= temp.lobby.maxSteps; i=i+a) {
             steps.push(i + ' ');
           }
           setMaxSteps(steps)
@@ -105,18 +109,9 @@ const Race = (props) => {
 
   }
 
-  // temporär für Winnerscreen
-  const handleKeyDown = (event) => {
-      props.setGameState('wi');
-      console.log('Key down: ')
-  }
-
   return (
 
     <>
-    <div 
-      onKeyDown={handleKeyDown}
-      tabIndex="0">
     <div className="overview-container01">
       <div className="overview-container02">
         {users && users[0] && <Profil user={users[0]} showState={true} />}
@@ -129,9 +124,11 @@ const Race = (props) => {
         <button className="overview-button button" onClick={() => setReady()}>Ready</button>
         {users && <Court users={users} maxSteps={maxSteps.length} />}
         <div className="race-container12">
-          <h1>Start</h1>
-          <Steps ls={(25 / ((maxSteps.length < 10) ? maxSteps.length : maxSteps.length * 2))}> {maxSteps}</Steps>
-          <h1>Finish</h1>
+          <Steps ls={(15 / ((maxSteps.length > 15) ? maxSteps.length : maxSteps.length))}> {maxSteps}</Steps>
+        </div>
+        <div className="race-container12">
+          <h3>Start</h3>
+          <h3>Finish</h3>
         </div>
       </div><div className="overview-container07">
         <div className="overview-container08">
@@ -140,7 +137,6 @@ const Race = (props) => {
         <div className="overview-container10">
           {users && users[3] && <Profil user={users[3]} showState={true} />}
         </div>
-      </div>
       </div>
       </>
   )

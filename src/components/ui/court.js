@@ -6,6 +6,7 @@ import blackcamel from "../../playground_assets/blackcamel-200h.gif"
 import purplecamel from "../../playground_assets/purplecamel-200h.gif"
 import greycamel from "../../playground_assets/greycamel-200h.gif"
 import neoncamel from "../../playground_assets/neoncamel-200h.gif"
+import tribune from "../../playground_assets/tribune-900w.png"
 
 // Get Avatar from CamelColor of the User
 const getAvatar = (user) => {
@@ -72,7 +73,7 @@ const Court = ({users, maxSteps}) => {
     <><div className="race-container07">
       <img
         alt="3"
-        src={"/playground_assets/tribune-900w.png"}
+        src={tribune}
         className="race-image2" />
     </div><div className="race-container08">
         <Horse
@@ -85,15 +86,21 @@ const Court = ({users, maxSteps}) => {
           src={getAvatar(users[1])} 
           left={-10+(60/maxSteps)*users[1].stepState}/>
       </div><div className="race-container10">
-        <Horse
+        {
+          users[2] && <Horse
           alt="6"
           src={getAvatar(users[2])} 
           left={-10+(60/maxSteps)*users[2].stepState}/>
+        }
+        
       </div><div className="race-container11">
+      {
+          users[3] &&
         <Horse
           alt="7"
           src={getAvatar(users[3])} 
           left={-10+(60/maxSteps)*users[3].stepState}/>
+      }
       </div></>
 
   )

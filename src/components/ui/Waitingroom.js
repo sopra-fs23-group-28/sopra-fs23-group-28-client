@@ -119,7 +119,7 @@ export const Waitingroom = (props) => {
         
       <div className="overview-pin">Pin: {pin}</div>
         <div className="overview-btn-group">
-          {master && <button className="overview-button button" disabled={((state && state.users && state.users.length === 4) ? false : true)} onClick={() => startGame(value, localStorage.getItem('token'))} >Start Game</button>}
+          {master && <button className="overview-button button" disabled={((state && state.users && state.users.length > 1) ? false : true)} onClick={() => startGame(value, localStorage.getItem('token'))} >Start Game</button>}
           {master && <button className="overview-button button" onClick={() => setSettings(!settings)}>Settings</button>}
           <button className="overview-button button" onClick={() => exitLobby()}>Exit Game</button>
           <button className="overview-button button" onClick={() => setRules(!rules)}>Rules</button>
