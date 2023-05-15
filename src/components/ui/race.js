@@ -32,7 +32,7 @@ const Race = (props) => {
   // eslint-disable-next-line no-unused-vars
   const [lobby, setLobby] = useState(null);
   const [maxSteps, setMaxSteps] = useState(['0','1 ', '2 ', '3 ', '4 ', '5 ']);
-  const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,1,0,0,0]]
+  // const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,1,0,0,0]]
   // setup Socket from overview
   const { socket } = props;
 
