@@ -1,14 +1,70 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import 'styles/views/winner.scss'
 
 import ScoreboardPlayerStats from 'components/ui/scoreboard-player-stats'
 import ScoreboardPodium from 'components/ui/scoreboard-podium'
+import { api } from 'helpers/api'
+
+function compare( a, b ) {
+  if ( a.stepState < b.stepState ){
+    return 1;
+  }
+  if ( a.stepState > b.stepState ){
+    return -1;
+  }
+  return 0;
+}
 
 
 const Winner = (props) => {
   const navigate = useNavigate()
+  const { socket } = props;
+
+  const [users, setUsers] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [lobby, setLobby] = useState(null);
+
+  useEffect( () => {
+    
+
+    // is Mounted to check if unmounted Objects exists.
+    let isMounted = true;
+
+  const fetchData = async () => {
+
+    await api.get('/users/' + localStorage.getItem('pin')).then(getU => {
+      if (isMounted) {
+        setUsers(getU.data)
+      }
+      
+    })
+
+
+    await api.get('/lobbies/' + localStorage.getItem('pin')).then(data => {
+      if (isMounted) {
+        setLobby(data.data)
+        
+  console.log("user: ", users)
+  console.log("lobby: ", lobby)
+      }
+    })
+
+
+  }
+
+  fetchData()
+  
+  // Clean-up:    
+  return () => {
+    isMounted = false;
+
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+
 
   return (
     <div className="winner-container">
@@ -20,12 +76,12 @@ const Winner = (props) => {
         <h1 className="winner-titel">Scoreboard</h1>
         <div className="winner-hero-div">
           <div className="winner-stats-div">
-            <ScoreboardPlayerStats rootClassName="rootClassName"></ScoreboardPlayerStats>
-            <ScoreboardPlayerStats rootClassName="rootClassName1"></ScoreboardPlayerStats>
-            <ScoreboardPlayerStats rootClassName="rootClassName3"></ScoreboardPlayerStats>
+          {users && users.sort(compare).map((e,i) => {
+            return <ScoreboardPlayerStats key={i} rootClassName="rootClassName" user={e} rank={"Rank: "+(i+1)} ppr={((lobby? lobby.roundNumber:0) != 0 ? e.stepState/lobby.roundNumber : 0)}></ScoreboardPlayerStats>
+          })}
           </div>
           <div className="winner-podium-div">
-            <ScoreboardPodium></ScoreboardPodium>
+            {users && <ScoreboardPodium users={users.sort(compare) } />}
           </div>
         </div>
       </div>

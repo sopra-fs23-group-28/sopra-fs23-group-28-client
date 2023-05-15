@@ -28,6 +28,9 @@ const Overview = (props) => {
   const pin = localStorage.getItem('pin')
   //init socket.io
   socket.current = io(getSocketAdr(localStorage.getItem('ip')) + '?room=' + pin + '&token=' + token, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
   });
   socket.current.on("connect_error", () => {
     // revert to classic upgrade

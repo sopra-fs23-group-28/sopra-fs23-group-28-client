@@ -79,18 +79,18 @@ const Court = ({users, maxSteps}) => {
         <Horse
           alt="4"
           src={getAvatar(users[0])} 
-          left={-10+(60/maxSteps)*users[0].stepState}/>
+          left={-10+(70/maxSteps)*users[0].stepState}/>
       </div><div className="race-container09">
         <Horse
           alt="5"
           src={getAvatar(users[1])} 
-          left={-10+(60/maxSteps)*users[1].stepState}/>
+          left={-10+(70/maxSteps)*users[1].stepState}/>
       </div><div className="race-container10">
         {
           users[2] && <Horse
           alt="6"
           src={getAvatar(users[2])} 
-          left={-10+(60/maxSteps)*users[2].stepState}/>
+          left={-10+(70/maxSteps)*users[2].stepState}/>
         }
         
       </div><div className="race-container11">
@@ -99,7 +99,7 @@ const Court = ({users, maxSteps}) => {
         <Horse
           alt="7"
           src={getAvatar(users[3])} 
-          left={-10+(60/maxSteps)*users[3].stepState}/>
+          left={-10+(70/maxSteps)*users[3].stepState}/>
       }
       </div></>
 

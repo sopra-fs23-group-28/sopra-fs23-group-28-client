@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { api } from 'helpers/api';
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
@@ -13,14 +14,14 @@ display: flex;
 flex-direction: column;
 font-size: 3vw;
 text-align: center;
-word-spacing: ${props => (4 * props.ls) + 'vw'};
+word-spacing: ${props => (props.ls) + 'vw'};
 align-content: center;
 align-items: center;
 white-space: nowrap;
 @media (max-width: 968px) {
   font-size: 4vw;
   text-align: center;
-  word-spacing: ${props => (4*props.ls) + 'vw'};
+  word-spacing: ${props => (props.ls) + 'vw'};
 }
 `;
 
@@ -31,8 +32,10 @@ const Race = (props) => {
   const [users, setUsers] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [lobby, setLobby] = useState(null);
+  const [arr, setArr] = useState(1);
   const [maxSteps, setMaxSteps] = useState(['0','1 ', '2 ', '3 ', '4 ', '5 ']);
-  // const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,1,0,0,0]]
+  const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,0.8,0,0,0]]
+
   // setup Socket from overview
   const { socket } = props;
 
@@ -79,9 +82,10 @@ const Race = (props) => {
           temp.lobby = data.data
           setState(temp)
           let steps = []
-          let a=1
+  let a=1
           if (temp.lobby.maxSteps > 15) {
             a=2
+            setArr(2)
           }
           for (var i = 0; i <= temp.lobby.maxSteps; i=i+a) {
             steps.push(i + ' ');
@@ -124,7 +128,7 @@ const Race = (props) => {
         <button className="overview-button button" onClick={() => setReady()}>Ready</button>
         {users && <Court users={users} maxSteps={maxSteps.length} />}
         <div className="race-container12">
-          <Steps ls={(15 / ((maxSteps.length > 15) ? maxSteps.length : maxSteps.length))}> {maxSteps}</Steps>
+          <Steps ls={(space[arr-1][maxSteps.length-6])}> {maxSteps}</Steps>
         </div>
         <div className="race-container12">
           <h3>Start</h3>
