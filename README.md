@@ -9,17 +9,22 @@ These are the main files necessary to get a good overview for the game:
 
 1. 
 ```
-Check out [AppRouter](src/components/routing/routers/AppRouter.js) to comprehend the game flow from logging in until the game start.
+Check out [AppRouter](src/components/routing/routers/AppRouter.js)  
+to comprehend the game flow from logging in until the game start.
 ```
 
 2. 
 ```
-[Lobby](src/components/views/lobby.js) hosts all entries and exits of players and thus is very integral to the application.
+[Lobby](src/components/views/lobby.js)  
+hosts all entries and exits of players and thus is very integral  
+to the application.
 ```
 
 3. 
 ```
-[Overview](src/components/views/overview.js) is the main hub for the websocket, there you can see all components involved in the question & answer game flow right up until the end of the game.
+[Overview](src/components/views/overview.js) is the main hub for the websocket,  
+there you can see all components involved in the question & answer game flow  
+right up until the end of the game.
 ```
 
 ## Getting Started
@@ -35,7 +40,8 @@ Then set it all up with the respective set-up instructions.
 Be sure to have the following programs installed:
 
 ```
-[Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for package management, all other dependencies will get installed with it
+[Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)  
+for package management, all other dependencies will get installed with it
 ```
 
 ### Technologies that are used
