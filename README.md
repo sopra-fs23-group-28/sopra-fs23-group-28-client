@@ -7,15 +7,12 @@ This is a trivia quiz based game for 2 - 4 players. It was initially designed to
 
 These are the main files necessary to get a good overview for the game:
 
-1. 
-Check out [AppRouter](/main/src/components/routing/routers/AppRouter) to comprehend the game flow from logging in until the game start.
+1. Check out [AppRouter](/main/src/components/routing/routers/AppRouter) to comprehend the game flow from logging in until the game start.
 
-2. 
-[Lobby](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/lobby.js) hosts all entries and exits of players and thus is very integral  
+2. [Lobby](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/lobby.js) hosts all entries and exits of players and thus is very integral  
 to the application.
 
-3. 
-[Overview](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/overview.js) is the main hub for the websocket, there you can see all components involved in the question & answer game flow right up until the end of the game.
+3. [Overview](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/overview.js) is the main hub for the websocket, there you can see all components involved in the question & answer game flow right up until the end of the game.
 
 ## Getting Started
 
