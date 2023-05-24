@@ -9,20 +9,20 @@ These are the main files necessary to get a good overview for the game:
 
 1. 
 ```
-Check out [AppRouter](src/components/routing/routers/AppRouter.js)  
+Check out [AppRouter](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/routing/routers/AppRouter.js)  
 to comprehend the game flow from logging in until the game start.
 ```
 
 2. 
 ```
-[Lobby](src/components/views/lobby.js)  
+[Lobby](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/lobby.js)  
 hosts all entries and exits of players and thus is very integral  
 to the application.
 ```
 
 3. 
 ```
-[Overview](src/components/views/overview.js) is the main hub for the websocket,  
+[Overview](https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-client/tree/main/src/components/views/overview.js) is the main hub for the websocket,  
 there you can see all components involved in the question & answer game flow  
 right up until the end of the game.
 ```
