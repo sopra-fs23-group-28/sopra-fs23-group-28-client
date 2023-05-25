@@ -80,6 +80,9 @@ The game runs as follows:
 - the question shows
 - the race is updated according to the outcome of the game
 
+![race](https://user-images.githubusercontent.com/93734771/241060532-9ce93d53-6e72-4ec3-a42b-3fc99485a6a2.png)
+
+
 When the game ends it shows a podium of the best 3 players.
 
 
