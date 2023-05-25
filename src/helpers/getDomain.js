@@ -7,8 +7,8 @@ import { isProduction } from 'helpers/isProduction'
  * @returns {string}
  */
 export const getDomain = () => {
-  const prodUrl = 'https://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
-  // const devUrl = 'http://192.168.32.132:8080'
+  const prodUrl = 'http://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
+  // const devUrl = 'http://192.168.32.155:8080'
   const devUrl = 'http://localhost:8080'
   // const devUrl = 'https://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
 
@@ -16,10 +16,10 @@ export const getDomain = () => {
 }
 
 export const getSocketAdr = (ip) => {
-  // const prodUrl = 'wss://'+ip+':65080' // TODO: insert your prod url for server (once deployed)
-  const prodUrl = 'https://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
-  // const devUrl = 'http://192.168.32.132:65080'
-    const devUrl = 'http://localhost:65080'
+   const prodUrl = 'ws://'+ip+':65080' // TODO: insert your prod url for server (once deployed)
+  //const prodUrl = 'http://sopra-fs23-group-28-server.oa.r.appspot.com/' // TODO: insert your prod url for server (once deployed)
+  // const devUrl = 'http://192.168.32.155:8080'
+    const devUrl = 'ws://localhost:65080'
   // const devUrl = 'ws://'+ip+':65080'
 
   return isProduction() ? prodUrl : devUrl

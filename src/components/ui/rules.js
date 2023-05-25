@@ -9,7 +9,7 @@ const Rules = (props) => {
         <h1 className="rules-titel">The Rules</h1>
         <ol className="rules-rules-text list">
           <li className="list-item">
-            The game can be played with 4 players. The host can start the
+            The game can be played with 2-4 players. The host can start the
             game as soon as all players are in the lobby.
           </li>
           <li className="list-item">
@@ -23,17 +23,15 @@ const Rules = (props) => {
             questions.
           </li>
           <li className="list-item">
-            The first player to answer correctly gets 3 points (steps), 2nd 2 points,
-            3rd 1 point and the 4th -1 point; all under the assumption that everyone answered
-            correctly. A wrong answer will always yield -1 point (can not go under 0).
-          </li>
-          <li className="list-item">
-            Question types:
-            <ol className="rules-question-types-list list">
+            The last player gets punished by an amount of steps that were set by the loser
+            of the previous round.
+            Assuming they answered correctly, the first user advances 5 steps, the second advances 4 steps,
+            the third advances 3 steps. Incorrect answers (except the last user) get 0 points.
+            The steps distributed get adjusted by the number of players.
               <li className="list-item">
-                4 Options: one of them is correct.
+                Question type: 4 Options: Always one of them is correct.
               </li>
-              {/* <li className="list-item">
+          {/* <li className="list-item">
                 True/False: should be self-explanatory, the clue is in the
                 name.
               </li>
@@ -46,7 +44,6 @@ const Rules = (props) => {
                 happens rarely. It redistributes the players according to
                 their placement to even out the playingfield.
               </li> */}
-            </ol>
           </li>
         </ol>
       </div>
