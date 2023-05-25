@@ -85,6 +85,9 @@
   font-size: 22px;
   align-self: center;
   text-align: center;
+  &:disabled {
+    background-color: #a1a1a1c5;
+  }
 }
 .overview-pin{
   height: auto;
