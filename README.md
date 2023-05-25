@@ -16,7 +16,7 @@ to the application.
 
 ## Getting Started
 
-You can start the game under the following link: https://sopra-fs23-group-28-client.oa.r.appspot.com
+You can start the game under the following link: http://sopra-fs23-group-28-client.oa.r.appspot.com
 
 Or copy this and the server side repo (https://github.com/sopra-fs23-group-28/sopra-fs23-group-28-server) to your machine.
 
