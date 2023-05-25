@@ -17,7 +17,6 @@ const Timer = (props) => {
 
     } 
     else {timer+=1;}
-    props.setTime(timer);
   }
 
   useEffect(() => {

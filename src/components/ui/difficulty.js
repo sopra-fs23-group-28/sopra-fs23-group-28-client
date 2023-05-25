@@ -1,27 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react'
-import { api } from 'helpers/api';
+import { useEffect } from 'react'
 
 import 'styles/views/difficulty.scss'
 
 
 const Difficulty = (props) => {
 
-  const {socket} = props
-  const [reload, setReload] = useState(0)
-
   // set default degree (360*8)
   let degree = 2880
+  const randomDegree =localStorage.getItem('deg')
 
   useEffect(() => {
-        const randomDegree =localStorage.getItem('deg')
         let totalDegree = degree + randomDegree //(get from s)
 
         document.getElementById("inner-wheel").style.transform = "rotate(" + totalDegree + "deg)"
 
         // highlight winner
         let half = 0
-        randomDegree - 180 > 0 ? half = 0 : half = 1
+        if (randomDegree - 180 < 0) {half = 1}
 
         let diff = getDifficulty(randomDegree)
 

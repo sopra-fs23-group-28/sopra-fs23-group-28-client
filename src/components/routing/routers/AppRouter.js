@@ -4,6 +4,7 @@ import Login from 'components/views/Login'
 import NotFound from 'components/views/not-found'
 import Overview from "components/views/overview"
 import ChooseAvatar from "components/ui/choose-avatar";
+import BigScreenRace from "components/ui/big-race";
 
 
 
@@ -20,7 +21,7 @@ const AppRouter = () => {
           <Route index element={<Overview />} />
         </Route>
 
-        {/* <Route path="/big-screen-view/:sessionPin" element={<BigScreenView />} /> */}
+        <Route path="/big-screen-view/:sessionPin" element={<BigScreenRace />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,11 +1,10 @@
 import { api } from 'helpers/api';
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import 'styles/views/punishment-slider-player-select.scss'
 
 const PunishmentSliderPlayerSelect = (props) => {
   const MAX = 5;
   const [punishmentSteps, setPunishmentSteps] = useState(1);
-  const { socket } = props;
 
   const pushPunishment = async ( token) => {
     console.log('test: ', punishmentSteps, token);

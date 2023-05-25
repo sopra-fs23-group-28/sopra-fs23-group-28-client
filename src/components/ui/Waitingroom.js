@@ -13,7 +13,6 @@ export const Waitingroom = (props) => {
   const [state, setState] = useState({ startB: false, users: null, lobby: null });
   const navigate = useNavigate()
   const [users, setUsers] = useState(null);
-  const [lobby, setLobby] = useState(null);
   const [master, setMaster] = useState(false);
   const [rules, setRules] = useState(false);
   const [settings, setSettings] = useState(false);
@@ -34,18 +33,7 @@ export const Waitingroom = (props) => {
       reload += 1
 
       fetchData()
-      console.log(s)
     });
-
-    // socket.on("GAMESTART", (s) => {
-    //   // if Gamestart and lobby ready --> Gamestart else NOSTART 
-    //   // change gamestate to race
-    //   console.log(s.message)
-    //   if (s.message === 'GAMESTART') {
-    //     console.log('logstart: ', s)
-    //     props.setGameState('rc')
-    //   }
-    // });
 
     const fetchData = () => {
 
@@ -71,9 +59,7 @@ export const Waitingroom = (props) => {
             setMaster(true)
           }
           setState(temp)
-          setLobby(temp)
           setPin(state.lobby.id)
-          // console.log(lobby)
 
         }
       })
@@ -97,7 +83,6 @@ export const Waitingroom = (props) => {
   }
 
   const startGame = async (maxSteps, token) => {
-    // console.log(JSON.stringify({ maxSteps, token }));
     const requestBody = JSON.stringify({ maxSteps, token });
     await api.put('/lobbies/' + state.lobby.id, requestBody);
   }

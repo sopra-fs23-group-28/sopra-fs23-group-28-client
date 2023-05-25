@@ -40,7 +40,6 @@ const Question4Options = (props) => {
     });
 
     socket.on("LOSER", (s) => {
-      console.log('looser: ', s)
         if (s.message === localStorage.getItem('id') ) {
           
           props.setPunishment(1)

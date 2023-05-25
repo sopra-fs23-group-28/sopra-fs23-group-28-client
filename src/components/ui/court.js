@@ -68,9 +68,10 @@ const Horse = styled.img.attrs((props) => ({
 `;
 
 //Return only the court where the race is with the camels on different positions
-const Court = ({users, maxSteps}) => {
+const Court = ({users, maxSteps, punishmentSteps}) => {
   return(
     <><div className="race-container07">
+      <div className="punishment-step" >Punishment: {punishmentSteps}</div>
       <img
         alt="3"
         src={tribune}

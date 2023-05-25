@@ -274,6 +274,15 @@
 .race-text5 {
   align-self: center;
 }
+
+.punishment-step{
+  position: absolute;
+  background-color: antiquewhite;
+  padding: 10px;
+  margin: 20px;
+
+}
+
 @media(max-width: 992px) {
   .race-container01 {
     align-self: stretch;

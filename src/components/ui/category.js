@@ -20,8 +20,6 @@ const Category = (props) => {
     "answers": [],
     "currentQuestion": null
   });
-  const [category, setCategory] = useState(null);
-  const [time, setTime] = useState(0);
   const room = localStorage.getItem('pin')  
   const token = localStorage.getItem('token')
 
@@ -78,7 +76,6 @@ const Category = (props) => {
 
     document.getElementsByClassName(`category-category${i} button`)[0].name="selected";
 
-    setCategory(i)
     chosenCategory(i)
 
 
@@ -102,7 +99,7 @@ const Category = (props) => {
           <p className="category-category-text">{round.categories[2]}</p>
         </button>
       </div>
-    </div><Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[6,9]} setTime={setTime} state={'q4'}/></>
+    </div><Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[6,9]}  state={'q4'}/></>
   )
 }
 

@@ -21,6 +21,7 @@ const Login = (props) => {
       localStorage.setItem('token', user.token)
       localStorage.setItem('id', user.id)
       localStorage.setItem('user', user)
+      localStorage.setItem('deg',0)
         // Login successfully worked --> navigate to the route /lobby in the GameRouter
         navigate("/lobby")
     } catch (error) {
@@ -29,10 +30,7 @@ const Login = (props) => {
   }
 
   const checkUser = () => {
-    if (localStorage.token && localStorage.id && localStorage.user){
-      return true
-    }
-    return false
+    return (localStorage.token && localStorage.id && localStorage.user);
   }
 
   if (checkUser()) {

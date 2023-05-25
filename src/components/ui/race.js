@@ -31,11 +31,10 @@ const Race = (props) => {
   // Create State Objects
   const [state, setState] = useState({ startB: false, users: null, lobby: null });
   const [users, setUsers] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [lobby, setLobby] = useState(null);
   const [arr, setArr] = useState(1);
-  const [maxSteps, setMaxSteps] = useState(['0','1 ', '2 ', '3 ', '4 ', '5 ']);
-  const space = [[10.6,8.4,6.5,5.6,4.7,3.8,2.8,1.6,1.3,0.6,0],[0,0,0,4.4,3.4,2.2,1.4,0.8,0,0,0]]
+  const [maxSteps, setMaxSteps] = useState(['0', '1 ', '2 ', '3 ', '4 ', '5 ']);
+  const [punishmentSteps, setPunishmentSteps] = useState(0);
+  const space = [[10.6, 8.4, 6.5, 5.6, 4.7, 3.8, 2.8, 1.6, 1.3, 0.6, 0], [0, 0, 0, 4.4, 3.4, 2.2, 1.4, 0.8, 0, 0, 0]]
 
   // setup Socket from overview
   const { socket } = props;
@@ -47,53 +46,7 @@ const Race = (props) => {
     let isMounted = true;
 
 
-
-    socket.on("READY", (s) => {
-      console.log(s)
-      if (s.message === 'GETCATEGORY') {
-        props.setGameState('gc')
-      }
-      if (s.message === 'GETQUESTION') {
-        props.setGameState('gc')
-      }
-
-    });
-
-    // socket.on("LOSER", (s) => {
-    //   console.log('looser: ', s)
-    //   if (s.message === localStorage.getItem('id') ) {
-        
-    //     props.setPunishment(1)
-    //     props.setGameState('pp')
-    //   } else if (s.message ==='PUNISHMENTSET') {
-  
-    //     props.setGameState('rc')
-    //   } else {
-    //     props.setPunishment(2)
-    //     props.setGameState('pp')
-    //   }
-    //   })
-
-    
-    // socket.on("FINISH", (s) => {
-    //   console.log(s)
-    //   if (s.message === 'FINISH') {
-    //     props.setGameState('wi')
-    //   }
-
-    // });
-    
-    // socket.on("WHEEL", (s) => {
-    //   console.log(s)
-    //   localStorage.setItem('deg',s.message)
-    //   props.setGameState('df')
-
-    // });
-
-    
-
-    const fetchData = async() => {
-
+    const fetchData = async () => {
       api.get('/users/' + localStorage.getItem('pin')).then(getU => {
         if (isMounted) {
           const temp = state
@@ -109,36 +62,18 @@ const Race = (props) => {
           const temp = state
           temp.lobby = data.data
           setState(temp)
-          let steps = []
-  let a=1
-          if (temp.lobby.maxSteps > 15) {
-            a=2
-            setArr(2)
+          setMaxSteps(renderSteps(temp.lobby.maxSteps))
+          setPunishmentSteps(temp.lobby.punishmentSteps)
+          if (data.data.roundNumber % 4 === 0 && parseInt(localStorage.getItem('deg')) === 0 && parseInt(data.data.creatorId) === parseInt(localStorage.getItem('id')) && props.punishment === 0) {
+            spin()
           }
-          for (var i = 0; i <= temp.lobby.maxSteps; i=i+a) {
-            steps.push(i + ' ');
+          if (data.data.roundNumber % 4 !== 0) {
+            localStorage.setItem('deg', 0)
           }
-          setMaxSteps(steps)
-          setLobby(data.data)
-          console.log(data.data.roundNumber%3, localStorage.getItem('deg') )
-          
-          const { creatorId } = data.data
-          const localId = localStorage.getItem('id')
-          console.log(localId, creatorId, data.data)
-          // if (data.data.roundNumber % 3 ===0 && parseInt(localStorage.getItem('deg'))===0){
-            
-          // if (parseInt(creatorId) === parseInt(localId) && props.punishment===0) {
-          //   spin()
-          // }
-          //   console.log('wheel')
-          //   // props.setGameState('df')
-          // } 
         }
       })
     }
-    if (lobby && lobby.roundNumber % 3 !==0) {
-      localStorage.setItem('deg', 0)
-    }
+    
     fetchData()
     // Clean-up:    
     return () => {
@@ -156,53 +91,49 @@ const Race = (props) => {
 
   }
 
-    // Handle the difficulty to the BackEnd
-    const fate = async (d, a) => {
-      const token = localStorage.getItem('token')
-      const difficultyWheelDegree = a
-      const requestBody = JSON.stringify({token, difficultyWheelDegree})
-      try {
-        await api.put('/lobbies/' + localStorage.getItem('pin')+'/difficulties', requestBody)
-      } catch (e) {
-        alert(`Something went wrong during the transmission: \n${handleError(error)}`)
-      }
+  const renderSteps = (maxSteps) => {
+    let steps = []
+    let a = 1
+    if (maxSteps > 15) {
+      a = 2
+      setArr(2)
     }
-  // Difficulty for the API call
-
-  const getDifficulty = (ranD) => {
-    if (ranD % 180 > 120) {
-      return "EASY"
-    } else if (ranD % 180 > 60){
-      return "MEDIUM"
-    } else {
-      return "HARD"
+    for (let i = 0; i <= maxSteps; i = i + a) {
+      steps.push(i + ' ');
     }
+    return steps
   }
 
-  function spin (){
+  // Every 3 Round the difficulty is set
+  const spin = async () => {
     // generate random number between 1 - 360 for selection
-    let randomDegree = (Math.floor(Math.random() * (360 - 1 + 1)) + 1)
-    let sealed = getDifficulty(randomDegree)
-    fate(sealed, randomDegree)
+    const angle = (Math.floor(Math.random() * (360 - 1 + 1)) + 1)
+    const difficultyWheelDegree = angle
+    const token = localStorage.getItem('token')
+    const requestBody = JSON.stringify({ token, difficultyWheelDegree, angle })
+    try {
+      await api.put('/lobbies/' + localStorage.getItem('pin') + '/difficulties', requestBody)
+    } catch (e) {
+      alert(`Something went wrong during the transmission: \n${e}`)
+    }
   }
-
 
   return (
 
     <>
-    <div className="overview-container01">
-      <div className="overview-container02">
-        {users && users[0] && <Profil user={users[0]} showState={true} />}
-      </div>
-      <div className="overview-container04">
-        {users && users[1] && <Profil user={users[1]} showState={true} />}
-      </div>
-    </div><div className="race-container06">
+      <div className="overview-container01">
+        <div className="overview-container02">
+          {users && users[0] && <Profil user={users[0]} showState={true} />}
+        </div>
+        <div className="overview-container04">
+          {users && users[1] && <Profil user={users[1]} showState={true} />}
+        </div>
+      </div><div className="race-container06">
 
         <button className="overview-button button" onClick={() => setReady()}>Ready</button>
-        {users && <Court users={users} maxSteps={maxSteps.length} />}
+        {users && <Court users={users} maxSteps={maxSteps.length} punishmentSteps={punishmentSteps} />}
         <div className="race-container12">
-          <Steps ls={(space[arr-1][maxSteps.length-6])}> {maxSteps}</Steps>
+          <Steps ls={(space[arr - 1][maxSteps.length - 6])}> {maxSteps}</Steps>
         </div>
         <div className="race-container12">
           <h3>Start</h3>
@@ -216,7 +147,7 @@ const Race = (props) => {
           {users && users[3] && <Profil user={users[3]} showState={true} />}
         </div>
       </div>
-      </>
+    </>
   )
 }
 
