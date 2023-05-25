@@ -110,7 +110,7 @@ Continuous team work and BackEnd authors:
 
 * **Elia Aeberhard** - *Main contributor* - [Elyisha](https://github.com/Elyisha)
 
-* **Harris Sohrab** - *Main contributor* - [so-ri](https://github.com/so-ri)
+* **Harris** - *Main contributor* - [so-ri](https://github.com/so-ri)
 
 * **Samuel Frank** - *Main contributor* - [samuelfrnk](https://github.com/samuelfrnk)
 
