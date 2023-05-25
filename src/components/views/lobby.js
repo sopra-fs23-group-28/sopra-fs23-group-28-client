@@ -11,9 +11,9 @@ const Lobby = (props) => {
   const token = localStorage.getItem('token');
   // use react-router-dom's hook to access the navigate
   const navigate = useNavigate();
-  // api.get('/external-ip').then(data => {
-    localStorage.setItem('ip', 'localhost') //data.data)
-  // })
+  api.get('/external-ip').then(data => {
+    localStorage.setItem('ip', data.data)
+  })
 
   const logout = async () => {
     const requestBody = { data: { token } };
