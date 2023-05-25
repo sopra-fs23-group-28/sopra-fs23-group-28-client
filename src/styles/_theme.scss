@@ -3,7 +3,6 @@
  */
 
 /* Theme Colors
-
    these values control the colors of your application.
    feel free to play around with these and see what other look you can come up with! :D
 */
@@ -22,12 +21,8 @@ $SMALL_WIDTH: 768px;
 $fontDefault: "M PLUS Rounded 1c", sans-serif;
 $fontMono: "Roboto Mono", monospace;
 
-/* a standard drop shadow */
-$dropShadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
-
 
 /* mixins
-
   these allow you to create small snippets that you can insert with a one-liner in other stylesheets
   for an example, see styles/views/Login.scss
 */
@@ -75,20 +70,12 @@ $dropShadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   --dl-space-space-oneandhalfunits: 24px;
 }
 .button {
-  color: var(--dl-color-gray-black);
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-color: var(--dl-color-gray-black);
-  border-width: 1px;
+  border: black solid 1px;
   border-radius: 4px;
-  background-color: var(--dl-color-gray-white);  
   &:disabled {
     background-color: #a1a1a1c5;
   }
 }
-
-
-
 .input {
   color: var(--dl-color-gray-black);
   cursor: auto;
@@ -98,8 +85,6 @@ $dropShadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   background-color: var(--dl-color-gray-white);
 }
-
-
 .textarea {
   color: var(--dl-color-gray-black);
   cursor: auto;
@@ -118,24 +103,7 @@ $dropShadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   list-style-type: none;
   list-style-position: outside;
 }
-.list-item {
-  display: list-item;
-}
 .teleport-show {
   display: flex !important;
   transform: none !important;
-}
-.Heading {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.15;
-  text-transform: none;
-  text-decoration: none;
-}
-.Content {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.15;
-  text-transform: none;
-  text-decoration: none;
 }

@@ -41,16 +41,12 @@ const BigScreenRace = (props) => {
   const [maxSteps, setMaxSteps] = useState(['0', '1 ', '2 ', '3 ', '4 ', '5 ']);
   const [punishmentSteps, setPunishmentSteps] = useState(0);
   const space = [[10.6, 8.4, 6.5, 5.6, 4.7, 3.8, 2.8, 1.6, 1.3, 0.6, 0], [0, 0, 0, 4.4, 3.4, 2.2, 1.4, 0.8, 0, 0, 0]]
-const pin = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
-console.log(window.location.href)
-
-
+  const pin = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 
   useEffect(() => {
 
     // is Mounted to check if unmounted Objects exists.
     let isMounted = true;
-   
 
     const fetchData = async () => {
       api.get('/users/' + pin).then(getU => {
@@ -59,7 +55,6 @@ console.log(window.location.href)
           temp.users = getU.data
           setState(temp)
           setUsers(getU.data)
-          console.log(getU.data)
         }
         api.get('/lobbies/' + pin).then(data => {
           if (isMounted) {
@@ -68,9 +63,7 @@ console.log(window.location.href)
             setState(temp)
             setMaxSteps(renderSteps(temp.lobby.maxSteps))
             setPunishmentSteps(temp.lobby.punishmentSteps)
-            console.log(temp.lobby.maxSteps)
             if (users&& users.map((e) => e.stepState > temp.lobby.maxSteps)){
-              console.log('finish')
               setGameState('fi')
             }
           }
@@ -78,14 +71,11 @@ console.log(window.location.href)
       })
       }
 
-
       const interval = setInterval(() => fetchData(), 3000);
       return () => clearInterval(interval);
     
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
-
 
 
   const renderSteps = (maxSteps) => {
@@ -101,77 +91,77 @@ console.log(window.location.href)
     return steps
   }
   
-function compare( a, b ) {
-  if ( a.stepState < b.stepState ){
-    return 1;
+  function compare( a, b ) {
+    if ( a.stepState < b.stepState ){
+      return 1
+    }
+    if ( a.stepState > b.stepState ){
+      return -1
+    }
+    return 0
   }
-  if ( a.stepState > b.stepState ){
-    return -1;
-  }
-  return 0;
-}
 
   return (
-
     <>
-    { gameState ==='rc' && 
-    <div className='overview-container'>
-      {
-        state.lobby ?
-      <><div className="overview-container01">
+      { gameState ==='rc' && 
+      <div className='overview-container'>
+        {
+          state.lobby ?
+          <>
+            <div className="overview-container01">
               <div className="overview-container02">
                 {users && users[0] && <Profil user={users[0]} showState={true} />}
               </div>
               <div className="overview-container04">
                 {users && users[1] && <Profil user={users[1]} showState={true} />}
               </div>
-            </div><div className="race-container06">
-
-                {users && <Court users={users} maxSteps={maxSteps.length} punishmentSteps={punishmentSteps} />}
-                <div className="race-container12">
-                  <Steps ls={(space[arr - 1][maxSteps.length - 6])}> {maxSteps}</Steps>
-                </div>
-                <div className="race-container12">
-                  <h3>Start</h3>
-                  <h3>Finish</h3>
-                </div>
-              </div><div className="overview-container01">
-                <div className="overview-container02">
-                  {users && users[2] && <Profil user={users[2]} showState={true} />}
-                </div>
-                <div className="overview-container04">
-                  {users && users[3] && <Profil user={users[3]} showState={true} />}
-                </div>
-              </div></> : <Loader/>
-      }
-      </div>
-    }
-    {gameState==='fi' && 
-        <div className="winner-container">
-        <div className="winner-header-div">
-          <button className="winner-goHome button" onClick={() => {navigate("/lobby")}}>
-            Back to Lobby</button>
-        </div>
-        <div className="winner-main-div">
-          <h1 className="winner-titel">Scoreboard</h1>
-          <div className="winner-hero-div">
-            <div className="winner-stats-div">
-            {users && users.sort(compare).map((e,i) => {
-              return <ScoreboardPlayerStats key={i} rootClassName="rootClassName" user={e} rank={"Rank: "+(i+1)} ppr={((state.lobby? state.lobby.roundNumber:0) !== 0 ? e.stepState/state.lobby.roundNumber : 0)}></ScoreboardPlayerStats>
-            })}
             </div>
-            <div className="winner-podium-div">
-              {users && <ScoreboardPodium users={users.sort(compare) } />}
+            <div className="race-container06">
+              {users && <Court users={users} maxSteps={maxSteps.length} punishmentSteps={punishmentSteps} />}
+              <div className="race-container12">
+                <Steps ls={(space[arr - 1][maxSteps.length - 6])}> {maxSteps}</Steps>
+              </div>
+              <div className="race-container12">
+                <h3>Start</h3>
+                <h3>Finish</h3>
+              </div>
+            </div>
+            <div className="overview-container01">
+              <div className="overview-container02">
+                {users && users[2] && <Profil user={users[2]} showState={true} />}
+              </div>
+              <div className="overview-container04">
+                {users && users[3] && <Profil user={users[3]} showState={true} />}
+              </div>
+            </div>
+          </> : <Loader/>
+        }
+      </div>
+      }
+      {gameState==='fi' && 
+        <div className="winner-container">
+          <div className="winner-header-div">
+            <button className="winner-goHome button" onClick={() => {navigate("/lobby")}}>
+              Back to Lobby</button>
+          </div>
+          <div className="winner-main-div">
+            <h1 className="winner-titel">Scoreboard</h1>
+            <div className="winner-hero-div">
+              <div className="winner-stats-div">
+                {users && users.sort(compare).map((e,i) => {
+                  return <ScoreboardPlayerStats key={i} rootClassName="rootClassName" user={e} rank={"Rank: "+(i+1)} ppr={((state.lobby? state.lobby.roundNumber:0) !== 0 ? e.stepState/state.lobby.roundNumber : 0)}></ScoreboardPlayerStats>
+                  })
+                }
+              </div>
+              <div className="winner-podium-div">
+                {users && <ScoreboardPodium users={users.sort(compare) } />}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    }
+      }
     </>
   )
 }
 
 export default BigScreenRace
-
-
-

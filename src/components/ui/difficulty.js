@@ -12,7 +12,7 @@ const Difficulty = (props) => {
   const randomDegree =localStorage.getItem('deg')
 
   useEffect(() => {
-        let totalDegree = degree + randomDegree //(get from s)
+    let totalDegree = parseInt(degree) + parseInt(randomDegree)
 
         document.getElementById("inner-wheel").style.transform = "rotate(" + totalDegree + "deg)"
 
@@ -97,11 +97,9 @@ const Difficulty = (props) => {
             <div className="sec"><span className="fa medium">Medium</span></div>
             <div className="sec"><span className="fa hard">Hard</span></div>
           </div>
-          {/* TODO check host token */}
-          <button id="spin" disabled={((localStorage.getItem('pin')) ? false : true)}>
+          <button id="spin" disabled={true}>
             <div id="inner-spin"></div>
           </button>
-
         </div>
       </div>
     </div>

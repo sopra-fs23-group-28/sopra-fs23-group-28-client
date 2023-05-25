@@ -14,25 +14,22 @@ const Overview = (props) => {
       // headers: {
       //   'Access-Control-Allow-Origin': '*'
       // }
-  });
+  })
   socket.current.on("connect", (e) => {
     // revert to classic upgrade
-    // console.log("connected ", e)
-  });
+  })
   socket.current.on("connect_error", (e) => {
     // revert to classic upgrade
-    // console.log("err: ", e)
-  });
+  })
   
   socket.current.on("disconnect", (e) => {
     // revert to classic upgrade
-    // console.log("disconnect ", e)
-  });
+  })
 
 
-    return (
-      <Component socket={socket.current}/>
-    )
+  return (
+    <Component socket={socket.current}/>
+  )
 }
 
 export default Overview

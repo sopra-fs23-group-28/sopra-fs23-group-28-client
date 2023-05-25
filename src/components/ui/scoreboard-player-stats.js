@@ -4,11 +4,8 @@ import PropTypes from 'prop-types'
 import 'styles/ui/scoreboard-player-stats.scss'
 
 const ScoreboardPlayerStats = (props) => {
-  console.log(props.user)
   return (
-    <div
-      className={`scoreboard-player-stats-feature-card ${props.rootClassName} `}
-    >
+    <div className={`scoreboard-player-stats-feature-card ${props.rootClassName} `}>
       <div className="scoreboard-player-stats-ranking-div">
         <h1 className="scoreboard-player-stats-rank">{props.rank}</h1>
         <h1 className="scoreboard-player-stats-player-name">{props.user.username}</h1>

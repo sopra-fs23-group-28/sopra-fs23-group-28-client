@@ -9,59 +9,48 @@ import { api } from 'helpers/api'
 
 function compare( a, b ) {
   if ( a.stepState < b.stepState ){
-    return 1;
+    return 1
   }
   if ( a.stepState > b.stepState ){
-    return -1;
+    return -1
   }
-  return 0;
+  return 0
 }
 
 
 const Winner = () => {
   const navigate = useNavigate()
 
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState(null)
   // eslint-disable-next-line no-unused-vars
-  const [lobby, setLobby] = useState(null);
+  const [lobby, setLobby] = useState(null)
 
   useEffect( () => {
-    
-
     // is Mounted to check if unmounted Objects exists.
     let isMounted = true;
 
-  const fetchData = async () => {
+    const fetchData = async () => {
+      await api.get('/users/' + localStorage.getItem('pin')).then(getU => {
+        if (isMounted) {
+          setUsers(getU.data)
+        }
+      })
 
-    await api.get('/users/' + localStorage.getItem('pin')).then(getU => {
-      if (isMounted) {
-        setUsers(getU.data)
-      }
-      
-    })
+      await api.get('/lobbies/' + localStorage.getItem('pin')).then(data => {
+        if (isMounted) {
+          setLobby(data.data)
+        }
+      })
+    }
 
+    fetchData()
 
-    await api.get('/lobbies/' + localStorage.getItem('pin')).then(data => {
-      if (isMounted) {
-        setLobby(data.data)
-        
-  console.log("user: ", users)
-  console.log("lobby: ", lobby)
-      }
-    })
-
-
-  }
-
-  fetchData()
-
-  // Clean-up:    
-  return () => {
-    isMounted = false;
-
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+    // Clean-up:    
+    return () => {
+      isMounted = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
 
 

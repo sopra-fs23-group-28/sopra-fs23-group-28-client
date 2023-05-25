@@ -5,7 +5,7 @@ import 'styles/views/question4-options.scss'
 
 const Question4Options = (props) => {
   // init the Socket passed from the overview
-  const {socket} = props;
+  const {socket} = props
   //Setup the states
   const [reload, setReload] = useState(0)
   const [round, setRound] = useState({
@@ -22,12 +22,11 @@ const Question4Options = (props) => {
       ""
     ],
     "currentQuestion": ""
-  });
-  const [time, setTime] = useState(0);
+  })
+  const [time, setTime] = useState(0)
   const room = localStorage.getItem('pin')
   
   useEffect(() => {
-
     // is Mounted to check if unmounted Objects exists.
     let isMounted = true;
 
@@ -35,56 +34,47 @@ const Question4Options = (props) => {
       if (s.message.length===1){
         fetchData(parseInt(s.message))
       }
-      //
-
-    });
+    })
 
     socket.on("LOSER", (s) => {
-        if (s.message === localStorage.getItem('id') ) {
-          
-          props.setPunishment(1)
-        } else if (s.message !== localStorage.getItem('id') ) {
-          props.setPunishment(2)
-        }
-
-     
-      })
+      if (s.message === localStorage.getItem('id') ) {
+        props.setPunishment(1)
+      } else if (s.message !== localStorage.getItem('id') ) {
+        props.setPunishment(2)
+      }
+    })
     
     socket.on("FINISH", (s) => {
-      
-      console.log(s)
       if (s.message === 'FINISH') {
         props.setGameState('wi')
       }
     })
+
     if (reload){
       socket.emit("TIMERSTOPQUESTION", {room},);
     }
 
     const fetchData = async (data) => {
-
       api.get('/lobbies/' + localStorage.getItem('pin')+'/rounds').then(getU => {
         if (isMounted) {
           let temp =getU.data 
           temp.categories = temp.categories.map((i,ind) => i.replaceAll('_', ' ').toUpperCase())
-          console.log(getU)
           if (data) {
             document.getElementsByClassName(`question4-options-answer${(data)} button`)[0].name="chosen";
           }
           setRound(temp)
         }
       })
-
     }
 
     fetchData()
     // Clean-up:    
     return () => {
       isMounted = false;
-
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
+
 
   // Handle the put answer to the backend
   const chosenAnswer = async (i) => {
@@ -108,43 +98,43 @@ const Question4Options = (props) => {
     chosenAnswer(i)
   }
 
+
   return (
-    <><div className="question4-options-container">
-      <div className="question4-options-question-div">
-        <h1 className="question4-options-question">
-          Question?
-          <br></br>
-          {round.currentQuestion}
-        </h1>
+    <>
+      <div className="question4-options-container">
+        <div className="question4-options-question-div">
+          <h1 className="question4-options-question">
+            {round.currentQuestion}
+          </h1>
+        </div>
+        <div className="question4-options-answers-div">
+          <button className="question4-options-answer1 button"
+            onClick={() => handleCLick(1)}>
+            <p className="question4-options-answer-text">
+              {round.answers[0]}
+            </p>
+          </button>
+          <button className="question4-options-answer2 button"
+            onClick={() => handleCLick(2)}>
+            <p className="question4-options-answer-text">
+              {round.answers[1]}
+            </p>
+          </button>
+          <button className="question4-options-answer3 button"
+            onClick={() => handleCLick(3)}>
+            <p className="question4-options-answer-text">
+              {round.answers[2]}
+            </p>
+          </button>
+          <button className="question4-options-answer4 button"
+            onClick={() => handleCLick(4)}>
+            <p className="question4-options-answer-text">
+              {round.answers[3]}
+            </p>
+          </button>
+        </div>
       </div>
-      <div className="question4-options-answers-div">
-        <button className="question4-options-answer1 button"
-          onClick={() => handleCLick(1)}>
-          <p className="question4-options-answer-text">
-            {round.answers[0]}
-          </p>
-        </button>
-        <button className="question4-options-answer2 button"
-          onClick={() => handleCLick(2)}>
-          <p className="question4-options-answer-text">
-            {round.answers[1]}
-          </p>
-        </button>
-        <button className="question4-options-answer3 button"
-          onClick={() => handleCLick(3)}>
-          <p className="question4-options-answer-text">
-            {round.answers[2]}
-          </p>
-        </button>
-        <button className="question4-options-answer4 button"
-          onClick={() => handleCLick(4)}>
-          <p className="question4-options-answer-text">
-            {round.answers[3]}
-          </p>
-        </button>
-      </div>
-    </div>
-    <Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[15,18]} setTime={setTime}  state={'pp'} />
+      <Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[15,18]} setTime={setTime}  state={'pp'} />
     </>
   )
 }

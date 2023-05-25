@@ -41,10 +41,8 @@ const Race = (props) => {
 
 
   useEffect(() => {
-
     // is Mounted to check if unmounted Objects exists.
     let isMounted = true;
-
 
     const fetchData = async () => {
       api.get('/users/' + localStorage.getItem('pin')).then(getU => {
@@ -55,7 +53,6 @@ const Race = (props) => {
           setUsers(getU.data)
         }
       })
-
 
       api.get('/lobbies/' + localStorage.getItem('pin')).then(data => {
         if (isMounted) {
@@ -78,7 +75,6 @@ const Race = (props) => {
     // Clean-up:    
     return () => {
       isMounted = false;
-
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
@@ -86,9 +82,7 @@ const Race = (props) => {
 
   const setReady = () => {
     const room = localStorage.getItem('pin')
-    console.log('ready', room)
     socket.emit("READY", { room });
-
   }
 
   const renderSteps = (maxSteps) => {
@@ -118,8 +112,8 @@ const Race = (props) => {
     }
   }
 
-  return (
 
+  return (
     <>
       <div className="overview-container01">
         <div className="overview-container02">
@@ -129,7 +123,6 @@ const Race = (props) => {
           {users && users[1] && <Profil user={users[1]} showState={true} />}
         </div>
       </div><div className="race-container06">
-
         <button className="overview-button button" onClick={() => setReady()}>Ready</button>
         {users && <Court users={users} maxSteps={maxSteps.length} punishmentSteps={punishmentSteps} />}
         <div className="race-container12">

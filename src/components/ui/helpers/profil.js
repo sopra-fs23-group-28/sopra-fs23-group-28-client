@@ -38,21 +38,23 @@ const getAvatar = (avatar) => {
   }
   return url
 }
-// Return the
+
+
 const Profil = (props) => {
   return (
-    <div className="overview-container02">
-      <div className="overview-container03">
-        <img
-          alt={'profile' + props.user.id}
-          src={getAvatar(props.user.camelColor)}
-          className="overview-image" />
+    <>
+      <div className="bundler">
+        <div className="overview-container03">
+          <img
+            alt={'profile' + props.user.id}
+            src={getAvatar(props.user.camelColor)}
+            className="overview-image" />
+        </div>
+        <h2 className="overview-text">{(props.user.username.toUpperCase())}</h2>
+        <h2 className="overview-text">{props.showState ? 'Steps: ' + props.user.stepState : ''}</h2>
       </div>
-      <h2 className="overview-text">{(props.user.username.toUpperCase())}</h2>
-      <h2 className="overview-text">{ props.showState ?'Steps: '+props.user.stepState:''}</h2>
-    </div>
+    </>
   )
-
 }
 
 export default Profil

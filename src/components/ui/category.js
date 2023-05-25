@@ -42,7 +42,6 @@ const Category = (props) => {
       api.get('/lobbies/' + localStorage.getItem('pin')+'/rounds').then(getU => {
         if (isMounted) {
           let temp =getU.data 
-          console.log(getU)
           temp.categories = temp.categories.map((i,ind) => i.replaceAll('_', ' ').toUpperCase())
           if (temp.currentQuestion) {
             temp.chosenCategory =temp.chosenCategory.replaceAll('_', ' ').toUpperCase()
@@ -51,7 +50,6 @@ const Category = (props) => {
           setRound(temp)
         }
       })
-
     }
 
     // To mount and unmount the component we have this function. if the component is unmounted, the API calls ar not going to change anything.
@@ -63,7 +61,7 @@ const Category = (props) => {
     }
   }, [reload]);
 
-// Handle the category to the backend
+  // Handle the category to the backend
   const chosenCategory = async (i) => {
     const requestBody = JSON.stringify({token});
     await api.put('/lobbies/' + localStorage.getItem('pin')+'/categories/'+i, requestBody);    
@@ -77,29 +75,32 @@ const Category = (props) => {
     document.getElementsByClassName(`category-category${i} button`)[0].name="selected";
 
     chosenCategory(i)
-
-
   }
+
+
   return (
-    <><div className="category-container">
-      <div className="category-titel-div">
-        <h1 className="category-titel">Pick your poison</h1>
+    <>
+      <div className="category-container">
+        <div className="category-titel-div">
+          <h1 className="category-titel">Pick your poison</h1>
+        </div>
+        <div className="category-category-div">
+          <button className="category-category1 button"
+            onClick={() => handleClick(1)}>
+            <p className="category-category-text">{round.categories[0]}</p>
+          </button>
+          <button className="category-category2 button"
+            onClick={() => handleClick(2)}>
+            <p className="category-category-text">{round.categories[1]}</p>
+          </button>
+          <button className="category-category3 button"
+            onClick={() => handleClick(3)}>
+            <p className="category-category-text">{round.categories[2]}</p>
+          </button>
+        </div>
       </div>
-      <div className="category-category-div">
-        <button className="category-category1 button"
-          onClick={() => handleClick(1)}>
-          <p className="category-category-text">{round.categories[0]}</p>
-        </button>
-        <button className="category-category2 button"
-          onClick={() => handleClick(2)}>
-          <p className="category-category-text">{round.categories[1]}</p>
-        </button>
-        <button className="category-category3 button"
-          onClick={() => handleClick(3)}>
-          <p className="category-category-text">{round.categories[2]}</p>
-        </button>
-      </div>
-    </div><Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[6,9]}  state={'q4'}/></>
+      <Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[6,9]}  state={'q4'}/>
+    </>
   )
 }
 

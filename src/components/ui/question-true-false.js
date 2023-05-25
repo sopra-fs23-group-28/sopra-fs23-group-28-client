@@ -8,7 +8,6 @@ const QuestionTrueFalse = (props) => {
   let answerChoice = NaN
   let timer = 0.00
 
-  console.log(answerChoice, timer)
   const handleClick = (i) => {
     document.getElementsByClassName("question-true-false-answer-true button")[0].disabled=true;
     document.getElementsByClassName("question-true-false-answer-false button")[0].disabled=true;
@@ -22,7 +21,7 @@ const QuestionTrueFalse = (props) => {
     <div className="question-true-false-container">
       <div className="question-true-false-question-div">
         <h1 className="question-true-false-question">
-          Question? <br></br>
+          Question? <br/>
           How long can you make this without breaking the box? 
           Or does it readjust the size automatically?
         </h1>

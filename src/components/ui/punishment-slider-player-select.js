@@ -7,14 +7,13 @@ const PunishmentSliderPlayerSelect = (props) => {
   const [punishmentSteps, setPunishmentSteps] = useState(1);
 
   const pushPunishment = async ( token) => {
-    console.log('test: ', punishmentSteps, token);
     const requestBody = JSON.stringify({ punishmentSteps, token });
     await api.put('/lobbies/' + localStorage.getItem('pin') + '/punishments', requestBody);
   }
 
   return (
     <>
-    {props.punishment ===1 &&
+      {props.punishment ===1 &&
         <div className="settings-container">
         <div className="settings-main-div" >
           <h1 className="settings-titel">Punishment</h1>

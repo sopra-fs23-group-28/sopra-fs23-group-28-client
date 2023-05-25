@@ -1,6 +1,5 @@
 import { useReducer, useEffect, useRef, useState } from 'react'
 import { api } from 'helpers/api';
-import { Helmet } from 'react-helmet'
 import greencamel from "../../playground_assets/greencamel-200h.gif"
 import redcamel from "../../playground_assets/redcamel-200h.gif"
 import bluecamel from "../../playground_assets/bluecamel-200h.gif"
@@ -161,16 +160,15 @@ function Slide({ slide, id, offset, avatar , url }) {
 }
 
 
-  // use react-router-dom's hook to access the navigate
-  const select = async (props, id, avatar, url) => {
-    const camelColor = props.title
-    const requestBody = JSON.stringify({camelColor});
-    // console.log(requestBody)
-    await api.put('/users/'+id, requestBody);    
-    localStorage.setItem('avatar', camelColor);
-    avatar(camelColor)
-    url();
-  }
+// use react-router-dom's hook to access the navigate
+const select = async (props, id, avatar, url) => {
+  const camelColor = props.title
+  const requestBody = JSON.stringify({camelColor});
+  await api.put('/users/'+id, requestBody);    
+  localStorage.setItem('avatar', camelColor);
+  avatar(camelColor)
+  url();
+}
 
 
 const ChooseAvatar = (props) => {
@@ -193,12 +191,11 @@ const ChooseAvatar = (props) => {
             }
           }
         )
-        // Clean-up:    
-        return () => {        isMounted = false;    }
+        // Clean-up:
+        return () => {isMounted = false;    }
   }, [avatar, pin])
 
 
-  // console.log( localStorage.getItem('avatar'))
   // Filter the Colors for choose Avater
   if (users) {
     const user = users
@@ -213,18 +210,14 @@ const ChooseAvatar = (props) => {
     });
   }
 
-const url = () => {
-navigate('/game/'+pin)
-}
+  const url = () => {
+  navigate('/game/'+pin)
+  }
+
 
   return (
     <div className='choose-avatar-container'>
-
       <h1 className='choose-avatar-login-text'>Choose your Avatar</h1>
-      <Helmet>
-        <title>ChooseAvatar - SoPra Mockups</title>
-        <meta property='og:title' content='ChooseAvatar - SoPra Mockups' />
-      </Helmet>
       <div className='slides'>
         <button onClick={() => dispatch({ type: 'PREV' })}>›</button>
 
@@ -235,7 +228,7 @@ navigate('/game/'+pin)
         <button onClick={() => dispatch({ type: 'NEXT' })}>‹</button>
       </div>
     </div>
-  );
+  )
 }
 
 export default ChooseAvatar
