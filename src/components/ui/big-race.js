@@ -69,13 +69,13 @@ const BigScreenRace = (props) => {
           }
         })
       })
-      }
+    }
 
-      const interval = setInterval(() => fetchData(), 3000);
-      return () => clearInterval(interval);
+    const interval = setInterval(() => fetchData(), 3000)
+    return () => clearInterval(interval)
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, [state])
 
 
   const renderSteps = (maxSteps) => {
@@ -86,7 +86,7 @@ const BigScreenRace = (props) => {
       setArr(2)
     }
     for (let i = 0; i <= maxSteps; i = i + a) {
-      steps.push(i + ' ');
+      steps.push(i + ' ')
     }
     return steps
   }

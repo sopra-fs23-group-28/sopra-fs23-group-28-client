@@ -10,7 +10,6 @@
   flex-direction: column;
   background-color: rgba(25, 88, 235, 0.9);
   top: 45%;
-  
   z-index: 2;
 }
 .enter-pin-title {
@@ -25,5 +24,8 @@
   font-size: 24px;
   margin-left: 24px;
   margin-right: 24px;
-  background-color: var(--dl-color-gray-700);
+}
+input[type=text]{
+  background-color: darkgray;
+  color: black;
 }

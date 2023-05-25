@@ -42,14 +42,14 @@
   width: 100%;
   display: flex;
   overflow: hidden;
+  min-height: 60vh;
 }
 .winner-stats-div {
   width: 25%;
   display: flex;
   flex-direction: column;
   opacity: 0.9;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 15px;
   border-radius: 12px;
   background-color: var(--dl-color-primary-700);
 }
@@ -75,7 +75,10 @@
 }
 @media(max-width: 576px) {
   .winner-container {
-    height: fit-content;
+    min-height: unset;
+  }
+  .winner-header-div {
+    margin-bottom: 40px;
   }
   .winner-main-div {
     height: fit-content;
@@ -85,7 +88,7 @@
   .winner-titel {
     padding-left: 10%;
     padding-right: 10%;
-    font-size: 5vw;
+    font-size: 32px;
     align-self: center;
     margin-top: 0px;
   }
@@ -95,8 +98,9 @@
     margin-top: 8px;
   }
   .winner-stats-div {
-    width: 90%;
+    width: 70%;
     align-self: center;
+    margin-bottom: 25px;
   }
   .winner-podium-div {
     width: 100%;
@@ -104,6 +108,7 @@
   }
   .winner-goHome {
     width: max-content;
-    font-size: 3vw;
+    font-size: 20px;
+    padding: 10px;
   }
 }

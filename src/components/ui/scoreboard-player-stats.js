@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import 'styles/ui/scoreboard-player-stats.scss'
 
+
 const ScoreboardPlayerStats = (props) => {
   return (
     <div className={`scoreboard-player-stats-feature-card ${props.rootClassName} `}>
@@ -17,7 +18,7 @@ const ScoreboardPlayerStats = (props) => {
             <label>Distance: {props.user.stepState} </label>
           </li>
           <li className="list-item">
-            <label>Points per Round: {props.ppr}</label>
+            <label>Points per Round:<br/>{props.ppr}</label>
           </li>
         </ul>
       </div>

@@ -13,16 +13,15 @@
 .scoreboard-player-stats-ranking-div {
   display: flex;
   margin-bottom: 8px;
-  flex-direction: row;
 }
 .scoreboard-player-stats-rank {
   color: white;
-  font-size: 2vw;
+  font-size: 22px;
   margin: 0px;
 }
 .scoreboard-player-stats-player-name {
   color: white;
-  font-size: 2vw;
+  font-size: 22px;
   margin: 0px;
   margin-left: 16px;
 }
@@ -34,7 +33,7 @@
 }
 .scoreboard-player-stats-stats-titel {
   color: white;
-  font-size: 1vw;
+  font-size: 20px;
   margin: 0px;
 }
 .scoreboard-player-stats-stats {
@@ -53,13 +52,13 @@
 
 @media(max-width: 992px) {
   .scoreboard-player-stats-rank {
-    font-size: 3vw;
+    font-size: 22px;
   }
   .scoreboard-player-stats-player-name {
-    font-size: 3vw;
+    font-size: 22px;
   }
   .scoreboard-player-stats-stats-titel {
-    font-size: 3vw;
+    font-size: 20px;
   }
 }
 @media(max-width: 576px) {
