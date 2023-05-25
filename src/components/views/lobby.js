@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { api } from 'helpers/api';
 import { Navigate, useNavigate } from 'react-router-dom';
-import Loader from 'components/ui/loader';
 import Pin from 'components/ui/enter-pin';
 
 import 'styles/views/lobby.scss'
@@ -62,10 +61,7 @@ const Lobby = (props) => {
   }
 
   const checkUser = () => {
-    if (localStorage.token && localStorage.id && localStorage.user) {
-      return true
-    }
-    return false
+    return (localStorage.token && localStorage.id && localStorage.user);
   }
 
   if (!checkUser()) {
