@@ -48,8 +48,8 @@ const Profil = (props) => {
           src={getAvatar(props.user.camelColor)}
           className="overview-image" />
       </div>
-      <h1 className="overview-text">{(props.user.username.toUpperCase())}</h1>
-      <h1 className="overview-text">{ props.showState ?'Steps: '+props.user.stepState:''}</h1>
+      <h2 className="overview-text">{(props.user.username.toUpperCase())}</h2>
+      <h2 className="overview-text">{ props.showState ?'Steps: '+props.user.stepState:''}</h2>
     </div>
   )
 

@@ -34,20 +34,20 @@
 }
 .scoreboard-player-stats-stats-titel {
   color: white;
-  font-size: 2vw;
+  font-size: 1vw;
   margin: 0px;
 }
 .scoreboard-player-stats-stats {
   margin: 0px;
-  font-size: larger;
-  padding-top: 16px;
+  font-size: medium;
+  padding-top: 0px;
   padding-left: 0px;
   list-style-type: disc;
   list-style-position: inside;
 }
 .list-item {
   color: white;
-  padding-bottom: 8px;
+  padding-bottom: 0px;
 }
 
 
@@ -72,17 +72,14 @@
     width: 100%;
   }
   .scoreboard-player-stats-rank {
-    font-size: 6vw;
+    font-size: 4vw;
     align-self: center;
   }
   .scoreboard-player-stats-player-name {
-    font-size: 6vw;
+    font-size: 4vw;
     align-self: center;
   }
-  .scoreboard-player-stats-stats-div {
-    padding-top: 16px;
-  }
   .scoreboard-player-stats-stats-titel {
-    font-size: 6vw;
+    font-size: 4vw;
   }
 }

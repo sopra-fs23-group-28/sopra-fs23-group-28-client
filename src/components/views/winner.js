@@ -77,7 +77,7 @@ const Winner = (props) => {
         <div className="winner-hero-div">
           <div className="winner-stats-div">
           {users && users.sort(compare).map((e,i) => {
-            return <ScoreboardPlayerStats key={i} rootClassName="rootClassName" user={e} rank={"Rank: "+(i+1)} ppr={((lobby? lobby.roundNumber:0) != 0 ? e.stepState/lobby.roundNumber : 0)}></ScoreboardPlayerStats>
+            return <ScoreboardPlayerStats key={i} rootClassName="rootClassName" user={e} rank={"Rank: "+(i+1)} ppr={((lobby? lobby.roundNumber:0) != 0 ? (e.stepState/lobby.roundNumber).toFixed(2) : 0)}></ScoreboardPlayerStats>
           })}
           </div>
           <div className="winner-podium-div">

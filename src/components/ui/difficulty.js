@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react'
 import { api } from 'helpers/api';
 
@@ -13,10 +14,8 @@ const Difficulty = (props) => {
   let degree = 2880
 
   useEffect(() => {
-
-    socket.on("DIFFICULTY", (s) => {
-      if(s.message === ""){
-        let totalDegree = degree // + randomDegree (get from s)
+        const randomDegree =localStorage.getItem('deg')
+        let totalDegree = degree + randomDegree //(get from s)
 
         document.getElementById("inner-wheel").style.transform = "rotate(" + totalDegree + "deg)"
 
@@ -33,7 +32,9 @@ const Difficulty = (props) => {
 
         // change view to category
         setTimeout(() => {
-          return <div socket={socket} setGameState={props.setGameState} setReload={setReload} state={'gc'} />
+          return (
+            
+            props.setGameState('rc'))
           }, 8000
         )
 
@@ -69,31 +70,14 @@ const Difficulty = (props) => {
     
         //   noY = t.offset().top
         // })
-      }
-    })
 
   }, [])
-
-
-  // Handle the difficulty to the BackEnd
-  const fate = async (d, a) => {
-    const token = localStorage.getItem('token')
-    const difficulty = d
-    const angle = a
-    const requestBody = JSON.stringify({token, difficulty, angle})
-    try {
-      await api.put('/lobbies/' + localStorage.getItem('pin')+'/difficulty', requestBody)
-    } catch (e) {
-      alert(`Something went wrong during the transmission: \n${handleError(error)}`)
-    }
-  }
 
   const highlightStyles = `
     color: white;
     text-decoration: underline;
     text-underline-offset: 4px;
-  `
-
+  `  
   const getDifficulty = (ranD) => {
     if (ranD % 180 > 120) {
       return "EASY"
@@ -103,20 +87,6 @@ const Difficulty = (props) => {
       return "HARD"
     }
   }
-
-  function spin (){
-    // generate random number between 1 - 360 for selection
-    let randomDegree = (Math.floor(Math.random() * (360 - 1 + 1)) + 1)
-
-    let sealed = getDifficulty(randomDegree)
-
-    // disable button for host
-    document.getElementById("spin").disabled=true
-
-    fate(sealed, randomDegree)
-  }
-
-  
   return (
     <div className="difficulty-container">
       <h1 className="title">Surrender to the Wheel of Fate</h1>
@@ -131,7 +101,7 @@ const Difficulty = (props) => {
             <div className="sec"><span className="fa hard">Hard</span></div>
           </div>
           {/* TODO check host token */}
-          <button id="spin" disabled={((localStorage.token) ? false : true)} onClick={() => {spin()}}>
+          <button id="spin" disabled={((localStorage.getItem('pin')) ? false : true)}>
             <div id="inner-spin"></div>
           </button>
 

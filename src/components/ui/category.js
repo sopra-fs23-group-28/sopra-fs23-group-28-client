@@ -44,8 +44,9 @@ const Category = (props) => {
       api.get('/lobbies/' + localStorage.getItem('pin')+'/rounds').then(getU => {
         if (isMounted) {
           let temp =getU.data 
+          console.log(getU)
           temp.categories = temp.categories.map((i,ind) => i.replaceAll('_', ' ').toUpperCase())
-          if (temp.chosenCategory) {
+          if (temp.currentQuestion) {
             temp.chosenCategory =temp.chosenCategory.replaceAll('_', ' ').toUpperCase()
             document.getElementsByClassName(`category-category${(temp.categories.indexOf(temp.chosenCategory)+1)} button`)[0].name="chosen";
           }

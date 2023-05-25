@@ -39,6 +39,17 @@ const Question4Options = (props) => {
 
     });
 
+    socket.on("LOSER", (s) => {
+      console.log('looser: ', s)
+        if (s.message === localStorage.getItem('id') ) {
+          
+          props.setPunishment(1)
+        } else if (s.message !== localStorage.getItem('id') ) {
+          props.setPunishment(2)
+        }
+
+     
+      })
     
     socket.on("FINISH", (s) => {
       
@@ -51,7 +62,7 @@ const Question4Options = (props) => {
       socket.emit("TIMERSTOPQUESTION", {room},);
     }
 
-    const fetchData = (data) => {
+    const fetchData = async (data) => {
 
       api.get('/lobbies/' + localStorage.getItem('pin')+'/rounds').then(getU => {
         if (isMounted) {
@@ -134,7 +145,7 @@ const Question4Options = (props) => {
         </button>
       </div>
     </div>
-    <Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[15,18]} setTime={setTime}  state={'rc'} />
+    <Timer socket={socket} setGameState={props.setGameState} setReload={setReload} time={[15,18]} setTime={setTime}  state={'pp'} />
     </>
   )
 }
