@@ -15,7 +15,7 @@
   width: 90vw;
   margin: 48px;
   display: flex;
-  opacity: 0.95;
+  opacity: 0.9;
   padding: 30px;
   align-self: center;
   height: min-content;
@@ -27,6 +27,21 @@
   justify-content: flex-start;
   background-color: rgba(25, 88, 235, 0.9);
   overflow: auto;
+}
+.close {
+  display: flex;
+  align-self: flex-end;
+  align-content: center;
+  border-radius: 50%;
+  text-align: center;
+  background-color: orange;
+  font-weight: 900;
+  z-index: 50;
+  position: absolute;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 24px;
+  border: black solid 2px;
 }
 .rules-titel {
   color: var(--dl-color-primary-100);
@@ -51,7 +66,7 @@
   list-style-type: lower-alpha;
   list-style-position: inside;
 }
-.list-item {
+.rules-item {
   color: white;
   display: list-item;
   font-size: inherit;
@@ -60,6 +75,10 @@
 @media(max-width: 992px) {
   .rules-main-div {
     margin: 32px;
+  }
+  .close {
+    font-size: 20px;
+    padding: 6px 8px;
   }
 }
 @media(max-width: 576px) {
@@ -76,6 +95,10 @@
   .rules-rules-text {
     margin-top: 0px;
     margin-bottom: 0px;
+  }
+  .close {
+    font-size: 16px;
+    padding: 5px 6px;
   }
 }
 
